@@ -158,12 +158,79 @@
       color: #55347f; /* readable purple for body text */
     }
 
-    /* ==== Writing Samples (Page 4) ==== */
-    /* ==== Writing Samples (Page 4) ==== */
-.writing-box {
-  background: linear-gradient(90deg, #fbe7ff, #e3c0ff, #d4b7ff);
-  /* ... all the .writing-box, .writing-columns, .writing-left, .writing-right rules ... */
+    /* ==== Writing Samples - NEW SEPARATED DESIGN ==== */
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 32px;
+  max-width: 1200px;
+  margin: 40px auto;
 }
+
+.story-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 36px 28px;
+  box-shadow: 0 12px 40px rgba(140, 107, 187, 0.2);
+  border: 1px solid rgba(176, 146, 223, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(140, 107, 187, 0.3);
+}
+
+.story-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.story-star {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #5a3a7d;
+  border-radius: 50%;
+  font-size: 16px;
+  color: #5a3a7d;
+  background: linear-gradient(135deg, #f8efff, #e9d5ff);
+  margin-bottom: 12px;
+}
+
+.story-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #3a2255;
+  margin: 0 0 16px 0;
+  letter-spacing: 0.02em;
+}
+
+.story-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #b192df, transparent);
+  margin: 0 auto 0;
+}
+
+.story-text {
+  font-size: 16px;
+  color: #3a214f;
+  line-height: 1.75;
+  text-align: left;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .stories-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .story-card {
+    padding: 28px 20px;
+  }
+}
+
 
 
     /* ==== Art journey cards (Page 5) ==== */
