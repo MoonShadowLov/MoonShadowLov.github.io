@@ -1,116 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Magical Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>MoonShawdowTheSunFloWer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* ==== Base ==== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: "Georgia", "Times New Roman", serif;
+      color: #2b1b33;
+      background: #fbe9ff;
+      line-height: 1.5;
+      text-align: center;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    section {
+      padding: 80px 20px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
 
-    <!-- ALL THE STYLING IS RIGHT HERE! -->
-    <style>
-        :root {
-            --bg-dark-purple: #1a0f2a;
-            --bg-light-purple: #4a2f58;
-            --accent-lavender: #d1b3ff;
-            --text-moonlight: #f0e8ff;
-            --glow-color: rgba(209, 179, 255, 0.7);
-            --font-heading: 'Cinzel Decorative', serif;
-            --font-body: 'Lora', serif;
-        }
-        body {
-            background: linear-gradient(170deg, var(--bg-dark-purple), var(--bg-light-purple));
-            background-attachment: fixed;
-            color: var(--text-moonlight);
-            font-family: var(--font-body);
-            margin: 0;
-            padding: 2rem 1rem;
-            display: flex;
-            flex-direction: column; /* Changed for portfolio layout */
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-        h1, h2, h3 {
-            font-family: var(--font-heading);
-            font-weight: 700;
-        }
-        header, main, footer {
-            max-width: 800px;
-            width: 100%;
-        }
-        section {
-            margin-bottom: 3rem;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            text-align: left;
-        }
-        .grid-item {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--accent-lavender);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-decoration: none;
-            color: var(--text-moonlight);
-            transition: all 0.3s ease-in-out;
-        }
-        .grid-item h3 {
-            margin-top: 0;
-        }
-        .grid-item:hover {
-            background-color: rgba(209, 179, 255, 0.2);
-            box-shadow: 0 0 20px var(--glow-color);
-            transform: translateY(-5px);
-        }
-        footer {
-            margin-top: 3rem;
-            opacity: 0.7;
-        }
-    </style>
+    /* ==== Shared backgrounds (you can swap for your own images) ==== */
+    .bg-hero {
+      background: radial-gradient(circle at top, #fef5ff, #d6a7ff 40%, #7f6fd8 80%);
+      color: #2b1b33;
+      position: relative;
+      overflow: hidden;
+    }
+    .bg-clouds {
+      background: linear-gradient(#ffeafd, #f8ccff);
+    }
+    .bg-purple {
+      background: linear-gradient(#c79be8, #9063c9);
+      color: #fff;
+    }
+    .bg-moon {
+      background: radial-gradient(circle at center, #fef5ff 0%, #d2b7ff 45%, #fdf2ff 100%);
+    }
+
+    /* ==== Hero section (Page 1) ==== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .brand-name {
+      font-size: 42px;
+      letter-spacing: 0.18em;
+      text-transform: capitalize;
+    }
+    .brand-name span {
+      letter-spacing: 0.05em;
+    }
+    .hero-subtitle {
+      margin-top: 24px;
+      font-size: 14px;
+      letter-spacing: 0.21em;
+      text-transform: uppercase;
+    }
+    .hero-star {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #000;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 18px;
+    }
+
+    /* ==== Greetings / Welcome (Page 2) ==== */
+    .pill-button {
+      display: inline-block;
+      padding: 10px 40px;
+      border-radius: 40px;
+      border: 1px solid #8c6bbb;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 12px;
+      background: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+    }
+    .welcome-title {
+      font-size: 32px;
+      max-width: 700px;
+      margin: 0 auto 16px;
+    }
+    .welcome-text {
+      font-size: 18px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* ==== Let’s create cards (Page 3) ==== */
+    .section-heading {
+      font-size: 30px;
+      margin-bottom: 14px;
+    }
+    .section-subheading {
+      font-size: 22px;
+      margin-bottom: 40px;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: rgba(255,255,255,0.8);
+      border-radius: 4px;
+      padding: 30px 22px 28px;
+      position: relative;
+      min-height: 210px;
+    }
+    .card-star {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      margin: 0 auto 12px;
+    }
+    .card-title {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+    .card-text {
+      font-size: 14px;
+    }
+
+    /* ==== Writing Samples (Page 4) ==== */
+    .writing-box {
+      background: linear-gradient(90deg, #fbe7ff, #e3c0ff, #d4b7ff);
+      border-radius: 6px;
+      padding: 40px 26px;
+      text-align: left;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .writing-columns {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 24px;
+    }
+    .writing-left p {
+      margin-bottom: 16px;
+      font-weight: bold;
+    }
+    .writing-right p {
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    /* ==== Art journey cards (Page 5) ==== */
+    .journey-text {
+      font-size: 22px;
+      max-width: 900px;
+      margin: 0 auto 40px;
+    }
+    .journey-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .journey-card {
+      background: rgba(255,255,255,0.9);
+      border-radius: 4px;
+      padding: 24px 18px 20px;
+    }
+    .journey-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 8px 20px;
+      border-radius: 999px;
+      border: 1px solid #b192df;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: #fbeafd;
+    }
+    .journey-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+    .journey-text-small {
+      font-size: 14px;
+    }
+    .journey-image {
+      width: 100%;
+      max-width: 260px;
+      border-radius: 4px;
+      display: block;
+      margin: 14px auto 0;
+    }
+
+    /* ==== Footer / Contact (Page 6) ==== */
+    footer p {
+      margin-bottom: 20px;
+      font-size: 18px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 18px;
+      max-width: 720px;
+      margin: 40px auto 0;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+    .footer-item-title {
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    .footer-item-value {
+      text-transform: none;
+      letter-spacing: 0.06em;
+      font-size: 13px;
+    }
+
+    /* ==== Responsive tweaks ==== */
+    @media (max-width: 768px) {
+      .brand-name {
+        font-size: 32px;
+        letter-spacing: 0.12em;
+      }
+      .welcome-title {
+        font-size: 26px;
+      }
+      .section-heading {
+        font-size: 26px;
+      }
+      .writing-columns {
+        grid-template-columns: 1fr;
+      }
+      .writing-box {
+        text-align: left;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>MoonShadowTheSunFlower</h1>
-        <p>Your guide to a consciously created life.</p>
-    </header>
 
-    <main>
-        <section id="about">
-            <h2>Welcome, Traveler</h2>
-            <p>Here you'll find a curated collection of items that bring a little magic into the everyday. Each link supports my journey and this digital empire.</p>
-        </section>
+  <!-- Page 1: Hero -->
+  <header class="bg-hero hero">
+    <div class="container">
+      <div class="hero-star">✶</div>
+      <h1 class="brand-name">
+        <span>MoonShawdown</span> <span>TheSunFlower</span>
+      </h1>
+      <p class="hero-subtitle">FIND WHAT SPARKS YOUR CURIOSITY</p>
+    </div>
+  </header>
 
-        <section id="links">
-            <h2>The Treasury</h2>
-            <!-- EDIT YOUR LINKS HERE -->
-            <div class="grid-container">
-                <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="grid-item">
-                    <h3>Mystical Books</h3>
-                    <p>Journeys into other worlds.</p>
-                </a>
-                <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="grid-item">
-                    <h3>Fairy Apparel</h3>
-                    <p>Wear your magic on your sleeve.</p>
-                </a>
-                <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="grid-item">
-                    <h3>Enchanted Home</h3>
-                    <p>Items for your sacred space.</p>
-                </a>
-                <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="grid-item">
-                    <h3>Creative Tools</h3>
-                    <p>The wands for my digital craft.</p>
-                </a>
-            </div>
-        </section>
-    </main>
+  <!-- Page 2: Greetings / Welcome -->
+  <section class="bg-clouds">
+    <div class="container">
+      <div class="pill-button">GREETINGS, EARTHLING!</div>
+      <h2 class="welcome-title">
+        Welcome to my creative corner! and thank you for stopping by!
+      </h2>
+      <p class="welcome-text">
+        This is a place where imagination knows no bounds.
+      </p>
+    </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2024 Your Name. All rights reserved.</p>
-    </footer>
+  <!-- Page 3: Let’s create cards -->
+  <section class="bg-purple">
+    <div class="container">
+      <h2 class="section-heading">Let’s create,</h2>
+      <p class="section-subheading">Dream, and discover</p>
+
+      <div class="card-grid">
+        <!-- Card 1 -->
+        <div class="card">
+          <div class="card-star">✶</div>
+          <h3 class="card-title">My Amazon Favorites</h3>
+          <p class="card-text">
+            I only share what I genuinely love. These products have earned
+            their spot in my life (and cart!).
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <div class="card-star">✶</div>
+          <h3 class="card-title">Image &amp; Video Editing / Creation</h3>
+          <p class="card-text">
+            Exploring the fusion of art, artificial intelligence, and
+            creative editing tools.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+          <div class="card-star">✶</div>
+          <h3 class="card-title">My Creations</h3>
+          <p class="card-text">
+            Weaving dreams through pixels and light&mdash;the language my soul speaks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 4: Writing Samples -->
+  <section class="bg-clouds">
+    <div class="container">
+      <h2 class="section-heading">My Writing Samples</h2>
+
+      <div class="writing-box">
+        <div class="writing-columns">
+          <div class="writing-left">
+            <p>Lira</p>
+            <p>Candy</p>
+            <p>Review of recently visited crystal store</p>
+          </div>
+          <div class="writing-right">
+            <p>
+              In the quiet heart of the midnight forest, Lira the indigo fairy
+              danced on the edge of moonbeams. With every flutter of her shimmering wings,
+              she painted the air in the deep blue hues, weaving spells that soothed restless
+              dreams and guided lost travelers home.
+            </p>
+            <p>
+              Candy’s days blurred together, a haze of neon lights and empty promises.
+              Once, her laughter filled rooms; now, shadows clung to her eyes, and
+              every morning felt heavier than the last. The pills promised escape,
+              but left her stranded on lonely islands of regret.
+            </p>
+            <p>
+              I recently visited Crystal Harmony, and it was a truly enchanting
+              experience! The store is beautifully arranged, with crystals of every
+              color and size sparkling under soft, welcoming lights. The staff are
+              incredibly knowledgeable, patiently answering my questions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 5: Art journey -->
+  <section class="bg-purple">
+    <div class="container">
+      <p class="journey-text">
+        My art is a journey through color and code, where each piece is a reflection
+        of curiosity and wonder.
+      </p>
+
+      <div class="journey-grid">
+        <!-- Card: Behind the scenes -->
+        <div class="journey-card">
+          <span class="journey-label">Behind-the-Scenes</span>
+          <p class="journey-title">
+            Every creative piece starts as a whisper in my mind, inspired by the unseen.
+          </p>
+          <p class="journey-text-small">
+            I love sharing the process&mdash;from the first spark of an idea to the final
+            touches on each creation.
+          </p>
+        </div>
+
+        <!-- Card: Indigo Dreams (with image placeholder) -->
+        <div class="journey-card">
+          <span class="journey-label">Indigo Dreams</span>
+          <p class="journey-title">
+            A collection of dreamy, mystical pieces bathed in deep blues and soft light.
+          </p>
+          <p class="journey-text-small">
+            These works explore the space between night and dawn, where imagination glows the brightest.
+          </p>
+          <!-- Replace src with your own artwork image in the repo -->
+          <img src="indigo-dreams.jpg" alt="Indigo Dreams artwork" class="journey-image">
+        </div>
+
+        <!-- Card: To my community -->
+        <div class="journey-card">
+          <span class="journey-label">To my community</span>
+          <p class="journey-title">
+            Though the journey may be harsh and confusing, we live every second of it,
+            so let’s embrace and enjoy the ride.
+          </p>
+          <p class="journey-text-small">
+            Your curiosity, kindness, and presence turn this little corner of the internet
+            into a shared sanctuary.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 6: Thank you / Contact -->
+  <footer class="bg-moon">
+    <section>
+      <div class="container">
+        <p>
+          Thank you for exploring my creative world&mdash;your curiosity and support mean everything to me.
+        </p>
+
+        <div class="footer-grid">
+          <div>
+            <div class="footer-item-title">Cash App</div>
+            <div class="footer-item-value">$moonshadowflower</div>
+          </div>
+          <div>
+            <div class="footer-item-title">Email Address</div>
+            <div class="footer-item-value">Moonshadowthesunflower@gmail.com</div>
+          </div>
+          <div>
+            <div class="footer-item-title">Facebook</div>
+            <div class="footer-item-value">MoonShadow</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+
 </body>
 </html>
