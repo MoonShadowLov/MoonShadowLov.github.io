@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name | Magical Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <!-- ALL THE STYLING IS RIGHT HERE! -->
+    <style>
+        :root {
+            --bg-dark-purple: #1a0f2a;
+            --bg-light-purple: #4a2f58;
+            --accent-lavender: #d1b3ff;
+            --text-moonlight: #f0e8ff;
+            --glow-color: rgba(209, 179, 255, 0.7);
+            --font-heading: 'Cinzel Decorative', serif;
+            --font-body: 'Lora', serif;
+        }
+        body {
+            background: linear-gradient(170deg, var(--bg-dark-purple), var(--bg-light-purple));
+            background-attachment: fixed;
+            color: var(--text-moonlight);
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column; /* Changed for portfolio layout */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+        header, main, footer {
+            max-width: 800px;
+            width: 100%;
+        }
+        section {
+            margin-bottom: 3rem;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            text-align: left;
+        }
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--accent-lavender);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--text-moonlight);
+            transition: all 0.3s ease-in-out;
+        }
+        .grid-item h3 {
+            margin-top: 0;
+        }
+        .grid-item:hover {
+            background-color: rgba(209, 179, 255, 0.2);
+            box-shadow: 0 0 20px var(--glow-color);
+            transform: translateY(-5px);
+        }
+        footer {
+            margin-top: 3rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MoonShadowTheSunFlower</h1>
+        <p>Your guide to a consciously created life.</p>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>Welcome, Traveler</h2>
+            <p>Here you'll find a curated collection of items that bring a little magic into the everyday. Each link supports my journey and this digital empire.</p>
+        </section>
+
+        <section id="links">
+            <h2>The Treasury</h2>
+            <!-- EDIT YOUR LINKS HERE -->
+            <div class="grid-container">
+                <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="grid-item">
+                    <h3>Mystical Books</h3>
+                    <p>Journeys into other worlds.</p>
+                </a>
+                <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="grid-item">
+                    <h3>Fairy Apparel</h3>
+                    <p>Wear your magic on your sleeve.</p>
+                </a>
+                <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="grid-item">
+                    <h3>Enchanted Home</h3>
+                    <p>Items for your sacred space.</p>
+                </a>
+                <a href="YOUR_AFFILIATE_LINK_HERE" target="_blank" class="grid-item">
+                    <h3>Creative Tools</h3>
+                    <p>The wands for my digital craft.</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    </footer>
+</body>
+</html>
