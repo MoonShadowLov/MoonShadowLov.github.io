@@ -4,13 +4,7 @@
   <meta charset="UTF-8">
   <title>MoonShawdowTheSunFloWer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>/* Dark purple text just for the three cards */
-.card-title,
-.card-text,
-.card-star {
-  color: #CBC3E3; /* Dark purple */
-}
-
+  <style>
     /* ==== Base ==== */
     * {
       box-sizing: border-box;
@@ -19,7 +13,7 @@
     }
     body {
       font-family: "Georgia", "Times New Roman", serif;
-      color: #2b1b33;
+      color: #3b2158; /* darker purple for better readability */
       background: #fbe9ff;
       line-height: 1.5;
       text-align: center;
@@ -36,22 +30,24 @@
       margin: 0 auto;
     }
 
-    /* ==== Shared backgrounds (you can swap for your own images) ==== */
+    /* ==== Shared backgrounds ==== */
     .bg-hero {
       background: radial-gradient(circle at top, #fef5ff, #d6a7ff 40%, #7f6fd8 80%);
-      color: #2b1b33;
+      color: #2b123d; /* dark text against light clouds */
       position: relative;
       overflow: hidden;
     }
     .bg-clouds {
       background: linear-gradient(#ffeafd, #f8ccff);
+      color: #3b2158; /* readable purple */
     }
     .bg-purple {
       background: linear-gradient(#c79be8, #9063c9);
-      color: #fff;
+      color: #f9f3ff; /* light text on dark background */
     }
     .bg-moon {
       background: radial-gradient(circle at center, #fef5ff 0%, #d2b7ff 45%, #fdf2ff 100%);
+      color: #2e1844;
     }
 
     /* ==== Hero section (Page 1) ==== */
@@ -79,12 +75,14 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      border: 2px solid #000;
+      border: 2px solid #2b123d;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 20px;
       font-size: 18px;
+      color: #2b123d;
+      background: rgba(255,255,255,0.7);
     }
 
     /* ==== Greetings / Welcome (Page 2) ==== */
@@ -96,28 +94,33 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       font-size: 12px;
-      background: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.9);
       margin-bottom: 40px;
+      color: #3b2158;
     }
     .welcome-title {
       font-size: 32px;
       max-width: 700px;
       margin: 0 auto 16px;
+      color: #321847;
     }
     .welcome-text {
       font-size: 18px;
       max-width: 720px;
       margin: 0 auto;
+      color: #3d224f;
     }
 
     /* ==== Let’s create cards (Page 3) ==== */
     .section-heading {
       font-size: 30px;
       margin-bottom: 14px;
+      color: #fdf8ff;
     }
     .section-subheading {
       font-size: 22px;
       margin-bottom: 40px;
+      color: #f5e9ff;
     }
     .card-grid {
       display: grid;
@@ -125,29 +128,34 @@
       gap: 24px;
     }
     .card {
-      background: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.95);
       border-radius: 4px;
       padding: 30px 22px 28px;
       position: relative;
       min-height: 210px;
+      color: #3a2255; /* dark purple text inside cards */
     }
     .card-star {
       width: 26px;
       height: 26px;
       border-radius: 50%;
-      border: 1px solid #000;
+      border: 1px solid #3a2255;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 14px;
       margin: 0 auto 12px;
+      color: #7a4bb5; /* medium purple for star symbol */
+      background: #f7efff;
     }
     .card-title {
       font-size: 20px;
       margin-bottom: 12px;
+      color: #4b2e73; /* slightly darker purple for titles */
     }
     .card-text {
       font-size: 14px;
+      color: #55347f; /* readable purple for body text */
     }
 
     /* ==== Writing Samples (Page 4) ==== */
@@ -158,6 +166,7 @@
       text-align: left;
       max-width: 1000px;
       margin: 0 auto;
+      color: #2d163f;
     }
     .writing-columns {
       display: grid;
@@ -167,10 +176,12 @@
     .writing-left p {
       margin-bottom: 16px;
       font-weight: bold;
+      color: #3b2158;
     }
     .writing-right p {
       margin-bottom: 16px;
       font-size: 14px;
+      color: #3a214f;
     }
 
     /* ==== Art journey cards (Page 5) ==== */
@@ -178,6 +189,7 @@
       font-size: 22px;
       max-width: 900px;
       margin: 0 auto 40px;
+      color: #fdf6ff;
     }
     .journey-grid {
       display: grid;
@@ -185,9 +197,10 @@
       gap: 24px;
     }
     .journey-card {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       border-radius: 4px;
       padding: 24px 18px 20px;
+      color: #3a2255;
     }
     .journey-label {
       display: inline-block;
@@ -199,14 +212,17 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       background: #fbeafd;
+      color: #4a2a6f;
     }
     .journey-title {
       font-weight: bold;
       margin-bottom: 10px;
       font-size: 15px;
+      color: #3f245e;
     }
     .journey-text-small {
       font-size: 14px;
+      color: #452565;
     }
     .journey-image {
       width: 100%;
@@ -223,6 +239,7 @@
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
+      color: #2e1844;
     }
     .footer-grid {
       display: grid;
@@ -233,6 +250,7 @@
       font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
+      color: #37204f;
     }
     .footer-item-title {
       font-weight: bold;
@@ -242,6 +260,7 @@
       text-transform: none;
       letter-spacing: 0.06em;
       font-size: 13px;
+      color: #3b2158;
     }
 
     /* ==== Responsive tweaks ==== */
