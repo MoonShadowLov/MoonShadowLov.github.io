@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -18,7 +18,7 @@
       line-height: 1.5;
       text-align: center;
       overflow-x: hidden; /* Prevent horizontal scroll from effects */
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M17 12l-5 5-5-5M12 17l5-5-5-5"/></svg>') 12 12, auto;
+      cursor: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"%238c6bbb\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2v20M2 12h20M17 12l-5 5-5-5M12 17l5-5-5-5\"/></svg>") 12 12, auto;
     }
     a {
       color: inherit;
@@ -26,8 +26,8 @@
     }
     section {
       padding: 80px 20px;
-      position: relative; /* For floating orbs */
-      z-index: 1; /* Ensure content is above orbs */
+      position: relative; /* For z-index */
+      z-index: 1; /* Ensure content is above background effects */
     }
     .container {
       max-width: 1100px;
@@ -95,7 +95,7 @@
 
     /* Twinkling Stars Effect */
     .hero-star::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 50%;
       left: 50%;
@@ -171,7 +171,6 @@
       align-items: center;
       justify-content: center;
       font-size: 14px;
-      margin: 0 auto 12px;
       color: #7a4bb5;
       background: #f8efff;
       position: relative; /* For twinkling effect */
@@ -180,7 +179,7 @@
 
     /* Twinkling Stars Effect for card stars */
     .card-star::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 50%;
       left: 50%;
@@ -230,7 +229,7 @@
 
     /* Axicon-like Light Reflection on Hover */
     .whimsical-button::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: -100%;
@@ -243,6 +242,12 @@
 
     .whimsical-button:hover::before {
       left: 100%;
+    }
+
+    /* Specific style for the smaller email button */
+    .whimsical-button.email-button {
+      font-size: 0.8em; /* Roughly 1.5 times smaller than default */
+      padding: 8px 20px;
     }
 
     /* ==== Writing Samples (Page 4) – NEW FIXED DESIGN ==== */
@@ -284,7 +289,7 @@
 
     /* Twinkling Stars Effect for story stars */
     .story-star::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 50%;
       left: 50%;
@@ -398,8 +403,8 @@
       color: #3b2158;
     }
 
-    /* Floating Orbs */
-    .orb-container {
+    /* Subtle Background Glow (replaces orbs) */
+    .background-glow {
       position: fixed;
       top: 0;
       left: 0;
@@ -407,20 +412,55 @@
       height: 100%;
       pointer-events: none;
       z-index: 0;
-      overflow: hidden;
+      background: radial-gradient(circle at 20% 80%, rgba(177, 146, 223, 0.2) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(224, 176, 255, 0.2) 0%, transparent 50%);
+      animation: subtleGlow 20s infinite alternate ease-in-out;
     }
 
-    .orb {
+    @keyframes subtleGlow {
+      0% { background-position: 0% 0%, 100% 100%; }
+      100% { background-position: 100% 100%, 0% 0%; }
+    }
+
+    /* Flying Fairy */
+    .fairy {
+      position: fixed;
+      width: 60px; /* Adjust size as needed */
+      height: 60px; /* Adjust size as needed */
+      background-image: url("https://i.imgur.com/your-fairy-image.png"); /* Replace with your fairy image URL */
+      background-size: contain;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      z-index: 9998;
+      animation: flyAround 30s infinite linear;
+      filter: drop-shadow(0 0 5px rgba(255,255,255,0.7)); /* Subtle glow */
+    }
+
+    /* Axicon-like wings effect (pseudo-element for shimmer) */
+    .fairy::before {
+      content: ";
       position: absolute;
-      background: radial-gradient(circle, rgba(177, 146, 223, 0.7) 0%, rgba(177, 146, 223, 0) 70%);
-      border-radius: 50%;
-      animation: floatAndFade 15s infinite ease-in-out;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.8) 50%, transparent 60%);
+      animation: wingShimmer 2s infinite linear;
+      opacity: 0;
     }
 
-    @keyframes floatAndFade {
-      0% { transform: translate(0, 0) scale(0.5); opacity: 0.7; }
-      50% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0.3; }
-      100% { transform: translate(0, 0) scale(0.5); opacity: 0.7; }
+    @keyframes wingShimmer {
+      0% { transform: translateX(-100%) skewX(-20deg); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateX(100%) skewX(-20deg); opacity: 0; }
+    }
+
+    @keyframes flyAround {
+      0% { top: 10%; left: 0%; transform: rotate(0deg); }
+      25% { top: 50%; left: 25%; transform: rotate(30deg); }
+      50% { top: 10%; left: 50%; transform: rotate(0deg); }
+      75% { top: 70%; left: 75%; transform: rotate(-30deg); }
+      100% { top: 10%; left: 100%; transform: rotate(0deg); }
     }
 
     /* ==== Responsive tweaks ==== */
@@ -444,13 +484,28 @@
       .story-text {
         font-size: 14px;
       }
+      /* Hide cursor trail on mobile for better performance/UX */
+      body {
+        cursor: auto;
+      }
+      .sparkle {
+        display: none !important;
+      }
+      /* Adjust fairy size for mobile */
+      .fairy {
+        width: 40px;
+        height: 40px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating Orbs Container -->
-  <div class="orb-container"></div>
+  <!-- Subtle Background Glow -->
+  <div class="background-glow"></div>
+
+  <!-- Flying Fairy -->
+  <div class="fairy"></div>
 
   <!-- Page 1: Hero -->
   <header class="bg-hero hero">
@@ -647,7 +702,7 @@
             <div class="footer-item-title">Email Address</div>
             <div class="footer-item-value">
               <!-- Email Link -->
-              <a href="mailto:Moonshadowthesunflower@gmail.com" class="whimsical-button">Moonshadowthesunflower@gmail.com</a>
+              <a href="mailto:Moonshadowthesunflower@gmail.com" class="whimsical-button email-button">Moonshadowthesunflower@gmail.com</a>
             </div>
           </div>
         </div>
@@ -657,51 +712,36 @@
 
   <script>
     // Glittering Cursor Trail
-    document.addEventListener('mousemove', function(e) {
-      let sparkle = document.createElement('div');
-      sparkle.className = 'sparkle';
-      document.body.appendChild(sparkle);
+    // Disabled on touch devices for better UX
+    if (!('ontouchstart' in window || navigator.maxTouchPoints)) {
+      document.addEventListener('mousemove', function(e) {
+        let sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        document.body.appendChild(sparkle);
 
-      let size = Math.random() * 10 + 5; // Random size between 5 and 15
-      sparkle.style.width = size + 'px';
-      sparkle.style.height = size + 'px';
-      sparkle.style.left = e.clientX + 'px';
-      sparkle.style.top = e.clientY + 'px';
-      sparkle.style.background = `radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%)`;
-      sparkle.style.borderRadius = '50%';
-      sparkle.style.position = 'fixed';
-      sparkle.style.pointerEvents = 'none';
-      sparkle.style.zIndex = '9999';
-      sparkle.style.opacity = '1';
-      sparkle.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-      sparkle.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
+        let size = Math.random() * 10 + 5; // Random size between 5 and 15
+        sparkle.style.width = size + 'px';
+        sparkle.style.height = size + 'px';
+        sparkle.style.left = e.clientX + 'px';
+        sparkle.style.top = e.clientY + 'px';
+        sparkle.style.background = `radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%)`;
+        sparkle.style.borderRadius = '50%';
+        sparkle.style.position = 'fixed';
+        sparkle.style.pointerEvents = 'none';
+        sparkle.style.zIndex = '9999';
+        sparkle.style.opacity = '1';
+        sparkle.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        sparkle.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
 
-      setTimeout(() => {
-        sparkle.style.opacity = '0';
-        sparkle.style.transform = `scale(0) translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px)`;
-        sparkle.remove();
-      }, 500);
-    });
-
-    // Floating Light Orbs
-    const orbContainer = document.querySelector('.orb-container');
-    const numOrbs = 8; // Number of orbs
-
-    for (let i = 0; i < numOrbs; i++) {
-      let orb = document.createElement('div');
-      orb.className = 'orb';
-      orb.style.width = `${Math.random() * 100 + 50}px`; // Size between 50 and 150px
-      orb.style.height = orb.style.width;
-      orb.style.left = `${Math.random() * 100}vw`;
-      orb.style.top = `${Math.random() * 100}vh`;
-      orb.style.animationDelay = `${Math.random() * 10}s`;
-      orb.style.setProperty('--x', `${Math.random() * 200 - 100}px`); // Random X movement
-      orb.style.setProperty('--y', `${Math.random() * 200 - 100}px`); // Random Y movement
-      orbContainer.appendChild(orb);
+        setTimeout(() => {
+          sparkle.style.opacity = '0';
+          sparkle.style.transform = `scale(0) translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px)`;
+          sparkle.remove();
+        }, 500);
+      });
     }
 
-    // Twinkling Stars (CSS handles this, but adding a class for consistency if needed)
-    // No JS needed for the current CSS implementation
+    // Twinkling Stars (CSS handles this)
 
   </script>
 </body>
