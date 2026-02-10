@@ -1,7 +1,8 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- FIXED SPELLING: MoonShadowTheSunFlower -->
   <title>MoonShadowTheSunFlower</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
@@ -17,8 +18,6 @@
       background: #fbe9ff;
       line-height: 1.5;
       text-align: center;
-      overflow-x: hidden; /* Prevent horizontal scroll from effects */
-      cursor: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"%238c6bbb\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2v20M2 12h20M17 12l-5 5-5-5M12 17l5-5-5-5\"/></svg>") 12 12, auto;
     }
     a {
       color: inherit;
@@ -26,8 +25,6 @@
     }
     section {
       padding: 80px 20px;
-      position: relative; /* For z-index */
-      z-index: 1; /* Ensure content is above background effects */
     }
     .container {
       max-width: 1100px;
@@ -60,8 +57,6 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      position: relative;
-      z-index: 1;
     }
     .brand-name {
       font-size: 42px;
@@ -89,27 +84,6 @@
       font-size: 18px;
       color: #2b123d;
       background: rgba(255,255,255,0.7);
-      position: relative; /* For twinkling effect */
-      overflow: hidden;
-    }
-
-    /* Twinkling Stars Effect */
-    .hero-star::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-      animation: twinkle 3s infinite ease-out;
-    }
-    @keyframes twinkle {
-      0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-      50% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-      100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
     }
 
     /* ==== Greetings / Welcome (Page 2) ==== */
@@ -171,26 +145,10 @@
       align-items: center;
       justify-content: center;
       font-size: 14px;
+      margin: 0 auto 12px;
       color: #7a4bb5;
-      background: #f8efff;
-      position: relative; /* For twinkling effect */
-      overflow: hidden;
+      background: #f7efff;
     }
-
-    /* Twinkling Stars Effect for card stars */
-    .card-star::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-      animation: twinkle 2.5s infinite ease-out 0.5s; /* Slightly different timing */
-    }
-
     .card-title {
       font-size: 20px;
       margin-bottom: 12px;
@@ -199,55 +157,6 @@
     .card-text {
       font-size: 14px;
       color: #55347f;
-    }
-
-    /* Whimsical Button Style */
-    .whimsical-button {
-      display: inline-block;
-      padding: 10px 25px;
-      border-radius: 25px;
-      background: linear-gradient(135deg, #e0b0ff, #c080ff);
-      color: #3b2158;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      border: 1px solid #a060ff;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-      margin-top: 15px;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    .whimsical-button:hover {
-      background: linear-gradient(135deg, #c080ff, #e0b0ff);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-      transform: translateY(-2px);
-    }
-
-    /* Axicon-like Light Reflection on Hover */
-    .whimsical-button::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-      transition: all 0.7s ease;
-      z-index: -1;
-    }
-
-    .whimsical-button:hover::before {
-      left: 100%;
-    }
-
-    /* Specific style for the smaller email button */
-    .whimsical-button.email-button {
-      font-size: 0.8em; /* Roughly 1.5 times smaller than default */
-      padding: 8px 20px;
     }
 
     /* ==== Writing Samples (Page 4) – NEW FIXED DESIGN ==== */
@@ -283,22 +192,6 @@
       font-size: 14px;
       color: #5a3a7d;
       background: #f8efff;
-      position: relative; /* For twinkling effect */
-      overflow: hidden;
-    }
-
-    /* Twinkling Stars Effect for story stars */
-    .story-star::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-      animation: twinkle 2s infinite ease-out 1s; /* Slightly different timing */
     }
 
     .story-title {
@@ -369,10 +262,6 @@
     }
 
     /* ==== Footer / Contact (Page 6) ==== */
-    footer {
-      position: relative;
-      z-index: 1;
-    }
     footer p {
       margin-bottom: 20px;
       font-size: 18px;
@@ -403,66 +292,6 @@
       color: #3b2158;
     }
 
-    /* Subtle Background Glow (replaces orbs) */
-    .background-glow {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      background: radial-gradient(circle at 20% 80%, rgba(177, 146, 223, 0.2) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 20%, rgba(224, 176, 255, 0.2) 0%, transparent 50%);
-      animation: subtleGlow 20s infinite alternate ease-in-out;
-    }
-
-    @keyframes subtleGlow {
-      0% { background-position: 0% 0%, 100% 100%; }
-      100% { background-position: 100% 100%, 0% 0%; }
-    }
-
-    /* Flying Fairy */
-    .fairy {
-      position: fixed;
-      width: 60px; /* Adjust size as needed */
-      height: 60px; /* Adjust size as needed */
-      background-image: url("https://i.imgur.com/your-fairy-image.png"); /* Replace with your fairy image URL */
-      background-size: contain;
-      background-repeat: no-repeat;
-      pointer-events: none;
-      z-index: 9998;
-      animation: flyAround 30s infinite linear;
-      filter: drop-shadow(0 0 5px rgba(255,255,255,0.7)); /* Subtle glow */
-    }
-
-    /* Axicon-like wings effect (pseudo-element for shimmer) */
-    .fairy::before {
-      content: ";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.8) 50%, transparent 60%);
-      animation: wingShimmer 2s infinite linear;
-      opacity: 0;
-    }
-
-    @keyframes wingShimmer {
-      0% { transform: translateX(-100%) skewX(-20deg); opacity: 0; }
-      50% { opacity: 1; }
-      100% { transform: translateX(100%) skewX(-20deg); opacity: 0; }
-    }
-
-    @keyframes flyAround {
-      0% { top: 10%; left: 0%; transform: rotate(0deg); }
-      25% { top: 50%; left: 25%; transform: rotate(30deg); }
-      50% { top: 10%; left: 50%; transform: rotate(0deg); }
-      75% { top: 70%; left: 75%; transform: rotate(-30deg); }
-      100% { top: 10%; left: 100%; transform: rotate(0deg); }
-    }
-
     /* ==== Responsive tweaks ==== */
     @media (max-width: 768px) {
       .brand-name {
@@ -484,28 +313,10 @@
       .story-text {
         font-size: 14px;
       }
-      /* Hide cursor trail on mobile for better performance/UX */
-      body {
-        cursor: auto;
-      }
-      .sparkle {
-        display: none !important;
-      }
-      /* Adjust fairy size for mobile */
-      .fairy {
-        width: 40px;
-        height: 40px;
-      }
     }
   </style>
 </head>
 <body>
-
-  <!-- Subtle Background Glow -->
-  <div class="background-glow"></div>
-
-  <!-- Flying Fairy -->
-  <div class="fairy"></div>
 
   <!-- Page 1: Hero -->
   <header class="bg-hero hero">
@@ -547,7 +358,7 @@
             I only share what I genuinely love. These products have earned
             their spot in my life (and cart!).
             <br><br>
-            <a href="https://linktr.ee/MoonShadowTheSun" target="_blank" class="whimsical-button">
+            <a href="https://linktr.ee/MoonShadowTheSun" target="_blank" style="font-weight: bold; border-bottom: 1px solid currentColor;">
               Visit my Linktree
             </a>
           </p>
@@ -695,14 +506,14 @@
             <div class="footer-item-title">Cash App</div>
             <div class="footer-item-value">
               <!-- Cash App Link -->
-              <a href="https://cash.app/$moonshadowflower" target="_blank" class="whimsical-button">$moonshadowflower</a>
+              <a href="https://cash.app/$moonshadowflower" target="_blank">$moonshadowflower</a>
             </div>
           </div>
           <div>
             <div class="footer-item-title">Email Address</div>
             <div class="footer-item-value">
               <!-- Email Link -->
-              <a href="mailto:Moonshadowthesunflower@gmail.com" class="whimsical-button email-button">Moonshadowthesunflower@gmail.com</a>
+              <a href="mailto:Moonshadowthesunflower@gmail.com">Moonshadowthesun@</a>
             </div>
           </div>
         </div>
@@ -710,39 +521,5 @@
     </section>
   </footer>
 
-  <script>
-    // Glittering Cursor Trail
-    // Disabled on touch devices for better UX
-    if (!('ontouchstart' in window || navigator.maxTouchPoints)) {
-      document.addEventListener('mousemove', function(e) {
-        let sparkle = document.createElement('div');
-        sparkle.className = 'sparkle';
-        document.body.appendChild(sparkle);
-
-        let size = Math.random() * 10 + 5; // Random size between 5 and 15
-        sparkle.style.width = size + 'px';
-        sparkle.style.height = size + 'px';
-        sparkle.style.left = e.clientX + 'px';
-        sparkle.style.top = e.clientY + 'px';
-        sparkle.style.background = `radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%)`;
-        sparkle.style.borderRadius = '50%';
-        sparkle.style.position = 'fixed';
-        sparkle.style.pointerEvents = 'none';
-        sparkle.style.zIndex = '9999';
-        sparkle.style.opacity = '1';
-        sparkle.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-        sparkle.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
-
-        setTimeout(() => {
-          sparkle.style.opacity = '0';
-          sparkle.style.transform = `scale(0) translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px)`;
-          sparkle.remove();
-        }, 500);
-      });
-    }
-
-    // Twinkling Stars (CSS handles this)
-
-  </script>
 </body>
 </html>
