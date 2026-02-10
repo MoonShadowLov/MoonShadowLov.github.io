@@ -17,6 +17,8 @@
       background: #fbe9ff;
       line-height: 1.5;
       text-align: center;
+      overflow-x: hidden; /* Prevent horizontal scroll from effects */
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M17 12l-5 5-5-5M12 17l5-5-5-5"/></svg>') 12 12, auto;
     }
     a {
       color: inherit;
@@ -24,6 +26,8 @@
     }
     section {
       padding: 80px 20px;
+      position: relative; /* For floating orbs */
+      z-index: 1; /* Ensure content is above orbs */
     }
     .container {
       max-width: 1100px;
@@ -56,6 +60,8 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      position: relative;
+      z-index: 1;
     }
     .brand-name {
       font-size: 42px;
@@ -83,6 +89,27 @@
       font-size: 18px;
       color: #2b123d;
       background: rgba(255,255,255,0.7);
+      position: relative; /* For twinkling effect */
+      overflow: hidden;
+    }
+
+    /* Twinkling Stars Effect */
+    .hero-star::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      animation: twinkle 3s infinite ease-out;
+    }
+    @keyframes twinkle {
+      0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+      50% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
     }
 
     /* ==== Greetings / Welcome (Page 2) ==== */
@@ -146,8 +173,25 @@
       font-size: 14px;
       margin: 0 auto 12px;
       color: #7a4bb5;
-      background: #f7efff;
+      background: #f8efff;
+      position: relative; /* For twinkling effect */
+      overflow: hidden;
     }
+
+    /* Twinkling Stars Effect for card stars */
+    .card-star::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      animation: twinkle 2.5s infinite ease-out 0.5s; /* Slightly different timing */
+    }
+
     .card-title {
       font-size: 20px;
       margin-bottom: 12px;
@@ -172,13 +216,33 @@
       border: 1px solid #a060ff;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
-      margin-top: 15px; /* Added margin for spacing */
+      margin-top: 15px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
 
     .whimsical-button:hover {
       background: linear-gradient(135deg, #c080ff, #e0b0ff);
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
       transform: translateY(-2px);
+    }
+
+    /* Axicon-like Light Reflection on Hover */
+    .whimsical-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      transition: all 0.7s ease;
+      z-index: -1;
+    }
+
+    .whimsical-button:hover::before {
+      left: 100%;
     }
 
     /* ==== Writing Samples (Page 4) – NEW FIXED DESIGN ==== */
@@ -214,6 +278,22 @@
       font-size: 14px;
       color: #5a3a7d;
       background: #f8efff;
+      position: relative; /* For twinkling effect */
+      overflow: hidden;
+    }
+
+    /* Twinkling Stars Effect for story stars */
+    .story-star::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      animation: twinkle 2s infinite ease-out 1s; /* Slightly different timing */
     }
 
     .story-title {
@@ -284,6 +364,10 @@
     }
 
     /* ==== Footer / Contact (Page 6) ==== */
+    footer {
+      position: relative;
+      z-index: 1;
+    }
     footer p {
       margin-bottom: 20px;
       font-size: 18px;
@@ -314,6 +398,31 @@
       color: #3b2158;
     }
 
+    /* Floating Orbs */
+    .orb-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      background: radial-gradient(circle, rgba(177, 146, 223, 0.7) 0%, rgba(177, 146, 223, 0) 70%);
+      border-radius: 50%;
+      animation: floatAndFade 15s infinite ease-in-out;
+    }
+
+    @keyframes floatAndFade {
+      0% { transform: translate(0, 0) scale(0.5); opacity: 0.7; }
+      50% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0.3; }
+      100% { transform: translate(0, 0) scale(0.5); opacity: 0.7; }
+    }
+
     /* ==== Responsive tweaks ==== */
     @media (max-width: 768px) {
       .brand-name {
@@ -340,10 +449,14 @@
 </head>
 <body>
 
+  <!-- Floating Orbs Container -->
+  <div class="orb-container"></div>
+
   <!-- Page 1: Hero -->
   <header class="bg-hero hero">
     <div class="container">
       <div class="hero-star">✶</div>
+      <!-- FIXED SPELLING: MoonShadow TheSunFlower -->
       <h1 class="brand-name">
         <span>MoonShadow</span> <span>TheSunFlower</span>
       </h1>
@@ -526,13 +639,15 @@
           <div>
             <div class="footer-item-title">Cash App</div>
             <div class="footer-item-value">
+              <!-- Cash App Link -->
               <a href="https://cash.app/$moonshadowflower" target="_blank" class="whimsical-button">$moonshadowflower</a>
             </div>
           </div>
           <div>
             <div class="footer-item-title">Email Address</div>
             <div class="footer-item-value">
-              <a href="mailto:Moonshadowthesunflower@gmail.com" class="whimsical-button">Moonshadowthesunflower</a>
+              <!-- Email Link -->
+              <a href="mailto:Moonshadowthesunflower@gmail.com" class="whimsical-button">Moonshadowthesunflower@gmail.com</a>
             </div>
           </div>
         </div>
@@ -540,6 +655,54 @@
     </section>
   </footer>
 
+  <script>
+    // Glittering Cursor Trail
+    document.addEventListener('mousemove', function(e) {
+      let sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      document.body.appendChild(sparkle);
+
+      let size = Math.random() * 10 + 5; // Random size between 5 and 15
+      sparkle.style.width = size + 'px';
+      sparkle.style.height = size + 'px';
+      sparkle.style.left = e.clientX + 'px';
+      sparkle.style.top = e.clientY + 'px';
+      sparkle.style.background = `radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%)`;
+      sparkle.style.borderRadius = '50%';
+      sparkle.style.position = 'fixed';
+      sparkle.style.pointerEvents = 'none';
+      sparkle.style.zIndex = '9999';
+      sparkle.style.opacity = '1';
+      sparkle.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+      sparkle.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
+
+      setTimeout(() => {
+        sparkle.style.opacity = '0';
+        sparkle.style.transform = `scale(0) translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px)`;
+        sparkle.remove();
+      }, 500);
+    });
+
+    // Floating Light Orbs
+    const orbContainer = document.querySelector('.orb-container');
+    const numOrbs = 8; // Number of orbs
+
+    for (let i = 0; i < numOrbs; i++) {
+      let orb = document.createElement('div');
+      orb.className = 'orb';
+      orb.style.width = `${Math.random() * 100 + 50}px`; // Size between 50 and 150px
+      orb.style.height = orb.style.width;
+      orb.style.left = `${Math.random() * 100}vw`;
+      orb.style.top = `${Math.random() * 100}vh`;
+      orb.style.animationDelay = `${Math.random() * 10}s`;
+      orb.style.setProperty('--x', `${Math.random() * 200 - 100}px`); // Random X movement
+      orb.style.setProperty('--y', `${Math.random() * 200 - 100}px`); // Random Y movement
+      orbContainer.appendChild(orb);
+    }
+
+    // Twinkling Stars (CSS handles this, but adding a class for consistency if needed)
+    // No JS needed for the current CSS implementation
+
+  </script>
 </body>
 </html>
-
