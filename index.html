@@ -26,7 +26,6 @@
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>') 0 22, auto;
     }
     
-    /* Ensure links also use the wand on desktop */
     a {
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>') 0 22, pointer;
       color: inherit;
@@ -34,84 +33,111 @@
       transition: color 0.3s;
     }
 
-    /* MOBILE WAND (Hidden by default, shown via JS on touch) */
+    /* MOBILE WAND (Hidden by default) */
     .mobile-wand {
       position: fixed;
       width: 32px;
       height: 32px;
-      pointer-events: none; /* Let clicks pass through it */
+      pointer-events: none;
       z-index: 9999;
-      display: none; /* Hidden until touched */
+      display: none;
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>');
       background-size: contain;
       background-repeat: no-repeat;
     }
 
-    /* ==== THE FLYING FAIRY ==== */
+    /* ==== THE FAIRY CONTAINER ==== */
     .fairy-container {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      pointer-events: none; /* Touches pass through */
-      z-index: 50; /* Above background, below text/cards */
-      animation: flyX 25s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: 50;
+      /* Slow graceful movement across screen */
+      animation: flyX 45s ease-in-out infinite alternate;
     }
     
     .fairy-mover {
       position: absolute;
       top: 50%; left: 50%;
-      width: 40px; height: 40px;
-      animation: flyY 17s ease-in-out infinite alternate;
+      width: 60px; height: 60px;
+      /* Slow graceful up and down */
+      animation: flyY 28s ease-in-out infinite alternate;
     }
 
-    /* Fairy Body (Tiny glowing dot) */
+    /* Fairy Body (Silhouette) */
     .fairy-body {
-      width: 8px; height: 8px;
-      background: white;
-      border-radius: 50%;
-      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.9);
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       z-index: 2;
+      width: 4px; height: 14px;
+      background: radial-gradient(circle, #fff, #ffeef8);
+      border-radius: 4px 4px 10px 10px;
+      box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.8);
+    }
+    
+    /* Fairy Head */
+    .fairy-body::before {
+      content: '';
+      position: absolute;
+      top: -8px; left: 50%;
+      transform: translateX(-50%);
+      width: 8px; height: 8px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.9);
     }
 
-    /* Axicon/Prism Wings */
+    /* ==== PRISM BUTTERFLY WINGS ==== */
     .fairy-wings {
       position: absolute;
       top: 50%; left: 50%;
       width: 50px; height: 40px;
       transform: translate(-50%, -50%);
       z-index: 1;
-      animation: flutter 0.2s infinite linear alternate;
+      animation: flutter 0.25s infinite ease-in-out alternate;
     }
     
     .fairy-wings::before, .fairy-wings::after {
       content: '';
       position: absolute;
-      top: 0; width: 50%; height: 100%;
-      border-radius: 50% 50% 5px 5px;
-      /* AXICON GRADIENT: Cyan, Magenta, White for prism effect */
-      background: radial-gradient(circle at center, rgba(255,255,255,0.9), rgba(0,255,255,0.4), rgba(255,0,255,0.4));
+      top: 0; 
+      width: 24px; height: 38px;
+      /* Butterfly Shape */
+      border-radius: 50% 80% 20% 80%;
+      /* THE PRISM COLOR (Cyan/Magenta/White) */
+      background: radial-gradient(circle at center, rgba(255,255,255,0.95), rgba(0,255,255,0.5), rgba(255,0,255,0.5));
       border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
     }
     
-    .fairy-wings::before { left: 0; transform-origin: right center; transform: rotate(10deg); }
-    .fairy-wings::after { right: 0; transform-origin: left center; transform: rotate(-10deg); }
+    /* Left Wing */
+    .fairy-wings::before { 
+      left: 2px; 
+      transform-origin: right center; 
+      transform: rotate(15deg) scaleX(-1); 
+    }
+    
+    /* Right Wing */
+    .fairy-wings::after { 
+      right: 2px; 
+      transform-origin: left center; 
+      transform: rotate(-15deg); 
+    }
 
-    /* Animations for Fairy Movement */
+    /* Animations */
     @keyframes flyX {
-      0% { transform: translateX(0vw); }
-      100% { transform: translateX(90vw); }
+      0% { transform: translateX(-10vw); }
+      100% { transform: translateX(100vw); }
     }
     @keyframes flyY {
-      0% { transform: translateY(-40vh); }
-      100% { transform: translateY(40vh); }
+      0% { transform: translateY(-30vh); }
+      100% { transform: translateY(30vh); }
     }
     @keyframes flutter {
-      0% { transform: translate(-50%, -50%) scaleX(1) scaleY(1); opacity: 0.9; }
-      100% { transform: translate(-50%, -50%) scaleX(0.7) scaleY(0.9); opacity: 0.6; }
+      0% { transform: translate(-50%, -50%) scaleX(1) scaleY(1); opacity: 0.95; }
+      100% { transform: translate(-50%, -50%) scaleX(0.6) scaleY(0.9); opacity: 0.8; }
     }
     
     section {
@@ -462,7 +488,7 @@
   <!-- Floating Orbs Container -->
   <div class="orb-container"></div>
   
-  <!-- THE FLYING FAIRY (New!) -->
+  <!-- THE FLYING FAIRY (Butterfly + Prism) -->
   <div class="fairy-container">
     <div class="fairy-mover">
       <div class="fairy-wings"></div>
@@ -627,7 +653,7 @@
           <p class="journey-text-small">
             These works explore the space between night and dawn, where imagination glows the brightest.
           </p>
-          <!-- RESTORED: Your original image path -->
+          <!-- RESTORED FAIRY.JPG -->
           <img src="fairy.jpg" alt="Indigo Dreams Art" class="journey-image">
         </div>
 
@@ -678,7 +704,7 @@
     let lastEventTime = 0;
     const mobileWand = document.querySelector('.mobile-wand');
 
-    // Create a Sparkle Element
+    // Generic Sparkle Function
     function createSparkle(x, y) {
       let sparkle = document.createElement('div');
       sparkle.className = 'sparkle';
@@ -705,6 +731,36 @@
       }, 500);
     }
 
+    // SPECIAL FUNCTION FOR FAIRY DUST (Lingers longer, falls down)
+    function createFairyDust(x, y) {
+      let dust = document.createElement('div');
+      document.body.appendChild(dust);
+      
+      let size = Math.random() * 6 + 2; // Smaller than cursor sparkles
+      dust.style.width = size + 'px';
+      dust.style.height = size + 'px';
+      dust.style.left = x + 'px';
+      dust.style.top = y + 'px';
+      dust.style.background = `white`;
+      dust.style.boxShadow = `0 0 5px white`;
+      dust.style.borderRadius = '50%';
+      dust.style.position = 'fixed';
+      dust.style.pointerEvents = 'none';
+      dust.style.zIndex = '45'; // Behind the fairy
+      dust.style.opacity = '0.8';
+      dust.style.transition = 'all 1.5s linear'; // Longer fade
+      
+      // Animate fade out and drop down (gravity)
+      setTimeout(() => {
+        dust.style.opacity = '0';
+        dust.style.transform = `translateY(30px)`; // Falls down
+      }, 50);
+
+      setTimeout(() => {
+        dust.remove();
+      }, 1550);
+    }
+
     // DESKTOP: Only create sparkles
     document.addEventListener('mousemove', function(e) {
       const now = Date.now();
@@ -716,21 +772,16 @@
     // MOBILE: Move the "Fake" Wand AND create sparkles
     document.addEventListener('touchmove', function(e) {
       const now = Date.now();
-      if (now - lastEventTime < 30) return; // Slightly faster for touch
+      if (now - lastEventTime < 30) return; 
       lastEventTime = now;
       
       let touch = e.touches[0];
-      
-      // 1. Move the Mobile Wand
       mobileWand.style.display = 'block';
       mobileWand.style.left = (touch.clientX - 10) + 'px'; 
       mobileWand.style.top = (touch.clientY - 10) + 'px';
-
-      // 2. Create Sparkle
       createSparkle(touch.clientX, touch.clientY);
     });
 
-    // Hide mobile wand when lifting finger
     document.addEventListener('touchend', function() {
       mobileWand.style.display = 'none';
     });
@@ -751,6 +802,22 @@
       orb.style.setProperty('--y', `${Math.random() * 200 - 100}px`); 
       orbContainer.appendChild(orb);
     }
+
+    // 3. FAIRY TRAIL LOGIC (Mobile & Desktop)
+    const fairyMover = document.querySelector('.fairy-mover');
+    
+    // Every 150ms, find where the fairy is and drop dust
+    setInterval(() => {
+      // Get fairy position
+      const rect = fairyMover.getBoundingClientRect();
+      // Calculate center
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      // Create dust slightly randomly around center
+      createFairyDust(centerX + (Math.random()*20-10), centerY + (Math.random()*20-10));
+    }, 150);
+
   </script>
 </body>
 </html>
