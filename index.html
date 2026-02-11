@@ -65,6 +65,9 @@
       animation: flyY 28s ease-in-out infinite alternate;
       /* Make sure 3D transforms work nicely */
       transform-style: preserve-3d;
+      
+      /* ADDED PERSPECTIVE: This makes the wings look 3D when they flap */
+      perspective: 600px;
     }
 
     /* ==== FAIRY BODY (THE SILHOUETTE) ==== */
@@ -80,6 +83,8 @@
       background: radial-gradient(circle, #fff, #ffeef8);
       border-radius: 4px 4px 10px 10px;
       box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.8);
+      /* Make sure body doesn't get flattened by 3D */
+      transform-style: preserve-3d;
     }
     
     /* Fairy Head */
@@ -102,6 +107,7 @@
       /* Center point for wings to attach */
       transform: translate(0, -5px); 
       z-index: 5; /* BEHIND the body */
+      transform-style: preserve-3d;
     }
     
     /* Shared styles for both wings */
@@ -118,21 +124,24 @@
       background: radial-gradient(circle at center, rgba(255,255,255,0.9), rgba(0,255,255,0.4), rgba(255,0,255,0.4));
       border: 1px solid rgba(255,255,255,0.7);
       box-shadow: 0 0 10px rgba(255,255,255,0.5);
+      
+      /* Ensure hardware acceleration for smooth flutter */
+      backface-visibility: visible;
     }
 
     /* LEFT WING */
     .fairy-wings::before {
-      right: 1px; /* Attach to right side of spine */
-      /* Pivot from bottom-right corner (the spine) */
-      transform-origin: bottom right; 
+      right: 2px; /* Move slightly closer to center spine */
+      /* Pivot strictly from the right edge (the spine) */
+      transform-origin: right center; 
       animation: wingFlapLeft 0.18s infinite ease-in-out alternate;
     }
 
     /* RIGHT WING */
     .fairy-wings::after {
-      left: 1px; /* Attach to left side of spine */
-      /* Pivot from bottom-left corner (the spine) */
-      transform-origin: bottom left; 
+      left: 2px; /* Move slightly closer to center spine */
+      /* Pivot strictly from the left edge (the spine) */
+      transform-origin: left center; 
       animation: wingFlapRight 0.18s infinite ease-in-out alternate;
     }
 
@@ -147,15 +156,15 @@
       100% { transform: translateY(30vh); }
     }
 
-    /* INDIVIDUAL WING FLAPPING (Swivel Effect) */
+    /* UPDATED FLUTTER: 3D Hinge Effect (No sliding, just folding back) */
     @keyframes wingFlapLeft {
-      0% { transform: rotate(-10deg) scaleX(1); } /* Open */
-      100% { transform: rotate(60deg) scaleX(0.4); } /* Closed/Up */
+      0% { transform: rotateY(0deg) rotateZ(10deg); } /* Open */
+      100% { transform: rotateY(-80deg) rotateZ(10deg); } /* Folded Back */
     }
 
     @keyframes wingFlapRight {
-      0% { transform: rotate(10deg) scaleX(1); } /* Open */
-      100% { transform: rotate(-60deg) scaleX(0.4); } /* Closed/Up */
+      0% { transform: rotateY(0deg) rotateZ(-10deg); } /* Open */
+      100% { transform: rotateY(80deg) rotateZ(-10deg); } /* Folded Back */
     }
     
     section {
