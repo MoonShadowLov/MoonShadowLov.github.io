@@ -33,7 +33,7 @@
       transition: color 0.3s;
     }
 
-    /* MOBILE WAND (Hidden by default) */
+    /* MOBILE WAND */
     .mobile-wand {
       position: fixed;
       width: 32px;
@@ -61,29 +61,27 @@
       position: absolute;
       top: 50%; left: 50%;
       width: 60px; height: 60px;
-      /* Up and down Bobbing */
       animation: flyY 28s ease-in-out infinite alternate;
-      /* Make sure 3D transforms work nicely */
+      /* 3D Scene setup */
       transform-style: preserve-3d;
-      
-      /* ADDED PERSPECTIVE: This makes the wings look 3D when they flap */
-      perspective: 600px;
+      perspective: 600px; 
     }
 
-    /* ==== FAIRY BODY (THE SILHOUETTE) ==== */
+    /* ==== FAIRY BODY ==== */
     .fairy-body {
       position: absolute;
       top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
       
-      /* HIGH Z-INDEX: Body sits IN FRONT of the wings */
-      z-index: 10; 
+      /* FIX: Use translate3d to pull the body 20px CLOSER to the camera.
+         This physically places it "in front" of the wings in 3D space. */
+      transform: translate3d(-50%, -50%, 20px);
       
       width: 4px; height: 16px;
       background: radial-gradient(circle, #fff, #ffeef8);
       border-radius: 4px 4px 10px 10px;
       box-shadow: 0 0 15px 4px rgba(255, 255, 255, 0.8);
-      /* Make sure body doesn't get flattened by 3D */
+      
+      /* Ensure body renders in the 3D scene correctly */
       transform-style: preserve-3d;
     }
     
@@ -99,14 +97,16 @@
       box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.9);
     }
 
-    /* ==== SEPARATE INDIVIDUAL WINGS ==== */
+    /* ==== FAIRY WINGS ==== */
     .fairy-wings {
       position: absolute;
       top: 50%; left: 50%;
       width: 0; height: 0; 
-      /* Center point for wings to attach */
-      transform: translate(0, -5px); 
-      z-index: 5; /* BEHIND the body */
+      
+      /* FIX: Removed the negative lift (-5px) so they sit lower on the back,
+         and kept Z at 0px so they stay BEHIND the body (which is at 20px) */
+      transform: translate3d(0, 2px, 0px); 
+      
       transform-style: preserve-3d;
     }
     
@@ -114,39 +114,33 @@
     .fairy-wings::before, .fairy-wings::after {
       content: '';
       position: absolute;
-      bottom: 0; /* Attach at the bottom of the wing */
+      bottom: 0; 
       
-      /* Tall, elegant Disney-style shape */
       width: 20px; height: 55px;
       border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
       
-      /* Prism Color */
       background: radial-gradient(circle at center, rgba(255,255,255,0.9), rgba(0,255,255,0.4), rgba(255,0,255,0.4));
       border: 1px solid rgba(255,255,255,0.7);
       box-shadow: 0 0 10px rgba(255,255,255,0.5);
       
-      /* Ensure hardware acceleration for smooth flutter */
       backface-visibility: visible;
     }
 
     /* LEFT WING */
     .fairy-wings::before {
-      right: 2px; /* Move slightly closer to center spine */
-      /* Pivot strictly from the right edge (the spine) */
+      right: 2px; 
       transform-origin: right center; 
       animation: wingFlapLeft 0.18s infinite ease-in-out alternate;
     }
 
     /* RIGHT WING */
     .fairy-wings::after {
-      left: 2px; /* Move slightly closer to center spine */
-      /* Pivot strictly from the left edge (the spine) */
+      left: 2px; 
       transform-origin: left center; 
       animation: wingFlapRight 0.18s infinite ease-in-out alternate;
     }
 
     /* ANIMATIONS */
-    
     @keyframes flyX {
       0% { transform: translateX(-60vw); }
       100% { transform: translateX(110vw); }
@@ -156,15 +150,15 @@
       100% { transform: translateY(30vh); }
     }
 
-    /* UPDATED FLUTTER: 3D Hinge Effect (No sliding, just folding back) */
+    /* FLUTTER: 3D Hinge Effect */
     @keyframes wingFlapLeft {
-      0% { transform: rotateY(0deg) rotateZ(10deg); } /* Open */
-      100% { transform: rotateY(-80deg) rotateZ(10deg); } /* Folded Back */
+      0% { transform: rotateY(0deg) rotateZ(10deg); } 
+      100% { transform: rotateY(-80deg) rotateZ(10deg); } 
     }
 
     @keyframes wingFlapRight {
-      0% { transform: rotateY(0deg) rotateZ(-10deg); } /* Open */
-      100% { transform: rotateY(80deg) rotateZ(-10deg); } /* Folded Back */
+      0% { transform: rotateY(0deg) rotateZ(-10deg); } 
+      100% { transform: rotateY(80deg) rotateZ(-10deg); } 
     }
     
     section {
@@ -515,7 +509,7 @@
   <!-- Floating Orbs Container -->
   <div class="orb-container"></div>
   
-  <!-- THE FLYING FAIRY (Butterfly + Prism) -->
+  <!-- THE FLYING FAIRY -->
   <div class="fairy-container">
     <div class="fairy-mover">
       <div class="fairy-wings"></div>
@@ -523,7 +517,7 @@
     </div>
   </div>
   
-  <!-- Mobile Wand Element (Hidden until touch) -->
+  <!-- Mobile Wand Element -->
   <div class="mobile-wand"></div>
 
   <!-- Page 1: Hero -->
@@ -671,7 +665,7 @@
           </p>
         </div>
 
-        <!-- Card 2 (With restored fairy.jpg) -->
+        <!-- Card 2 -->
         <div class="journey-card">
           <span class="journey-label">Indigo Dreams</span>
           <p class="journey-title">
@@ -680,7 +674,7 @@
           <p class="journey-text-small">
             These works explore the space between night and dawn, where imagination glows the brightest.
           </p>
-          <!-- RESTORED FAIRY.JPG -->
+          <!-- FAIRY JPG -->
           <img src="fairy.jpg" alt="Indigo Dreams Art" class="journey-image">
         </div>
 
@@ -731,7 +725,6 @@
     let lastEventTime = 0;
     const mobileWand = document.querySelector('.mobile-wand');
 
-    // Generic Sparkle Function
     function createSparkle(x, y) {
       let sparkle = document.createElement('div');
       sparkle.className = 'sparkle';
@@ -758,12 +751,11 @@
       }, 500);
     }
 
-    // SPECIAL FUNCTION FOR FAIRY DUST (Lingers longer, falls down)
     function createFairyDust(x, y) {
       let dust = document.createElement('div');
       document.body.appendChild(dust);
       
-      let size = Math.random() * 6 + 2; // Smaller than cursor sparkles
+      let size = Math.random() * 6 + 2; 
       dust.style.width = size + 'px';
       dust.style.height = size + 'px';
       dust.style.left = x + 'px';
@@ -773,14 +765,13 @@
       dust.style.borderRadius = '50%';
       dust.style.position = 'fixed';
       dust.style.pointerEvents = 'none';
-      dust.style.zIndex = '45'; // Behind the fairy
+      dust.style.zIndex = '45'; 
       dust.style.opacity = '0.8';
-      dust.style.transition = 'all 1.5s linear'; // Longer fade
+      dust.style.transition = 'all 1.5s linear'; 
       
-      // Animate fade out and drop down (gravity)
       setTimeout(() => {
         dust.style.opacity = '0';
-        dust.style.transform = `translateY(30px)`; // Falls down
+        dust.style.transform = `translateY(30px)`; 
       }, 50);
 
       setTimeout(() => {
@@ -788,7 +779,6 @@
       }, 1550);
     }
 
-    // DESKTOP: Only create sparkles
     document.addEventListener('mousemove', function(e) {
       const now = Date.now();
       if (now - lastEventTime < 50) return;
@@ -796,7 +786,6 @@
       createSparkle(e.clientX, e.clientY);
     });
 
-    // MOBILE: Move the "Fake" Wand AND create sparkles
     document.addEventListener('touchmove', function(e) {
       const now = Date.now();
       if (now - lastEventTime < 30) return; 
@@ -813,7 +802,6 @@
       mobileWand.style.display = 'none';
     });
 
-    // 2. Floating Light Orbs
     const orbContainer = document.querySelector('.orb-container');
     const numOrbs = 8; 
 
@@ -830,21 +818,14 @@
       orbContainer.appendChild(orb);
     }
 
-    // 3. FAIRY TRAIL LOGIC (Mobile & Desktop)
     const fairyMover = document.querySelector('.fairy-mover');
     
-    // Every 150ms, find where the fairy is and drop dust
     setInterval(() => {
-      // Get fairy position
       const rect = fairyMover.getBoundingClientRect();
-      // Calculate center
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      
-      // Create dust slightly randomly around center
       createFairyDust(centerX + (Math.random()*20-10), centerY + (Math.random()*20-10));
     }, 150);
-
   </script>
 </body>
 </html>
