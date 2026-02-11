@@ -26,7 +26,6 @@
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>') 0 22, auto;
     }
     
-    /* Ensure links also use the wand on desktop */
     a {
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>') 0 22, pointer;
       color: inherit;
@@ -39,79 +38,122 @@
       position: fixed;
       width: 32px;
       height: 32px;
-      pointer-events: none; /* Let clicks pass through it */
+      pointer-events: none; 
       z-index: 9999;
-      display: none; /* Hidden until touched */
+      display: none; 
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>');
       background-size: contain;
       background-repeat: no-repeat;
     }
 
-    /* ==== THE FLYING FAIRY ==== */
+    /* ==== THE BUTTERFLY FAIRY ==== */
     .fairy-container {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      pointer-events: none; /* Touches pass through */
-      z-index: 50; /* Above background, below text/cards */
-      animation: flyX 25s ease-in-out infinite alternate;
+      pointer-events: none; 
+      z-index: 50; 
+      /* Much slower animation: 60s instead of 25s */
+      animation: flyX 60s ease-in-out infinite alternate;
     }
     
     .fairy-mover {
       position: absolute;
       top: 50%; left: 50%;
-      width: 40px; height: 40px;
-      animation: flyY 17s ease-in-out infinite alternate;
+      width: 60px; height: 60px;
+      /* Slower Y-axis movement */
+      animation: flyY 35s ease-in-out infinite alternate;
     }
 
-    /* Fairy Body (Tiny glowing dot) */
-    .fairy-body {
-      width: 8px; height: 8px;
+    /* Grouping the body parts */
+    .fairy-visuals {
+      position: relative;
+      width: 100%; height: 100%;
+      /* The flapping animation */
+      animation: flutter 0.2s infinite ease-in-out alternate;
+    }
+
+    /* Fairy Head */
+    .fairy-head {
+      width: 6px; height: 6px;
       background: white;
       border-radius: 50%;
-      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 8px 2px rgba(255, 255, 255, 1);
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
+      top: 25%; left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
     }
 
-    /* Axicon/Prism Wings */
-    .fairy-wings {
+    /* Fairy Dress/Body */
+    .fairy-dress {
+      width: 4px; height: 18px;
+      background: linear-gradient(to bottom, white, rgba(255,255,255,0));
       position: absolute;
-      top: 50%; left: 50%;
-      width: 50px; height: 40px;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-      animation: flutter 0.2s infinite linear alternate;
+      top: 32%; left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+      z-index: 9;
     }
-    
-    .fairy-wings::before, .fairy-wings::after {
-      content: '';
+
+    /* Common Wing Style (The Prism Effect) */
+    .wing {
       position: absolute;
-      top: 0; width: 50%; height: 100%;
-      border-radius: 50% 50% 5px 5px;
-      /* AXICON GRADIENT: Cyan, Magenta, White for prism effect */
       background: radial-gradient(circle at center, rgba(255,255,255,0.9), rgba(0,255,255,0.4), rgba(255,0,255,0.4));
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+      z-index: 1;
     }
-    
-    .fairy-wings::before { left: 0; transform-origin: right center; transform: rotate(10deg); }
-    .fairy-wings::after { right: 0; transform-origin: left center; transform: rotate(-10deg); }
 
-    /* Animations for Fairy Movement */
+    /* Upper Wings (Large) */
+    .wing-top {
+      top: 10%;
+      width: 22px; height: 30px;
+    }
+    .wing-left-top {
+      left: 50%;
+      transform-origin: left bottom;
+      transform: translateX(-100%) rotate(-10deg);
+      border-radius: 50% 50% 0 50%; /* Butterfly shape top-left */
+    }
+    .wing-right-top {
+      left: 50%;
+      transform-origin: right bottom;
+      transform: rotate(10deg);
+      border-radius: 50% 50% 50% 0; /* Butterfly shape top-right */
+    }
+
+    /* Lower Wings (Small) */
+    .wing-bottom {
+      top: 50%;
+      width: 18px; height: 22px;
+    }
+    .wing-left-bottom {
+      left: 50%;
+      transform-origin: top right;
+      transform: translateX(-100%) rotate(-10deg);
+      border-radius: 50% 0 50% 50%; /* Teardrop shape bottom-left */
+    }
+    .wing-right-bottom {
+      left: 50%;
+      transform-origin: top left;
+      transform: rotate(10deg);
+      border-radius: 0 50% 50% 50%; /* Teardrop shape bottom-right */
+    }
+
+    /* Movement Animations */
     @keyframes flyX {
-      0% { transform: translateX(0vw); }
-      100% { transform: translateX(90vw); }
+      0% { transform: translateX(-10vw); } /* Start off screen */
+      100% { transform: translateX(95vw); } /* End off screen */
     }
     @keyframes flyY {
-      0% { transform: translateY(-40vh); }
-      100% { transform: translateY(40vh); }
+      0% { transform: translateY(-30vh); }
+      100% { transform: translateY(30vh); }
     }
     @keyframes flutter {
-      0% { transform: translate(-50%, -50%) scaleX(1) scaleY(1); opacity: 0.9; }
-      100% { transform: translate(-50%, -50%) scaleX(0.7) scaleY(0.9); opacity: 0.6; }
+      /* Flapping effect using scaleX */
+      0% { transform: scaleX(1); opacity: 0.9; }
+      100% { transform: scaleX(0.4); opacity: 0.7; }
     }
     
     section {
@@ -396,361 +438,4 @@
     }
     .journey-title {
       font-weight: bold; margin-bottom: 10px;
-      font-size: 15px; color: #3f245e;
-    }
-    .journey-text-small { font-size: 14px; color: #452565; }
-    
-    .journey-image {
-      width: 100%;
-      max-width: 260px;
-      border-radius: 4px;
-      display: block;
-      margin: 14px auto 0;
-    }
-
-    /* ==== Footer ==== */
-    footer { position: relative; z-index: 1; }
-    footer p {
-      margin-bottom: 20px; font-size: 18px;
-      max-width: 800px; margin-left: auto; margin-right: auto;
-      color: #2e1844;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 18px;
-      max-width: 720px;
-      margin: 40px auto 0;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #37204f;
-    }
-    .footer-item-title { font-weight: bold; margin-bottom: 8px; }
-
-    /* Orbs */
-    .orb-container {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none; z-index: 0; overflow: hidden;
-    }
-    .orb {
-      position: absolute;
-      background: radial-gradient(circle, rgba(177, 146, 223, 0.7) 0%, rgba(177, 146, 223, 0) 70%);
-      border-radius: 50%;
-      animation: floatAndFade 15s infinite ease-in-out;
-    }
-    @keyframes floatAndFade {
-      0% { transform: translate(0, 0) scale(0.5); opacity: 0.7; }
-      50% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0.3; }
-      100% { transform: translate(0, 0) scale(0.5); opacity: 0.7; }
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .brand-name { font-size: 32px; letter-spacing: 0.12em; }
-      .welcome-title { font-size: 26px; }
-      .section-heading { font-size: 26px; }
-      .writing-box { padding: 28px 18px; }
-      .story-title { font-size: 16px; }
-      .story-text { font-size: 14px; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Floating Orbs Container -->
-  <div class="orb-container"></div>
-  
-  <!-- THE FLYING FAIRY (New!) -->
-  <div class="fairy-container">
-    <div class="fairy-mover">
-      <div class="fairy-wings"></div>
-      <div class="fairy-body"></div>
-    </div>
-  </div>
-  
-  <!-- Mobile Wand Element (Hidden until touch) -->
-  <div class="mobile-wand"></div>
-
-  <!-- Page 1: Hero -->
-  <header class="bg-hero hero">
-    <div class="container">
-      <div class="hero-star">✶</div>
-      <h1 class="brand-name">
-        <span>MoonShadow</span> <span>TheSunFlower</span>
-      </h1>
-      <p class="hero-subtitle">FIND WHAT SPARKS YOUR CURIOSITY</p>
-    </div>
-  </header>
-
-  <!-- Page 2: Greetings / Welcome -->
-  <section class="bg-clouds">
-    <div class="container">
-      <div class="pill-button">GREETINGS, EARTHLING!</div>
-      <h2 class="welcome-title">
-        Welcome to my creative corner! And thank you for stopping by!
-      </h2>
-      <p class="welcome-text">
-        This is a place where imagination knows no bounds.
-      </p>
-    </div>
-  </section>
-
-  <!-- Page 3: Let's create cards -->
-  <section class="bg-purple">
-    <div class="container">
-      <h2 class="section-heading">Let's Create,</h2>
-      <p class="section-subheading">Dream, and Discover</p>
-
-      <div class="card-grid">
-        <!-- Card 1 -->
-        <div class="card">
-          <div class="card-star">✶</div>
-          <h3 class="card-title">My Favorite Finds</h3>
-          <p class="card-text">
-            I only share what I genuinely love. These products have earned
-            their spot in my life (and cart!).
-            <br><br>
-            <a href="https://linktr.ee/MoonShadowTheSun" target="_blank" class="whimsical-button">
-              Visit my Linktree
-            </a>
-          </p>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="card">
-          <div class="card-star">✶</div>
-          <h3 class="card-title">Image &amp; Video Editing</h3>
-          <p class="card-text">
-            Exploring the fusion of art, artificial intelligence, and
-            creative editing tools.
-          </p>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="card">
-          <div class="card-star">✶</div>
-          <h3 class="card-title">My Creations</h3>
-          <p class="card-text">
-            Weaving dreams through pixels and light—the language my soul speaks.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Page 4: Writing Samples -->
-  <section class="bg-clouds">
-    <div class="container">
-      <h2 class="section-heading" style="color: #3b2158;">My Writing Samples</h2>
-
-      <div class="writing-box">
-        <!-- Lira -->
-        <div class="story-block">
-          <div class="story-heading">
-            <span class="story-star">✶</span>
-            <span class="story-title">Lira</span>
-          </div>
-          <p class="story-text">
-            In the quiet heart of the midnight forest, Lira the indigo fairy danced on 
-            the edge of moonbeams. With every flutter of her shimmering wings, she painted 
-            the air in the deep blue hues, weaving spells that soothed restless dreams 
-            and guided lost travelers home.
-          </p>
-        </div>
-
-        <!-- Divider -->
-        <div class="story-divider"></div>
-
-        <!-- Candy -->
-        <div class="story-block">
-          <div class="story-heading">
-            <span class="story-star">✶</span>
-            <span class="story-title">Candy</span>
-          </div>
-          <p class="story-text">
-            Candy's days blurred together, a haze of neon lights and empty promises. 
-            Once, her laughter filled rooms; now, shadows clung to her eyes, and 
-            every morning felt heavier than the last. The pills promised escape, 
-            but left her stranded on lonely islands of regret.
-          </p>
-        </div>
-
-        <!-- Divider -->
-        <div class="story-divider"></div>
-
-        <!-- Crystal Store Review -->
-        <div class="story-block">
-          <div class="story-heading">
-            <span class="story-star">✶</span>
-            <span class="story-title">Review of Crystal Harmony</span>
-          </div>
-          <p class="story-text">
-            I recently visited Crystal Harmony, and it was a truly enchanting experience! 
-            The store is beautifully arranged, with crystals of every color and size 
-            sparkling under soft, welcoming lights. The staff are incredibly knowledgeable, 
-            patiently answering my questions.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Page 5: Art journey -->
-  <section class="bg-purple">
-    <div class="container">
-      <p class="journey-text">
-        My art is a journey through color and code, where each piece is a reflection
-        of curiosity and wonder.
-      </p>
-
-      <div class="journey-grid">
-        <!-- Card 1 -->
-        <div class="journey-card">
-          <span class="journey-label">Behind-the-Scenes</span>
-          <p class="journey-title">
-            Every creative piece starts as a whisper in my mind, inspired by the unseen.
-          </p>
-          <p class="journey-text-small">
-            I love sharing the process—from the first spark of an idea to the final
-            touches on each creation.
-          </p>
-        </div>
-
-        <!-- Card 2 (With restored fairy.jpg) -->
-        <div class="journey-card">
-          <span class="journey-label">Indigo Dreams</span>
-          <p class="journey-title">
-            A collection of dreamy, mystical pieces bathed in deep blues and soft light.
-          </p>
-          <p class="journey-text-small">
-            These works explore the space between night and dawn, where imagination glows the brightest.
-          </p>
-          <!-- RESTORED: Your original image path -->
-          <img src="fairy.jpg" alt="Indigo Dreams Art" class="journey-image">
-        </div>
-
-        <!-- Card 3 -->
-        <div class="journey-card">
-          <span class="journey-label">To my community</span>
-          <p class="journey-title">
-            Though the journey may be harsh and confusing, we live every second of it,
-            so let's embrace and enjoy the ride.
-          </p>
-          <p class="journey-text-small">
-            Your curiosity, kindness, and presence turn this little corner of the internet
-            into a shared sanctuary.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Page 6: Contact -->
-  <footer class="bg-moon">
-    <section>
-      <div class="container">
-        <p>
-          Thank you for exploring my creative world—your curiosity and support mean everything to me.
-        </p>
-
-        <div class="footer-grid">
-          <div>
-            <div class="footer-item-title">Cash App</div>
-            <div class="footer-item-value">
-              <a href="https://cash.app/$moonshadowflower" target="_blank" class="whimsical-button">$moonshadowflower</a>
-            </div>
-          </div>
-          <div>
-            <div class="footer-item-title">Contact Me</div>
-            <div class="footer-item-value">
-              <a href="mailto:Moonshadowthesunflower@gmail.com" class="whimsical-button">Email Me</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </footer>
-
-  <script>
-    // 1. SPARKLE & WAND LOGIC
-    let lastEventTime = 0;
-    const mobileWand = document.querySelector('.mobile-wand');
-
-    // Create a Sparkle Element
-    function createSparkle(x, y) {
-      let sparkle = document.createElement('div');
-      sparkle.className = 'sparkle';
-      document.body.appendChild(sparkle);
-
-      let size = Math.random() * 10 + 5;
-      sparkle.style.width = size + 'px';
-      sparkle.style.height = size + 'px';
-      sparkle.style.left = x + 'px';
-      sparkle.style.top = y + 'px';
-      sparkle.style.background = `radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%)`;
-      sparkle.style.borderRadius = '50%';
-      sparkle.style.position = 'fixed';
-      sparkle.style.pointerEvents = 'none';
-      sparkle.style.zIndex = '9999';
-      sparkle.style.opacity = '1';
-      sparkle.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-      sparkle.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
-
-      setTimeout(() => {
-        sparkle.style.opacity = '0';
-        sparkle.style.transform = `scale(0) translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px)`;
-        sparkle.remove();
-      }, 500);
-    }
-
-    // DESKTOP: Only create sparkles
-    document.addEventListener('mousemove', function(e) {
-      const now = Date.now();
-      if (now - lastEventTime < 50) return;
-      lastEventTime = now;
-      createSparkle(e.clientX, e.clientY);
-    });
-
-    // MOBILE: Move the "Fake" Wand AND create sparkles
-    document.addEventListener('touchmove', function(e) {
-      const now = Date.now();
-      if (now - lastEventTime < 30) return; // Slightly faster for touch
-      lastEventTime = now;
-      
-      let touch = e.touches[0];
-      
-      // 1. Move the Mobile Wand
-      mobileWand.style.display = 'block';
-      mobileWand.style.left = (touch.clientX - 10) + 'px'; 
-      mobileWand.style.top = (touch.clientY - 10) + 'px';
-
-      // 2. Create Sparkle
-      createSparkle(touch.clientX, touch.clientY);
-    });
-
-    // Hide mobile wand when lifting finger
-    document.addEventListener('touchend', function() {
-      mobileWand.style.display = 'none';
-    });
-
-    // 2. Floating Light Orbs
-    const orbContainer = document.querySelector('.orb-container');
-    const numOrbs = 8; 
-
-    for (let i = 0; i < numOrbs; i++) {
-      let orb = document.createElement('div');
-      orb.className = 'orb';
-      orb.style.width = `${Math.random() * 100 + 50}px`; 
-      orb.style.height = orb.style.width;
-      orb.style.left = `${Math.random() * 100}vw`;
-      orb.style.top = `${Math.random() * 100}vh`;
-      orb.style.animationDelay = `${Math.random() * 10}s`;
-      orb.style.setProperty('--x', `${Math.random() * 200 - 100}px`); 
-      orb.style.setProperty('--y', `${Math.random() * 200 - 100}px`); 
-      orbContainer.appendChild(orb);
-    }
-  </script>
-</body>
-</html>
+      font-size: 15px; color: #
