@@ -22,17 +22,29 @@
       text-align: center;
       overflow-x: hidden;
       
-      /* MAGIC WAND CURSOR SETTING */
-      /* This replaces the mouse pointer with a Wand Icon */
+      /* DESKTOP MAGIC WAND (CSS Cursor) */
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>') 0 22, auto;
     }
     
-    /* Ensure links also use the wand */
+    /* Ensure links also use the wand on desktop */
     a {
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>') 0 22, pointer;
       color: inherit;
       text-decoration: none;
       transition: color 0.3s;
+    }
+
+    /* MOBILE WAND (Hidden by default, shown via JS on touch) */
+    .mobile-wand {
+      position: fixed;
+      width: 32px;
+      height: 32px;
+      pointer-events: none; /* Let clicks pass through it */
+      z-index: 9999;
+      display: none; /* Hidden until touched */
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
     }
     
     section {
@@ -382,6 +394,9 @@
 
   <!-- Floating Orbs Container -->
   <div class="orb-container"></div>
+  
+  <!-- Mobile Wand Element (Hidden until touch) -->
+  <div class="mobile-wand"></div>
 
   <!-- Page 1: Hero -->
   <header class="bg-hero hero">
@@ -584,10 +599,11 @@
   </footer>
 
   <script>
-    // == SPARKLE LOGIC (Works on Mouse AND Touch) ==
-    let lastSparkle = 0;
-    
-    // Function to create the sparkle element
+    // 1. SPARKLE & WAND LOGIC
+    let lastEventTime = 0;
+    const mobileWand = document.querySelector('.mobile-wand');
+
+    // Create a Sparkle Element
     function createSparkle(x, y) {
       let sparkle = document.createElement('div');
       sparkle.className = 'sparkle';
@@ -614,26 +630,38 @@
       }, 500);
     }
 
-    // 1. Mouse Event Listener
+    // DESKTOP: Only create sparkles
     document.addEventListener('mousemove', function(e) {
       const now = Date.now();
-      if (now - lastSparkle < 50) return; // Throttling
-      lastSparkle = now;
+      if (now - lastEventTime < 50) return;
+      lastEventTime = now;
       createSparkle(e.clientX, e.clientY);
     });
 
-    // 2. Touch Event Listener (For Mobile!)
+    // MOBILE: Move the "Fake" Wand AND create sparkles
     document.addEventListener('touchmove', function(e) {
       const now = Date.now();
-      if (now - lastSparkle < 50) return; // Throttling
-      lastSparkle = now;
+      if (now - lastEventTime < 30) return; // Slightly faster for touch
+      lastEventTime = now;
       
-      // Get the position of the first finger
       let touch = e.touches[0];
+      
+      // 1. Move the Mobile Wand
+      mobileWand.style.display = 'block';
+      // Offset slightly so you can see it next to your finger
+      mobileWand.style.left = (touch.clientX - 10) + 'px'; 
+      mobileWand.style.top = (touch.clientY - 10) + 'px';
+
+      // 2. Create Sparkle
       createSparkle(touch.clientX, touch.clientY);
     });
 
-    // 3. Floating Light Orbs
+    // Hide mobile wand when lifting finger
+    document.addEventListener('touchend', function() {
+      mobileWand.style.display = 'none';
+    });
+
+    // 2. Floating Light Orbs
     const orbContainer = document.querySelector('.orb-container');
     const numOrbs = 8; 
 
