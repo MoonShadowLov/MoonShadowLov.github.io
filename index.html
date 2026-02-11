@@ -70,7 +70,10 @@
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      z-index: 2;
+      
+      /* FIX 1: Lower Z-Index so it sits BEHIND/INSIDE the wings */
+      z-index: 1; 
+      
       width: 4px; height: 14px;
       background: radial-gradient(circle, #fff, #ffeef8);
       border-radius: 4px 4px 10px 10px;
@@ -95,7 +98,10 @@
       top: 50%; left: 50%;
       width: 50px; height: 40px;
       transform: translate(-50%, -50%);
-      z-index: 1;
+      
+      /* FIX 2: Higher Z-Index so wings cover the body (transparency makes it blend) */
+      z-index: 2;
+      
       animation: flutter 0.25s infinite ease-in-out alternate;
     }
     
@@ -128,16 +134,18 @@
 
     /* Animations */
     @keyframes flyX {
-      0% { transform: translateX(-10vw); }
-      100% { transform: translateX(100vw); }
+      /* FIX 3: Start at -60vw so it is completely off-screen left */
+      0% { transform: translateX(-60vw); }
+      100% { transform: translateX(110vw); }
     }
     @keyframes flyY {
       0% { transform: translateY(-30vh); }
       100% { transform: translateY(30vh); }
     }
     @keyframes flutter {
-      0% { transform: translate(-50%, -50%) scaleX(1) scaleY(1); opacity: 0.95; }
-      100% { transform: translate(-50%, -50%) scaleX(0.6) scaleY(0.9); opacity: 0.8; }
+      /* FIX 4: Removed opacity flicker for smooth flapping */
+      0% { transform: translate(-50%, -50%) scaleX(1) scaleY(1); }
+      100% { transform: translate(-50%, -50%) scaleX(0.6) scaleY(0.9); }
     }
     
     section {
