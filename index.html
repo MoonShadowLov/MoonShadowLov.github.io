@@ -1,227 +1,850 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MoonShadow The SunFlower</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<html lang="en"> <head> <meta charset="UTF-8" /> <title>MoonShadow The SunFlower</title> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <style> /* ==== Base ==== */ html { scroll-behavior: smooth; } * { box-sizing: border-box; margin: 0; padding: 0; } body { font-family: "Georgia", "Times New Roman", serif; color: #3b2158; background: #fbe9ff; line-height: 1.6; text-align: center; overflow-x: hidden; /* DESKTOP MAGIC WAND */ cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>') 0 22, auto; } a { cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>') 0 22, pointer; color: inherit; text-decoration: none; transition: color 0.3s; } /* MOBILE WAND */ .mobile-wand { position: fixed; width: 32px; height: 32px; pointer-events: none; z-index: 9999; display: none; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>'); background-size: contain; background-repeat: no-repeat; } /* ==== Floating Orbs ==== */ .orb-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; } .orb { position: absolute; background: radial-gradient(circle, rgba(177, 146, 223, 0.7) 0%, rgba(177, 146, 223, 0) 70%); border-radius: 50%; animation: floatAndFade 15s infinite ease-in-out; } @keyframes floatAndFade { 0% { transform: translate(0, 0) scale(0.5); opacity: 0.7; } 50% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0.3; } 100% { transform: translate(0, 0) scale(0.5); opacity: 0.7; } } /* ==== THE FAIRY (CODED SVG + FLAPPING WINGS) ==== */ .fairy-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 50; animation: flyX 45s ease-in-out infinite alternate; } .fairy-mover { position: absolute; top: 50%; left: 50%; width: 120px; height: 120px; animation: flyY 28s ease-in-out infinite alternate; transform-style: preserve-3d; perspective: 800px; } /* Make fairy small here */ .fairy-svg{ width: 56px; /* adjust size here */ height: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); overflow: visible; filter: drop-shadow(0 0 6px rgba(255,255,255,0.95)) drop-shadow(0 0 14px rgba(210,160,255,0.55)); } /* wing animation */ .wing{ transform-box: fill-box; transform-origin: 50% 45%; backface-visibility: hidden; } .wing-left{ transform-origin: 100% 45%; animation: wingFlapL 0.12s ease-in-out infinite alternate; } .wing-right{ transform-origin: 0% 45%; animation: wingFlapR 0.12s ease-in-out infinite alternate; } @keyframes wingFlapL{ from { transform: rotate(10deg) scaleX(1); } to { transform: rotate(-18deg) scaleX(0.72); } } @keyframes wingFlapR{ from { transform: rotate(-10deg) scaleX(1); } to { transform: rotate(18deg) scaleX(0.72); } } /* Fairy flight path */ @keyframes flyX { 0% { transform: translateX(-60vw) rotateY(0deg); } 49% { transform: translateX(110vw) rotateY(0deg); } 50% { transform: translateX(110vw) rotateY(180deg); } 100% { transform: translateX(-60vw) rotateY(180deg); } } @keyframes flyY { 0% { transform: translateY(-30vh); } 100% { transform: translateY(30vh); } } /* ==== Layout ==== */ section { padding: 80px 20px; position: relative; z-index: 1; } header, footer { position: relative; z-index: 1; } .container { max-width: 1100px; margin: 0 auto; } /* ==== Shared backgrounds ==== */ .bg-hero { background: radial-gradient(circle at top, #fef5ff, #d6a7ff 40%, #7f6fd8 80%); color: #2b123d; position: relative; overflow: hidden; } .bg-clouds { background: linear-gradient(#ffeafd, #f8ccff); color: #3b2158; } .bg-purple { background: linear-gradient(#c79be8, #9063c9); color: #f9f3ff; } .bg-moon { background: radial-gradient(circle at center, #fef5ff 0%, #d2b7ff 45%, #fdf2ff 100%); color: #2e1844; } /* ==== Hero ==== */ .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; } .brand-name { font-size: 48px; letter-spacing: 0.18em; text-transform: capitalize; text-shadow: 0 2px 4px rgba(0,0,0,0.1); } .brand-name span { letter-spacing: 0.05em; } .hero-subtitle { margin-top: 24px; font-size: 14px; letter-spacing: 0.21em; text-transform: uppercase; } .hero-star { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #2b123d; display: inline-flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 18px; color: #2b123d; background: rgba(255,255,255,0.7); position: relative; overflow: hidden; box-shadow: 0 0 15px rgba(255,255,255,0.5); } .hero-star::before { content: ''; position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%); transform: translate(-50%, -50%) scale(0); opacity: 0; animation: twinkle 3s infinite ease-out; } @keyframes twinkle { 0% { transform: translate(-50%, -50%) scale(0); opacity: 0; } 50% { transform: translate(-50%, -50%) scale(1); opacity: 1; } 100% { transform: translate(-50%, -50%) scale(0); opacity: 0; } } /* ==== Greetings ==== */ .pill-button { display: inline-block; padding: 10px 40px; border-radius: 40px; border: 1px solid #8c6bbb; letter-spacing: 0.16em; text-transform: uppercase; font-size: 12px; background: rgba(255,255,255,0.9); margin-bottom: 40px; color: #3b2158; box-shadow: 0 4px 10px rgba(0,0,0,0.05); } .welcome-title { font-size: 32px; max-width: 700px; margin: 0 auto 16px; color: #321847; } .welcome-text { font-size: 18px; max-width: 720px; margin: 0 auto; color: #3d224f; } /* ==== Cards ==== */ .section-heading { font-size: 30px; margin-bottom: 14px; color: #fdf8ff; text-shadow: 0 2px 4px rgba(0,0,0,0.1); } .section-subheading { font-size: 22px; margin-bottom: 40px; color: #f5e9ff; } .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; } .card { background: rgba(255,255,255,0.95); border-radius: 8px; padding: 30px 22px 28px; position: relative; min-height: 210px; color: #3a2255; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; } .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); } .card-star { width: 26px; height: 26px; border-radius: 50%; border: 1px solid #3a2255; display: flex; align-items: center; justify-content: center; font-size: 14px; margin: 0 auto 12px; color: #7a4bb5; background: #f8efff; position: relative; overflow: hidden; } .card-star::before { content: ''; position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%); transform: translate(-50%, -50%) scale(0); opacity: 0; animation: twinkle 2.5s infinite ease-out 0.5s; } .card-title { font-size: 20px; margin-bottom: 12px; color: #4b2e73; } .card-text { font-size: 14px; color: #55347f; } /* Button */ .whimsical-button { display: inline-block; padding: 10px 25px; border-radius: 25px; background: linear-gradient(135deg, #e0b0ff, #c080ff); color: #3b2158; font-weight: bold; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; border: 1px solid #a060ff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; margin-top: 15px; position: relative; overflow: hidden; z-index: 1; } .whimsical-button:hover { background: linear-gradient(135deg, #c080ff, #e0b0ff); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); transform: translateY(-2px); } .whimsical-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent); transition: all 0.7s ease; z-index: -1; } .whimsical-button:hover::before { left: 100%; } /* ==== Writing Samples ==== */ .writing-box { background: linear-gradient(90deg, #fbe7ff, #e3c0ff, #d4b7ff); border-radius: 12px; padding: 40px 26px; max-width: 900px; margin: 30px auto 0; text-align: left; color: #2d163f; box-shadow: 0 10px 30px rgba(0,0,0,0.05); } .story-block { margin-bottom: 28px; } .story-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; } .story-star { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; border: 1px solid #5a3a7d; font-size: 14px; color: #5a3a7d; background: #f8efff; position: relative; overflow: hidden; } .story-star::before { content: ''; position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%); transform: translate(-50%, -50%) scale(0); opacity: 0; animation: twinkle 2s infinite ease-out 1s; } .story-title { font-weight: bold; font-size: 18px; color: #3b2158; } .story-text { font-size: 16px; line-height: 1.8; color: #3a214f; } .story-divider { height: 1px; width: 100%; background: linear-gradient(90deg, transparent, #b192df, transparent); margin: 20px 0 28px; } /* ==== Art journey ==== */ .journey-text { font-size: 22px; max-width: 900px; margin: 0 auto 40px; color: #fdf6ff; } .journey-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; } .journey-card { background: rgba(255,255,255,0.95); border-radius: 8px; padding: 24px 18px 20px; color: #3a2255; transition: transform 0.3s; } .journey-card:hover { transform: translateY(-5px); } .journey-label { display: inline-block; margin-bottom: 10px; padding: 8px 20px; border-radius: 999px; border: 1px solid #b192df; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; background: #fbeafd; color: #4a2a6f; } .journey-title { font-weight: bold; margin-bottom: 10px; font-size: 15px; color: #3f245e; } .journey-text-small { font-size: 14px; color: #452565; } .journey-image { width: 100%; max-width: 260px; border-radius: 4px; display: block; margin: 14px auto 0; } /* ==== Footer ==== */ footer p { margin-bottom: 20px; font-size: 18px; max-width: 800px; margin-left: auto; margin-right: auto; color: #2e1844; } .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; max-width: 720px; margin: 40px auto 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.16em; color: #37204f; } .footer-item-title { font-weight: bold; margin-bottom: 8px; } /* Responsive */ @media (max-width: 768px) { .brand-name { font-size: 32px; letter-spacing: 0.12em; } .welcome-title { font-size: 26px; } .section-heading { font-size: 26px; } .writing-box { padding: 28px 18px; } .story-title { font-size: 16px; } .story-text { font-size: 14px; } .fairy-svg { width: 48px; } } /* Optional: respect reduced motion */ @media (prefers-reduced-motion: reduce) { .fairy-container, .fairy-mover, .wing-left, .wing-right, .orb { animation: none !important; } } </style> </head> <body> <!-- Floating Orbs Container --> <div class="orb-container"></div> <!-- THE FLYING FAIRY (CODED SVG + FLAPPING WINGS) --> <div class="fairy-container"> <div class="fairy-mover"> <svg class="fairy-svg" viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"> <defs> <linearGradient id="wingGrad" x1="0" y1="0" x2="1" y2="1"> <stop offset="0%" stop-color="#b9a7ff" stop-opacity="0.85"/> <stop offset="35%" stop-color="#68f3ff" stop-opacity="0.55"/> <stop offset="70%" stop-color="#7bffb8" stop-opacity="0.45"/> <stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/> </linearGradient>
-text
-      <linearGradient id="dressGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#ffb8ff" stop-opacity="0.95"/>
-        <stop offset="55%" stop-color="#7fe6ff" stop-opacity="0.85"/>
-        <stop offset="100%" stop-color="#bda0ff" stop-opacity="0.85"/>
-      </linearGradient>
+  <style>
+    /* ==== Base ==== */
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-      <linearGradient id="hairGrad" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#ff87d7"/>
-        <stop offset="55%" stop-color="#a96bff"/>
-        <stop offset="100%" stop-color="#6a4cff"/>
-      </linearGradient>
+    body {
+      font-family: "Georgia", "Times New Roman", serif;
+      color: #3b2158;
+      background: #fbe9ff;
+      line-height: 1.6;
+      text-align: center;
+      overflow-x: hidden;
 
-      <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
-        <feGaussianBlur stdDeviation="2.2" result="b"/>
-        <feColorMatrix in="b" type="matrix"
-          values="1 0 0 0 0
-                  0 1 0 0 0
-                  0 0 1 0 0
-                  0 0 0 0.65 0" result="g"/>
-        <feMerge>
-          <feMergeNode in="g"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
+      /* DESKTOP MAGIC WAND */
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>') 0 22, auto;
+    }
 
-      <filter id="sparkle" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="0.6" result="sb"/>
-        <feMerge>
-          <feMergeNode in="sb"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
-    </defs>
+    a {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>') 0 22, pointer;
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
 
-    <!-- Wings -->
-    <g class="wing wing-left" filter="url(#softGlow)">
-      <path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z"
-            fill="url(#wingGrad)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
-      <path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z"
-            fill="url(#wingGrad)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
-      <path d="M100 88 C 78 80, 50 86, 40 104" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
-      <path d="M102 104 C 80 108, 58 120, 52 140" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
-    </g>
+    /* MOBILE WAND */
+    .mobile-wand {
+      position: fixed;
+      width: 32px;
+      height: 32px;
+      pointer-events: none;
+      z-index: 9999;
+      display: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
 
-    <g class="wing wing-right" filter="url(#softGlow)">
-      <path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z"
-            fill="url(#wingGrad)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
-      <path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z"
-            fill="url(#wingGrad)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
-      <path d="M120 88 C 142 80, 170 86, 180 104" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
-      <path d="M118 104 C 140 108, 162 120, 168 140" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
-    </g>
+    /* ==== Floating Orbs ==== */
+    .orb-container {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      background: radial-gradient(circle, rgba(177, 146, 223, 0.7) 0%, rgba(177, 146, 223, 0) 70%);
+      border-radius: 50%;
+      animation: floatAndFade 15s infinite ease-in-out;
+    }
+    @keyframes floatAndFade {
+      0% { transform: translate(0, 0) scale(0.5); opacity: 0.7; }
+      50% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0.3; }
+      100% { transform: translate(0, 0) scale(0.5); opacity: 0.7; }
+    }
 
-    <!-- Body -->
-    <g class="fairy-core" filter="url(#softGlow)">
-      <path d="M82 88 C 86 58, 102 48, 110 48 C 118 48, 134 58, 138 88
-               C 140 104, 132 122, 128 136 C 124 150, 132 162, 138 170
-               C 126 172, 114 160, 110 150 C 106 160, 94 172, 82 170
-               C 88 162, 96 150, 92 136 C 88 122, 80 104, 82 88 Z"
-            fill="url(#hairGrad)" opacity="0.95"/>
+    /* ==== THE FAIRY (CODED SVG + FLAPPING WINGS) ==== */
+    .fairy-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 50;
+      animation: flyX 45s ease-in-out infinite alternate;
+    }
 
-      <circle cx="110" cy="70" r="16" fill="#ffe6f4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
-      <ellipse cx="104" cy="72" rx="2.2" ry="3.3" fill="#3b2158" opacity="0.9"/>
-      <ellipse cx="116" cy="72" rx="2.2" ry="3.3" fill="#3b2158" opacity="0.9"/>
+    .fairy-mover {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 120px; height: 120px;
+      animation: flyY 28s ease-in-out infinite alternate;
+      transform-style: preserve-3d;
+      perspective: 800px;
+    }
 
-      <rect x="106" y="84" width="8" height="10" rx="3" fill="#ffdff0" opacity="0.95"/>
+    /* Make fairy small here */
+    .fairy-svg{
+      width: 56px;  /* adjust size here */
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      overflow: visible;
+      filter:
+        drop-shadow(0 0 6px rgba(255,255,255,0.95))
+        drop-shadow(0 0 14px rgba(210,160,255,0.55));
+    }
 
-      <path d="M96 94 C 100 88, 106 86, 110 86 C 114 86, 120 88, 124 94
-               C 124 106, 120 114, 110 114 C 100 114, 96 106, 96 94 Z"
-            fill="url(#dressGrad)"/>
+    /* wing animation */
+    .wing{
+      transform-box: fill-box;
+      transform-origin: 50% 45%;
+      backface-visibility: hidden;
+    }
+    .wing-left{
+      transform-origin: 100% 45%;
+      animation: wingFlapL 0.12s ease-in-out infinite alternate;
+    }
+    .wing-right{
+      transform-origin: 0% 45%;
+      animation: wingFlapR 0.12s ease-in-out infinite alternate;
+    }
 
-      <path d="M110 112 C 90 118, 78 134, 76 162 C 88 176, 102 182, 110 182
-               C 118 182, 132 176, 144 162 C 142 134, 130 118, 110 112 Z"
-            fill="url(#dressGrad)" opacity="0.95"/>
+    @keyframes wingFlapL{
+      from { transform: rotate(10deg) scaleX(1); }
+      to   { transform: rotate(-18deg) scaleX(0.72); }
+    }
+    @keyframes wingFlapR{
+      from { transform: rotate(-10deg) scaleX(1); }
+      to   { transform: rotate(18deg) scaleX(0.72); }
+    }
 
-      <path d="M96 110 C 84 118, 78 126, 72 132"
-            fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
-      <path d="M124 110 C 136 118, 142 126, 148 132"
-            fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+    /* Fairy flight path */
+    @keyframes flyX {
+      0% { transform: translateX(-60vw) rotateY(0deg); }
+      49% { transform: translateX(110vw) rotateY(0deg); }
+      50% { transform: translateX(110vw) rotateY(180deg); }
+      100% { transform: translateX(-60vw) rotateY(180deg); }
+    }
+    @keyframes flyY {
+      0% { transform: translateY(-30vh); }
+      100% { transform: translateY(30vh); }
+    }
 
-      <path d="M104 182 C 102 196, 102 206, 104 216"
-            fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round"/>
-      <path d="M116 182 C 118 196, 118 206, 116 216"
-            fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round"/>
+    /* ==== Layout ==== */
+    section {
+      padding: 80px 20px;
+      position: relative;
+      z-index: 1;
+    }
+    header, footer { position: relative; z-index: 1; }
+    .container { max-width: 1100px; margin: 0 auto; }
 
-      <g filter="url(#sparkle)" opacity="0.9">
-        <circle cx="86" cy="92" r="1.6" fill="#ffffff"/>
-        <circle cx="140" cy="98" r="1.4" fill="#ffffff"/>
-        <circle cx="96" cy="146" r="1.6" fill="#ffffff"/>
-        <circle cx="126" cy="154" r="1.3" fill="#ffffff"/>
-        <circle cx="110" cy="132" r="1.8" fill="#ffffff"/>
-      </g>
-    </g>
-  </svg>
-</div>
-</div> <!-- Mobile Wand Element --> <div class="mobile-wand"></div> <!-- Page 1: Hero --> <header class="bg-hero hero"> <div class="container"> <div class="hero-star">✶</div> <h1 class="brand-name"> <span>MoonShadow</span> <span>TheSunFlower</span> </h1> <p class="hero-subtitle">FIND WHAT SPARKS YOUR CURIOSITY</p> </div> </header> <!-- Page 2: Greetings / Welcome --> <section class="bg-clouds"> <div class="container"> <div class="pill-button">GREETINGS, EARTHLING!</div> <h2 class="welcome-title">Welcome to my creative corner! And thank you for stopping by!</h2> <p class="welcome-text">This is a place where imagination knows no bounds.</p> </div> </section> <!-- Page 3: Cards --> <section class="bg-purple"> <div class="container"> <h2 class="section-heading">Let's Create,</h2> <p class="section-subheading">Dream, and Discover</p>
-text
-  <div class="card-grid">
-    <div class="card">
-      <div class="card-star">✶</div>
-      <h3 class="card-title">My Favorite Finds</h3>
-      <p class="card-text">
-        I only share what I genuinely love. These products have earned their spot in my life (and cart!).
-        <br><br>
-        <a href="https://linktr.ee/MoonShadowTheSun" target="_blank" class="whimsical-button">Visit my Linktree</a>
-      </p>
-    </div>
+    /* ==== Shared backgrounds ==== */
+    .bg-hero {
+      background: radial-gradient(circle at top, #fef5ff, #d6a7ff 40%, #7f6fd8 80%);
+      color: #2b123d;
+      position: relative;
+      overflow: hidden;
+    }
+    .bg-clouds {
+      background: linear-gradient(#ffeafd, #f8ccff);
+      color: #3b2158;
+    }
+    .bg-purple {
+      background: linear-gradient(#c79be8, #9063c9);
+      color: #f9f3ff;
+    }
+    .bg-moon {
+      background: radial-gradient(circle at center, #fef5ff 0%, #d2b7ff 45%, #fdf2ff 100%);
+      color: #2e1844;
+    }
 
-    <div class="card">
-      <div class="card-star">✶</div>
-      <h3 class="card-title">Image &amp; Video Editing</h3>
-      <p class="card-text">Exploring the fusion of art, artificial intelligence, and creative editing tools.</p>
-    </div>
+    /* ==== Hero ==== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .brand-name {
+      font-size: 48px;
+      letter-spacing: 0.18em;
+      text-transform: capitalize;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .brand-name span { letter-spacing: 0.05em; }
+    .hero-subtitle {
+      margin-top: 24px;
+      font-size: 14px;
+      letter-spacing: 0.21em;
+      text-transform: uppercase;
+    }
+    .hero-star {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #2b123d;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 18px;
+      color: #2b123d;
+      background: rgba(255,255,255,0.7);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(255,255,255,0.5);
+    }
+    .hero-star::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      animation: twinkle 3s infinite ease-out;
+    }
+    @keyframes twinkle {
+      0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+      50% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    }
 
-    <div class="card">
-      <div class="card-star">✶</div>
-      <h3 class="card-title">My Creations</h3>
-      <p class="card-text">Weaving dreams through pixels and light—the language my soul speaks.</p>
+    /* ==== Greetings ==== */
+    .pill-button {
+      display: inline-block;
+      padding: 10px 40px;
+      border-radius: 40px;
+      border: 1px solid #8c6bbb;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 12px;
+      background: rgba(255,255,255,0.9);
+      margin-bottom: 40px;
+      color: #3b2158;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .welcome-title {
+      font-size: 32px;
+      max-width: 700px;
+      margin: 0 auto 16px;
+      color: #321847;
+    }
+    .welcome-text {
+      font-size: 18px;
+      max-width: 720px;
+      margin: 0 auto;
+      color: #3d224f;
+    }
+
+    /* ==== Cards ==== */
+    .section-heading {
+      font-size: 30px;
+      margin-bottom: 14px;
+      color: #fdf8ff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .section-subheading {
+      font-size: 22px;
+      margin-bottom: 40px;
+      color: #f5e9ff;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 8px;
+      padding: 30px 22px 28px;
+      position: relative;
+      min-height: 210px;
+      color: #3a2255;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    .card-star {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 1px solid #3a2255;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; margin: 0 auto 12px;
+      color: #7a4bb5; background: #f8efff;
+      position: relative; overflow: hidden;
+    }
+    .card-star::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      animation: twinkle 2.5s infinite ease-out 0.5s;
+    }
+    .card-title { font-size: 20px; margin-bottom: 12px; color: #4b2e73; }
+    .card-text { font-size: 14px; color: #55347f; }
+
+    /* Button */
+    .whimsical-button {
+      display: inline-block;
+      padding: 10px 25px;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #e0b0ff, #c080ff);
+      color: #3b2158;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      border: 1px solid #a060ff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      margin-top: 15px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .whimsical-button:hover {
+      background: linear-gradient(135deg, #c080ff, #e0b0ff);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+    }
+    .whimsical-button::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      transition: all 0.7s ease;
+      z-index: -1;
+    }
+    .whimsical-button:hover::before { left: 100%; }
+
+    /* ==== Writing Samples ==== */
+    .writing-box {
+      background: linear-gradient(90deg, #fbe7ff, #e3c0ff, #d4b7ff);
+      border-radius: 12px;
+      padding: 40px 26px;
+      max-width: 900px;
+      margin: 30px auto 0;
+      text-align: left;
+      color: #2d163f;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+    .story-block { margin-bottom: 28px; }
+    .story-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .story-star {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px;
+      border-radius: 50%; border: 1px solid #5a3a7d;
+      font-size: 14px; color: #5a3a7d; background: #f8efff;
+      position: relative; overflow: hidden;
+    }
+    .story-star::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      animation: twinkle 2s infinite ease-out 1s;
+    }
+    .story-title { font-weight: bold; font-size: 18px; color: #3b2158; }
+    .story-text { font-size: 16px; line-height: 1.8; color: #3a214f; }
+    .story-divider {
+      height: 1px; width: 100%;
+      background: linear-gradient(90deg, transparent, #b192df, transparent);
+      margin: 20px 0 28px;
+    }
+
+    /* ==== Art journey ==== */
+    .journey-text {
+      font-size: 22px; max-width: 900px;
+      margin: 0 auto 40px; color: #fdf6ff;
+    }
+    .journey-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .journey-card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 8px;
+      padding: 24px 18px 20px;
+      color: #3a2255;
+      transition: transform 0.3s;
+    }
+    .journey-card:hover { transform: translateY(-5px); }
+    .journey-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 8px 20px;
+      border-radius: 999px;
+      border: 1px solid #b192df;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: #fbeafd;
+      color: #4a2a6f;
+    }
+    .journey-title {
+      font-weight: bold; margin-bottom: 10px;
+      font-size: 15px; color: #3f245e;
+    }
+    .journey-text-small { font-size: 14px; color: #452565; }
+    .journey-image {
+      width: 100%;
+      max-width: 260px;
+      border-radius: 4px;
+      display: block;
+      margin: 14px auto 0;
+    }
+
+    /* ==== Footer ==== */
+    footer p {
+      margin-bottom: 20px;
+      font-size: 18px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      color: #2e1844;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 18px;
+      max-width: 720px;
+      margin: 40px auto 0;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #37204f;
+    }
+    .footer-item-title { font-weight: bold; margin-bottom: 8px; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .brand-name { font-size: 32px; letter-spacing: 0.12em; }
+      .welcome-title { font-size: 26px; }
+      .section-heading { font-size: 26px; }
+      .writing-box { padding: 28px 18px; }
+      .story-title { font-size: 16px; }
+      .story-text { font-size: 14px; }
+      .fairy-svg { width: 48px; }
+    }
+
+    /* Optional: respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .fairy-container, .fairy-mover, .wing-left, .wing-right, .orb {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Floating Orbs Container -->
+  <div class="orb-container"></div>
+
+  <!-- THE FLYING FAIRY (CODED SVG + FLAPPING WINGS) -->
+  <div class="fairy-container">
+    <div class="fairy-mover">
+      <svg class="fairy-svg" viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="wingGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%"  stop-color="#b9a7ff" stop-opacity="0.85"/>
+            <stop offset="35%" stop-color="#68f3ff" stop-opacity="0.55"/>
+            <stop offset="70%" stop-color="#7bffb8" stop-opacity="0.45"/>
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/>
+          </linearGradient>
+
+          <linearGradient id="dressGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ffb8ff" stop-opacity="0.95"/>
+            <stop offset="55%" stop-color="#7fe6ff" stop-opacity="0.85"/>
+            <stop offset="100%" stop-color="#bda0ff" stop-opacity="0.85"/>
+          </linearGradient>
+
+          <linearGradient id="hairGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ff87d7"/>
+            <stop offset="55%" stop-color="#a96bff"/>
+            <stop offset="100%" stop-color="#6a4cff"/>
+          </linearGradient>
+
+          <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="2.2" result="b"/>
+            <feColorMatrix in="b" type="matrix"
+              values="1 0 0 0 0
+                      0 1 0 0 0
+                      0 0 1 0 0
+                      0 0 0 0.65 0" result="g"/>
+            <feMerge>
+              <feMergeNode in="g"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+
+          <filter id="sparkle" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="0.6" result="sb"/>
+            <feMerge>
+              <feMergeNode in="sb"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Wings -->
+        <g class="wing wing-left" filter="url(#softGlow)">
+          <path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z"
+                fill="url(#wingGrad)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
+          <path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z"
+                fill="url(#wingGrad)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
+          <path d="M100 88 C 78 80, 50 86, 40 104" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+          <path d="M102 104 C 80 108, 58 120, 52 140" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+        </g>
+
+        <g class="wing wing-right" filter="url(#softGlow)">
+          <path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z"
+                fill="url(#wingGrad)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
+          <path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z"
+                fill="url(#wingGrad)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
+          <path d="M120 88 C 142 80, 170 86, 180 104" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+          <path d="M118 104 C 140 108, 162 120, 168 140" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+        </g>
+
+        <!-- Body -->
+        <g class="fairy-core" filter="url(#softGlow)">
+          <path d="M82 88 C 86 58, 102 48, 110 48 C 118 48, 134 58, 138 88
+                   C 140 104, 132 122, 128 136 C 124 150, 132 162, 138 170
+                   C 126 172, 114 160, 110 150 C 106 160, 94 172, 82 170
+                   C 88 162, 96 150, 92 136 C 88 122, 80 104, 82 88 Z"
+                fill="url(#hairGrad)" opacity="0.95"/>
+
+          <circle cx="110" cy="70" r="16" fill="#ffe6f4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
+          <ellipse cx="104" cy="72" rx="2.2" ry="3.3" fill="#3b2158" opacity="0.9"/>
+          <ellipse cx="116" cy="72" rx="2.2" ry="3.3" fill="#3b2158" opacity="0.9"/>
+
+          <rect x="106" y="84" width="8" height="10" rx="3" fill="#ffdff0" opacity="0.95"/>
+
+          <path d="M96 94 C 100 88, 106 86, 110 86 C 114 86, 120 88, 124 94
+                   C 124 106, 120 114, 110 114 C 100 114, 96 106, 96 94 Z"
+                fill="url(#dressGrad)"/>
+
+          <path d="M110 112 C 90 118, 78 134, 76 162 C 88 176, 102 182, 110 182
+                   C 118 182, 132 176, 144 162 C 142 134, 130 118, 110 112 Z"
+                fill="url(#dressGrad)" opacity="0.95"/>
+
+          <path d="M96 110 C 84 118, 78 126, 72 132"
+                fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+          <path d="M124 110 C 136 118, 142 126, 148 132"
+                fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+
+          <path d="M104 182 C 102 196, 102 206, 104 216"
+                fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round"/>
+          <path d="M116 182 C 118 196, 118 206, 116 216"
+                fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round"/>
+
+          <g filter="url(#sparkle)" opacity="0.9">
+            <circle cx="86" cy="92" r="1.6" fill="#ffffff"/>
+            <circle cx="140" cy="98" r="1.4" fill="#ffffff"/>
+            <circle cx="96" cy="146" r="1.6" fill="#ffffff"/>
+            <circle cx="126" cy="154" r="1.3" fill="#ffffff"/>
+            <circle cx="110" cy="132" r="1.8" fill="#ffffff"/>
+          </g>
+        </g>
+      </svg>
     </div>
   </div>
-</div>
-</section> <!-- Page 4: Writing Samples --> <section class="bg-clouds"> <div class="container"> <h2 class="section-heading" style="color:#3b2158;">My Writing Samples</h2>
-text
-  <div class="writing-box">
-    <div class="story-block">
-      <div class="story-heading">
-        <span class="story-star">✶</span>
-        <span class="story-title">Lira</span>
-      </div>
-      <p class="story-text">
-        In the quiet heart of the midnight forest, Lira the indigo fairy danced on
-        the edge of moonbeams. With every flutter of her shimmering wings, she painted
-        the air in the deep blue hues, weaving spells that soothed restless dreams
-        and guided lost travelers home.
-      </p>
-    </div>
 
-    <div class="story-divider"></div>
+  <!-- Mobile Wand Element -->
+  <div class="mobile-wand"></div>
 
-    <div class="story-block">
-      <div class="story-heading">
-        <span class="story-star">✶</span>
-        <span class="story-title">Candy</span>
-      </div>
-      <p class="story-text">
-        Candy's days blurred together, a haze of neon lights and empty promises.
-        Once, her laughter filled rooms; now, shadows clung to her eyes, and
-        every morning felt heavier than the last. The pills promised escape,
-        but left her stranded on lonely islands of regret.
-      </p>
+  <!-- Page 1: Hero -->
+  <header class="bg-hero hero">
+    <div class="container">
+      <div class="hero-star">✶</div>
+      <h1 class="brand-name">
+        <span>MoonShadow</span> <span>TheSunFlower</span>
+      </h1>
+      <p class="hero-subtitle">FIND WHAT SPARKS YOUR CURIOSITY</p>
     </div>
+  </header>
 
-    <div class="story-divider"></div>
+  <!-- Page 2: Greetings / Welcome -->
+  <section class="bg-clouds">
+    <div class="container">
+      <div class="pill-button">GREETINGS, EARTHLING!</div>
+      <h2 class="welcome-title">Welcome to my creative corner! And thank you for stopping by!</h2>
+      <p class="welcome-text">This is a place where imagination knows no bounds.</p>
+    </div>
+  </section>
 
-    <div class="story-block">
-      <div class="story-heading">
-        <span class="story-star">✶</span>
-        <span class="story-title">Review of Crystal Harmony</span>
-      </div>
-      <p class="story-text">
-        I recently visited Crystal Harmony, and it was a truly enchanting experience!
-        The store is beautifully arranged, with crystals of every color and size
-        sparkling under soft, welcoming lights. The staff are incredibly knowledgeable,
-        patiently answering my questions.
-      </p>
-    </div>
-  </div>
-</div>
-</section> <!-- Page 5: Art journey --> <section class="bg-purple"> <div class="container"> <p class="journey-text"> My art is a journey through color and code, where each piece is a reflection of curiosity and wonder. </p>
-text
-  <div class="journey-grid">
-    <div class="journey-card">
-      <span class="journey-label">Behind-the-Scenes</span>
-      <p class="journey-title">
-        Every creative piece starts as a whisper in my mind, inspired by the unseen.
-      </p>
-      <p class="journey-text-small">
-        I love sharing the process—from the first spark of an idea to the final touches on each creation.
-      </p>
-    </div>
+  <!-- Page 3: Cards -->
+  <section class="bg-purple">
+    <div class="container">
+      <h2 class="section-heading">Let's Create,</h2>
+      <p class="section-subheading">Dream, and Discover</p>
 
-    <div class="journey-card">
-      <span class="journey-label">Indigo Dreams</span>
-      <p class="journey-title">
-        A collection of dreamy, mystical pieces bathed in deep blues and soft light.
-      </p>
-      <p class="journey-text-small">
-        These works explore the space between night and dawn, where imagination glows the brightest.
-      </p>
-      <img src="fairy.jpg" alt="Indigo Dreams Art" class="journey-image">
-    </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-star">✶</div>
+          <h3 class="card-title">My Favorite Finds</h3>
+          <p class="card-text">
+            I only share what I genuinely love. These products have earned their spot in my life (and cart!).
+            <br><br>
+            <a href="https://linktr.ee/MoonShadowTheSun" target="_blank" class="whimsical-button">Visit my Linktree</a>
+          </p>
+        </div>
 
-    <div class="journey-card">
-      <span class="journey-label">To my community</span>
-      <p class="journey-title">
-        Though the journey may be harsh and confusing, we live every second of it,
-        so let's embrace and enjoy the ride.
-      </p>
-      <p class="journey-text-small">
-        Your curiosity, kindness, and presence turn this little corner of the internet into a shared sanctuary.
-      </p>
-    </div>
-  </div>
-</div>
-</section> <!-- Page 6: Contact --> <footer class="bg-moon"> <section> <div class="container"> <p> Thank you for exploring my creative world—your curiosity and support mean everything to me. </p>
-text
-    <div class="footer-grid">
-      <div>
-        <div class="footer-item-title">Cash App</div>
-        <div class="footer-item-value">
-          <a href="https://cash.app/$moonshadowflower" target="_blank" class="whimsical-button">$moonshadowflower</a>
+        <div class="card">
+          <div class="card-star">✶</div>
+          <h3 class="card-title">Image &amp; Video Editing</h3>
+          <p class="card-text">Exploring the fusion of art, artificial intelligence, and creative editing tools.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-star">✶</div>
+          <h3 class="card-title">My Creations</h3>
+          <p class="card-text">Weaving dreams through pixels and light—the language my soul speaks.</p>
         </div>
       </div>
-      <div>
-        <div class="footer-item-title">Contact Me</div>
-        <div class="footer-item-value">
-          <a href="mailto:Moonshadowthesunflower@gmail.com" class="whimsical-button">Email Me</a>
+    </div>
+  </section>
+
+  <!-- Page 4: Writing Samples -->
+  <section class="bg-clouds">
+    <div class="container">
+      <h2 class="section-heading" style="color:#3b2158;">My Writing Samples</h2>
+
+      <div class="writing-box">
+        <div class="story-block">
+          <div class="story-heading">
+            <span class="story-star">✶</span>
+            <span class="story-title">Lira</span>
+          </div>
+          <p class="story-text">
+            In the quiet heart of the midnight forest, Lira the indigo fairy danced on
+            the edge of moonbeams. With every flutter of her shimmering wings, she painted
+            the air in the deep blue hues, weaving spells that soothed restless dreams
+            and guided lost travelers home.
+          </p>
+        </div>
+
+        <div class="story-divider"></div>
+
+        <div class="story-block">
+          <div class="story-heading">
+            <span class="story-star">✶</span>
+            <span class="story-title">Candy</span>
+          </div>
+          <p class="story-text">
+            Candy's days blurred together, a haze of neon lights and empty promises.
+            Once, her laughter filled rooms; now, shadows clung to her eyes, and
+            every morning felt heavier than the last. The pills promised escape,
+            but left her stranded on lonely islands of regret.
+          </p>
+        </div>
+
+        <div class="story-divider"></div>
+
+        <div class="story-block">
+          <div class="story-heading">
+            <span class="story-star">✶</span>
+            <span class="story-title">Review of Crystal Harmony</span>
+          </div>
+          <p class="story-text">
+            I recently visited Crystal Harmony, and it was a truly enchanting experience!
+            The store is beautifully arranged, with crystals of every color and size
+            sparkling under soft, welcoming lights. The staff are incredibly knowledgeable,
+            patiently answering my questions.
+          </p>
         </div>
       </div>
     </div>
-  </div>
-</section>
-</footer> <script> // 1) SPARKLE & WAND LOGIC let lastEventTime = 0; const mobileWand = document.querySelector('.mobile-wand'); function createSparkle(x, y) { const sparkle = document.createElement('div'); document.body.appendChild(sparkle); const size = Math.random() * 10 + 5; sparkle.style.width = size + 'px'; sparkle.style.height = size + 'px'; sparkle.style.left = x + 'px'; sparkle.style.top = y + 'px'; sparkle.style.background = `radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%)`; sparkle.style.borderRadius = '50%'; sparkle.style.position = 'fixed'; sparkle.style.pointerEvents = 'none'; sparkle.style.zIndex = '9999'; sparkle.style.opacity = '1'; sparkle.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out'; sparkle.style.transform = `scale(${Math.random() * 0.5 + 0.5})`; setTimeout(() => { sparkle.style.opacity = '0'; sparkle.style.transform = `scale(0) translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px)`; sparkle.remove(); }, 500); } function createFairyDust(x, y) { const dust = document.createElement('div'); document.body.appendChild(dust); const size = Math.random() * 6 + 2; dust.style.width = size + 'px'; dust.style.height = size + 'px'; dust.style.left = x + 'px'; dust.style.top = y + 'px'; dust.style.background = `white`; dust.style.boxShadow = `0 0 6px rgba(255,255,255,0.95), 0 0 12px rgba(210,160,255,0.45)`; dust.style.borderRadius = '50%'; dust.style.position = 'fixed'; dust.style.pointerEvents = 'none'; dust.style.zIndex = '45'; dust.style.opacity = '0.85'; dust.style.transition = 'all 1.5s linear'; setTimeout(() => { dust.style.opacity = '0'; dust.style.transform = `translateY(30px) translateX(${Math.random() * 16 - 8}px)`; }, 50); setTimeout(() => dust.remove(), 1550); } document.addEventListener('mousemove', (e) => { const now = Date.now(); if (now - lastEventTime < 50) return; lastEventTime = now; createSparkle(e.clientX, e.clientY); }); document.addEventListener('touchmove', (e) => { const now = Date.now(); if (now - lastEventTime < 30) return; lastEventTime = now; const touch = e.touches[0]; mobileWand.style.display = 'block'; mobileWand.style.left = (touch.clientX - 10) + 'px'; mobileWand.style.top = (touch.clientY - 10) + 'px'; createSparkle(touch.clientX, touch.clientY); }); document.addEventListener('touchend', () => { mobileWand.style.display = 'none'; }); // 2) ORBS const orbContainer = document.querySelector('.orb-container'); const numOrbs = 8; for (let i = 0; i < numOrbs; i++) { const orb = document.createElement('div'); orb.className = 'orb'; orb.style.width = `${Math.random() * 100 + 50}px`; orb.style.height = orb.style.width; orb.style.left = `${Math.random() * 100}vw`; orb.style.top = `${Math.random() * 100}vh`; orb.style.animationDelay = `${Math.random() * 10}s`; orb.style.setProperty('--x', `${Math.random() * 200 - 100}px`); orb.style.setProperty('--y', `${Math.random() * 200 - 100}px`); orbContainer.appendChild(orb); } // 3) FAIRY DUST TRAIL (tracks the visible SVG) const fairyTarget = document.querySelector('.fairy-svg'); setInterval(() => { if (!fairyTarget) return; const rect = fairyTarget.getBoundingClientRect(); const centerX = rect.left + rect.width / 2; const centerY = rect.top + rect.height / 2; createFairyDust(centerX + (Math.random() * 14 - 7), centerY + (Math.random() * 14 - 7)); }, 150); </script> </body> </html>
+  </section>
+
+  <!-- Page 5: Art journey -->
+  <section class="bg-purple">
+    <div class="container">
+      <p class="journey-text">
+        My art is a journey through color and code, where each piece is a reflection
+        of curiosity and wonder.
+      </p>
+
+      <div class="journey-grid">
+        <div class="journey-card">
+          <span class="journey-label">Behind-the-Scenes</span>
+          <p class="journey-title">
+            Every creative piece starts as a whisper in my mind, inspired by the unseen.
+          </p>
+          <p class="journey-text-small">
+            I love sharing the process—from the first spark of an idea to the final touches on each creation.
+          </p>
+        </div>
+
+        <div class="journey-card">
+          <span class="journey-label">Indigo Dreams</span>
+          <p class="journey-title">
+            A collection of dreamy, mystical pieces bathed in deep blues and soft light.
+          </p>
+          <p class="journey-text-small">
+            These works explore the space between night and dawn, where imagination glows the brightest.
+          </p>
+          <img src="fairy.jpg" alt="Indigo Dreams Art" class="journey-image">
+        </div>
+
+        <div class="journey-card">
+          <span class="journey-label">To my community</span>
+          <p class="journey-title">
+            Though the journey may be harsh and confusing, we live every second of it,
+            so let's embrace and enjoy the ride.
+          </p>
+          <p class="journey-text-small">
+            Your curiosity, kindness, and presence turn this little corner of the internet into a shared sanctuary.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page 6: Contact -->
+  <footer class="bg-moon">
+    <section>
+      <div class="container">
+        <p>
+          Thank you for exploring my creative world—your curiosity and support mean everything to me.
+        </p>
+
+        <div class="footer-grid">
+          <div>
+            <div class="footer-item-title">Cash App</div>
+            <div class="footer-item-value">
+              <a href="https://cash.app/$moonshadowflower" target="_blank" class="whimsical-button">$moonshadowflower</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-item-title">Contact Me</div>
+            <div class="footer-item-value">
+              <a href="mailto:Moonshadowthesunflower@gmail.com" class="whimsical-button">Email Me</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </footer>
+
+  <script>
+    // 1) SPARKLE & WAND LOGIC
+    let lastEventTime = 0;
+    const mobileWand = document.querySelector('.mobile-wand');
+
+    function createSparkle(x, y) {
+      const sparkle = document.createElement('div');
+      document.body.appendChild(sparkle);
+
+      const size = Math.random() * 10 + 5;
+      sparkle.style.width = size + 'px';
+      sparkle.style.height = size + 'px';
+      sparkle.style.left = x + 'px';
+      sparkle.style.top = y + 'px';
+      sparkle.style.background = `radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%)`;
+      sparkle.style.borderRadius = '50%';
+      sparkle.style.position = 'fixed';
+      sparkle.style.pointerEvents = 'none';
+      sparkle.style.zIndex = '9999';
+      sparkle.style.opacity = '1';
+      sparkle.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+      sparkle.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
+
+      setTimeout(() => {
+        sparkle.style.opacity = '0';
+        sparkle.style.transform = `scale(0) translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px)`;
+        sparkle.remove();
+      }, 500);
+    }
+
+    function createFairyDust(x, y) {
+      const dust = document.createElement('div');
+      document.body.appendChild(dust);
+
+      const size = Math.random() * 6 + 2;
+      dust.style.width = size + 'px';
+      dust.style.height = size + 'px';
+      dust.style.left = x + 'px';
+      dust.style.top = y + 'px';
+      dust.style.background = `white`;
+      dust.style.boxShadow = `0 0 6px rgba(255,255,255,0.95), 0 0 12px rgba(210,160,255,0.45)`;
+      dust.style.borderRadius = '50%';
+      dust.style.position = 'fixed';
+      dust.style.pointerEvents = 'none';
+      dust.style.zIndex = '45';
+      dust.style.opacity = '0.85';
+      dust.style.transition = 'all 1.5s linear';
+
+      setTimeout(() => {
+        dust.style.opacity = '0';
+        dust.style.transform = `translateY(30px) translateX(${Math.random() * 16 - 8}px)`;
+      }, 50);
+
+      setTimeout(() => dust.remove(), 1550);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      const now = Date.now();
+      if (now - lastEventTime < 50) return;
+      lastEventTime = now;
+      createSparkle(e.clientX, e.clientY);
+    });
+
+    document.addEventListener('touchmove', (e) => {
+      const now = Date.now();
+      if (now - lastEventTime < 30) return;
+      lastEventTime = now;
+
+      const touch = e.touches[0];
+      mobileWand.style.display = 'block';
+      mobileWand.style.left = (touch.clientX - 10) + 'px';
+      mobileWand.style.top = (touch.clientY - 10) + 'px';
+      createSparkle(touch.clientX, touch.clientY);
+    });
+
+    document.addEventListener('touchend', () => {
+      mobileWand.style.display = 'none';
+    });
+
+    // 2) ORBS
+    const orbContainer = document.querySelector('.orb-container');
+    const numOrbs = 8;
+
+    for (let i = 0; i < numOrbs; i++) {
+      const orb = document.createElement('div');
+      orb.className = 'orb';
+      orb.style.width = `${Math.random() * 100 + 50}px`;
+      orb.style.height = orb.style.width;
+      orb.style.left = `${Math.random() * 100}vw`;
+      orb.style.top = `${Math.random() * 100}vh`;
+      orb.style.animationDelay = `${Math.random() * 10}s`;
+      orb.style.setProperty('--x', `${Math.random() * 200 - 100}px`);
+      orb.style.setProperty('--y', `${Math.random() * 200 - 100}px`);
+      orbContainer.appendChild(orb);
+    }
+
+    // 3) FAIRY DUST TRAIL (tracks the visible SVG)
+    const fairyTarget = document.querySelector('.fairy-svg');
+
+    setInterval(() => {
+      if (!fairyTarget) return;
+      const rect = fairyTarget.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      createFairyDust(centerX + (Math.random() * 14 - 7), centerY + (Math.random() * 14 - 7));
+    }, 150);
+  </script>
+</body>
+</html>
