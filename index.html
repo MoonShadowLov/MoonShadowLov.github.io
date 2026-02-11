@@ -70,10 +70,7 @@
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      
-      /* FIX 1: Lower Z-Index so it sits BEHIND/INSIDE the wings */
       z-index: 1; 
-      
       width: 4px; height: 14px;
       background: radial-gradient(circle, #fff, #ffeef8);
       border-radius: 4px 4px 10px 10px;
@@ -92,26 +89,28 @@
       box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.9);
     }
 
-    /* ==== PRISM BUTTERFLY WINGS ==== */
+    /* ==== UPDATED FAIRY WINGS ==== */
     .fairy-wings {
       position: absolute;
       top: 50%; left: 50%;
-      width: 50px; height: 40px;
-      transform: translate(-50%, -50%);
-      
-      /* FIX 2: Higher Z-Index so wings cover the body (transparency makes it blend) */
+      /* Made container slightly larger so wings can point up */
+      width: 64px; height: 64px;
+      transform: translate(-50%, -55%); /* Moved slightly up to align with shoulders */
       z-index: 2;
-      
-      animation: flutter 0.25s infinite ease-in-out alternate;
+      /* Updated animation to a rotation flutter */
+      animation: flutter 0.15s infinite ease-in-out alternate;
     }
     
     .fairy-wings::before, .fairy-wings::after {
       content: '';
       position: absolute;
-      top: 0; 
-      width: 24px; height: 38px;
-      /* Butterfly Shape */
-      border-radius: 50% 80% 20% 80%;
+      /* Adjusted anchor point to bottom-center for "flapping" motion */
+      bottom: 20px; 
+      width: 22px; height: 42px; /* Taller and thinner for elegance */
+      
+      /* New Fairy Wing Shape (Pointier top) */
+      border-radius: 5px 100% 5px 100%;
+      
       /* THE PRISM COLOR (Cyan/Magenta/White) */
       background: radial-gradient(circle at center, rgba(255,255,255,0.95), rgba(0,255,255,0.5), rgba(255,0,255,0.5));
       border: 1px solid rgba(255, 255, 255, 0.6);
@@ -120,21 +119,22 @@
     
     /* Left Wing */
     .fairy-wings::before { 
-      left: 2px; 
-      transform-origin: right center; 
-      transform: rotate(15deg) scaleX(-1); 
+      left: 12px; /* Closer to center */
+      transform-origin: bottom right; 
+      /* Angled upwards (Negative rotate) and flipped */
+      transform: rotate(-30deg) scaleX(-1); 
     }
     
     /* Right Wing */
     .fairy-wings::after { 
-      right: 2px; 
-      transform-origin: left center; 
-      transform: rotate(-15deg); 
+      right: 12px; /* Closer to center */
+      transform-origin: bottom left; 
+      /* Angled upwards */
+      transform: rotate(-30deg); 
     }
 
     /* Animations */
     @keyframes flyX {
-      /* FIX 3: Start at -60vw so it is completely off-screen left */
       0% { transform: translateX(-60vw); }
       100% { transform: translateX(110vw); }
     }
@@ -142,10 +142,17 @@
       0% { transform: translateY(-30vh); }
       100% { transform: translateY(30vh); }
     }
+    
+    /* UPDATED FLUTTER ANIMATION */
     @keyframes flutter {
-      /* FIX 4: Removed opacity flicker for smooth flapping */
-      0% { transform: translate(-50%, -50%) scaleX(1) scaleY(1); }
-      100% { transform: translate(-50%, -50%) scaleX(0.6) scaleY(0.9); }
+      0% { 
+        /* Wings spread out */
+        transform: translate(-50%, -55%) scaleX(1) scaleY(1); 
+      }
+      100% { 
+        /* Wings flap closer together and slightly down */
+        transform: translate(-50%, -55%) scaleX(0.4) scaleY(0.9); 
+      }
     }
     
     section {
