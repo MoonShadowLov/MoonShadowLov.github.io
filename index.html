@@ -2,10 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MoonShadowTheSunFlower</title>
+  <title>MoonShadow The SunFlower</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     /* ==== Base ==== */
+    html {
+      scroll-behavior: smooth; /* smooth scrolling */
+    }
     * {
       box-sizing: border-box;
       margin: 0;
@@ -15,19 +18,20 @@
       font-family: "Georgia", "Times New Roman", serif;
       color: #3b2158;
       background: #fbe9ff;
-      line-height: 1.5;
+      line-height: 1.6; /* Slightly increased for readability */
       text-align: center;
-      overflow-x: hidden; /* Prevent horizontal scroll from effects */
+      overflow-x: hidden;
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M17 12l-5 5-5-5M12 17l5-5-5-5"/></svg>') 12 12, auto;
     }
     a {
       color: inherit;
       text-decoration: none;
+      transition: color 0.3s;
     }
     section {
       padding: 80px 20px;
-      position: relative; /* For floating orbs */
-      z-index: 1; /* Ensure content is above orbs */
+      position: relative;
+      z-index: 1;
     }
     .container {
       max-width: 1100px;
@@ -54,7 +58,7 @@
       color: #2e1844;
     }
 
-    /* ==== Hero section (Page 1) ==== */
+    /* ==== Hero section ==== */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -64,9 +68,10 @@
       z-index: 1;
     }
     .brand-name {
-      font-size: 42px;
+      font-size: 48px; /* Slightly larger */
       letter-spacing: 0.18em;
       text-transform: capitalize;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     .brand-name span {
       letter-spacing: 0.05em;
@@ -89,18 +94,15 @@
       font-size: 18px;
       color: #2b123d;
       background: rgba(255,255,255,0.7);
-      position: relative; /* For twinkling effect */
+      position: relative;
       overflow: hidden;
+      box-shadow: 0 0 15px rgba(255,255,255,0.5);
     }
-
-    /* Twinkling Stars Effect */
     .hero-star::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
+      top: 50%; left: 50%;
+      width: 100%; height: 100%;
       background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
       transform: translate(-50%, -50%) scale(0);
       opacity: 0;
@@ -112,7 +114,7 @@
       100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
     }
 
-    /* ==== Greetings / Welcome (Page 2) ==== */
+    /* ==== Greetings ==== */
     .pill-button {
       display: inline-block;
       padding: 10px 40px;
@@ -124,6 +126,7 @@
       background: rgba(255,255,255,0.9);
       margin-bottom: 40px;
       color: #3b2158;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
     .welcome-title {
       font-size: 32px;
@@ -138,11 +141,12 @@
       color: #3d224f;
     }
 
-    /* ==== Let's create cards (Page 3) ==== */
+    /* ==== Cards ==== */
     .section-heading {
       font-size: 30px;
       margin-bottom: 14px;
       color: #fdf8ff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     .section-subheading {
       font-size: 22px;
@@ -151,45 +155,43 @@
     }
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 24px;
     }
     .card {
       background: rgba(255,255,255,0.95);
-      border-radius: 4px;
+      border-radius: 8px; /* Slightly softer corners */
       padding: 30px 22px 28px;
       position: relative;
       min-height: 210px;
       color: #3a2255;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .card-star {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      border: 1px solid #3a2255;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      margin: 0 auto 12px;
-      color: #7a4bb5;
-      background: #f8efff;
-      position: relative; /* For twinkling effect */
-      overflow: hidden;
+    /* Add Interaction to cards */
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
 
-    /* Twinkling Stars Effect for card stars */
+    .card-star {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      border: 1px solid #3a2255;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; margin: 0 auto 12px;
+      color: #7a4bb5; background: #f8efff;
+      position: relative; overflow: hidden;
+    }
     .card-star::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
+      top: 50%; left: 50%;
+      width: 100%; height: 100%;
       background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
       transform: translate(-50%, -50%) scale(0);
       opacity: 0;
-      animation: twinkle 2.5s infinite ease-out 0.5s; /* Slightly different timing */
+      animation: twinkle 2.5s infinite ease-out 0.5s;
     }
 
     .card-title {
@@ -202,7 +204,7 @@
       color: #55347f;
     }
 
-    /* Whimsical Button Style */
+    /* Whimsical Button */
     .whimsical-button {
       display: inline-block;
       padding: 10px 25px;
@@ -221,31 +223,25 @@
       overflow: hidden;
       z-index: 1;
     }
-
     .whimsical-button:hover {
       background: linear-gradient(135deg, #c080ff, #e0b0ff);
       box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
       transform: translateY(-2px);
     }
-
-    /* Axicon-like Light Reflection on Hover */
     .whimsical-button::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
       transition: all 0.7s ease;
       z-index: -1;
     }
-
     .whimsical-button:hover::before {
       left: 100%;
     }
 
-    /* ==== Writing Samples (Page 4) – NEW FIXED DESIGN ==== */
+    /* ==== Writing Samples ==== */
     .writing-box {
       background: linear-gradient(90deg, #fbe7ff, #e3c0ff, #d4b7ff);
       border-radius: 12px;
@@ -254,73 +250,39 @@
       margin: 30px auto 0;
       text-align: left;
       color: #2d163f;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
-
-    .story-block {
-      margin-bottom: 28px;
-    }
-
-    .story-heading {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
+    .story-block { margin-bottom: 28px; }
+    .story-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    
     .story-star {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      border: 1px solid #5a3a7d;
-      font-size: 14px;
-      color: #5a3a7d;
-      background: #f8efff;
-      position: relative; /* For twinkling effect */
-      overflow: hidden;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px;
+      border-radius: 50%; border: 1px solid #5a3a7d;
+      font-size: 14px; color: #5a3a7d; background: #f8efff;
+      position: relative; overflow: hidden;
     }
-
-    /* Twinkling Stars Effect for story stars */
     .story-star::before {
       content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
+      position: absolute; top: 50%; left: 50%;
+      width: 100%; height: 100%;
       background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
       transform: translate(-50%, -50%) scale(0);
       opacity: 0;
-      animation: twinkle 2s infinite ease-out 1s; /* Slightly different timing */
+      animation: twinkle 2s infinite ease-out 1s;
     }
-
-    .story-title {
-      font-weight: bold;
-      font-size: 18px;
-      color: #3b2158;
-    }
-
-    .story-text {
-      font-size: 15px;
-      line-height: 1.7;
-      color: #3a214f;
-    }
-
+    .story-title { font-weight: bold; font-size: 18px; color: #3b2158; }
+    .story-text { font-size: 16px; line-height: 1.8; color: #3a214f; }
     .story-divider {
-      height: 1px;
-      width: 100%;
+      height: 1px; width: 100%;
       background: linear-gradient(90deg, transparent, #b192df, transparent);
-      margin: 10px 0 18px;
+      margin: 20px 0 28px;
     }
 
-    /* ==== Art journey cards (Page 5) ==== */
+    /* ==== Art journey ==== */
     .journey-text {
-      font-size: 22px;
-      max-width: 900px;
-      margin: 0 auto 40px;
-      color: #fdf6ff;
+      font-size: 22px; max-width: 900px;
+      margin: 0 auto 40px; color: #fdf6ff;
     }
     .journey-grid {
       display: grid;
@@ -329,9 +291,13 @@
     }
     .journey-card {
       background: rgba(255,255,255,0.95);
-      border-radius: 4px;
+      border-radius: 8px;
       padding: 24px 18px 20px;
       color: #3a2255;
+      transition: transform 0.3s;
+    }
+    .journey-card:hover {
+      transform: translateY(-5px);
     }
     .journey-label {
       display: inline-block;
@@ -346,34 +312,26 @@
       color: #4a2a6f;
     }
     .journey-title {
-      font-weight: bold;
-      margin-bottom: 10px;
-      font-size: 15px;
-      color: #3f245e;
+      font-weight: bold; margin-bottom: 10px;
+      font-size: 15px; color: #3f245e;
     }
-    .journey-text-small {
-      font-size: 14px;
-      color: #452565;
-    }
+    .journey-text-small { font-size: 14px; color: #452565; }
+    
     .journey-image {
       width: 100%;
-      max-width: 260px;
+      height: 200px; /* Force height so layout doesn't jump */
+      object-fit: cover; /* Crop image nicely */
       border-radius: 4px;
       display: block;
       margin: 14px auto 0;
+      background-color: #e3c0ff; /* Placeholder color if image loads slow */
     }
 
-    /* ==== Footer / Contact (Page 6) ==== */
-    footer {
-      position: relative;
-      z-index: 1;
-    }
+    /* ==== Footer ==== */
+    footer { position: relative; z-index: 1; }
     footer p {
-      margin-bottom: 20px;
-      font-size: 18px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      margin-bottom: 20px; font-size: 18px;
+      max-width: 800px; margin-left: auto; margin-right: auto;
       color: #2e1844;
     }
     .footer-grid {
@@ -387,63 +345,34 @@
       letter-spacing: 0.16em;
       color: #37204f;
     }
-    .footer-item-title {
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-    .footer-item-value {
-      text-transform: none;
-      letter-spacing: 0.06em;
-      font-size: 13px;
-      color: #3b2158;
-    }
+    .footer-item-title { font-weight: bold; margin-bottom: 8px; }
 
-    /* Floating Orbs */
+    /* Orbs */
     .orb-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0; overflow: hidden;
     }
-
     .orb {
       position: absolute;
       background: radial-gradient(circle, rgba(177, 146, 223, 0.7) 0%, rgba(177, 146, 223, 0) 70%);
       border-radius: 50%;
       animation: floatAndFade 15s infinite ease-in-out;
     }
-
     @keyframes floatAndFade {
       0% { transform: translate(0, 0) scale(0.5); opacity: 0.7; }
       50% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0.3; }
       100% { transform: translate(0, 0) scale(0.5); opacity: 0.7; }
     }
 
-    /* ==== Responsive tweaks ==== */
+    /* Responsive */
     @media (max-width: 768px) {
-      .brand-name {
-        font-size: 32px;
-        letter-spacing: 0.12em;
-      }
-      .welcome-title {
-        font-size: 26px;
-      }
-      .section-heading {
-        font-size: 26px;
-      }
-      .writing-box {
-        padding: 28px 18px;
-      }
-      .story-title {
-        font-size: 16px;
-      }
-      .story-text {
-        font-size: 14px;
-      }
+      .brand-name { font-size: 32px; letter-spacing: 0.12em; }
+      .welcome-title { font-size: 26px; }
+      .section-heading { font-size: 26px; }
+      .writing-box { padding: 28px 18px; }
+      .story-title { font-size: 16px; }
+      .story-text { font-size: 14px; }
     }
   </style>
 </head>
@@ -456,7 +385,6 @@
   <header class="bg-hero hero">
     <div class="container">
       <div class="hero-star">✶</div>
-      <!-- FIXED SPELLING: MoonShadow TheSunFlower -->
       <h1 class="brand-name">
         <span>MoonShadow</span> <span>TheSunFlower</span>
       </h1>
@@ -469,7 +397,7 @@
     <div class="container">
       <div class="pill-button">GREETINGS, EARTHLING!</div>
       <h2 class="welcome-title">
-        Welcome to my creative corner! and thank you for stopping by!
+        Welcome to my creative corner! And thank you for stopping by!
       </h2>
       <p class="welcome-text">
         This is a place where imagination knows no bounds.
@@ -480,11 +408,11 @@
   <!-- Page 3: Let's create cards -->
   <section class="bg-purple">
     <div class="container">
-      <h2 class="section-heading">Let's create,</h2>
-      <p class="section-subheading">Dream, and discover</p>
+      <h2 class="section-heading">Let's Create,</h2>
+      <p class="section-subheading">Dream, and Discover</p>
 
       <div class="card-grid">
-        <!-- Card 1 (with Linktree) -->
+        <!-- Card 1 -->
         <div class="card">
           <div class="card-star">✶</div>
           <h3 class="card-title">My Favorite Finds</h3>
@@ -501,7 +429,7 @@
         <!-- Card 2 -->
         <div class="card">
           <div class="card-star">✶</div>
-          <h3 class="card-title">Image &amp; Video Editing / Creation</h3>
+          <h3 class="card-title">Image &amp; Video Editing</h3>
           <p class="card-text">
             Exploring the fusion of art, artificial intelligence, and
             creative editing tools.
@@ -520,7 +448,7 @@
     </div>
   </section>
 
-  <!-- Page 4: Writing Samples – NEW FIXED DESIGN -->
+  <!-- Page 4: Writing Samples -->
   <section class="bg-clouds">
     <div class="container">
       <h2 class="section-heading" style="color: #3b2158;">My Writing Samples</h2>
@@ -564,7 +492,7 @@
         <div class="story-block">
           <div class="story-heading">
             <span class="story-star">✶</span>
-            <span class="story-title">Review of recently visited crystal store</span>
+            <span class="story-title">Review of Crystal Harmony</span>
           </div>
           <p class="story-text">
             I recently visited Crystal Harmony, and it was a truly enchanting experience! 
@@ -586,7 +514,7 @@
       </p>
 
       <div class="journey-grid">
-        <!-- Card: Behind the scenes -->
+        <!-- Card 1 -->
         <div class="journey-card">
           <span class="journey-label">Behind-the-Scenes</span>
           <p class="journey-title">
@@ -598,7 +526,7 @@
           </p>
         </div>
 
-        <!-- Card: Indigo Dreams (with image placeholder) -->
+        <!-- Card 2 -->
         <div class="journey-card">
           <span class="journey-label">Indigo Dreams</span>
           <p class="journey-title">
@@ -607,11 +535,11 @@
           <p class="journey-text-small">
             These works explore the space between night and dawn, where imagination glows the brightest.
           </p>
-          <!-- Replace src with your own artwork image in the repo -->
-          <img src="fairy.jpg" alt="Indigo Dreams Art" class="journey-image">
+          <!-- FIXED IMAGE: Using a placeholder that matches the theme -->
+          <img src="https://images.unsplash.com/photo-1531306728370-e2ebd9d7bb99?q=80&w=600&auto=format&fit=crop" alt="Indigo Dreams Art" class="journey-image">
         </div>
 
-        <!-- Card: To my community -->
+        <!-- Card 3 -->
         <div class="journey-card">
           <span class="journey-label">To my community</span>
           <p class="journey-title">
@@ -627,7 +555,7 @@
     </div>
   </section>
 
-  <!-- Page 6: Thank you / Contact -->
+  <!-- Page 6: Contact -->
   <footer class="bg-moon">
     <section>
       <div class="container">
@@ -639,15 +567,14 @@
           <div>
             <div class="footer-item-title">Cash App</div>
             <div class="footer-item-value">
-              <!-- Cash App Link -->
               <a href="https://cash.app/$moonshadowflower" target="_blank" class="whimsical-button">$moonshadowflower</a>
             </div>
           </div>
           <div>
-            <div class="footer-item-title">contact me</div>
+            <div class="footer-item-title">Contact Me</div>
             <div class="footer-item-value">
-              <!-- Email Link -->
-              <a href="mailto:Moonshadowthesunflower@gmail.com" class="whimsical-button">Moonshadow</a>
+              <!-- Changed text to be more actionable -->
+              <a href="mailto:Moonshadowthesunflower@gmail.com" class="whimsical-button">Email Me</a>
             </div>
           </div>
         </div>
@@ -656,18 +583,25 @@
   </footer>
 
   <script>
-    // Glittering Cursor Trail
+    // 1. Optimized Sparkle Trail (Throttled for performance)
+    let lastSparkle = 0;
+    
     document.addEventListener('mousemove', function(e) {
+      const now = Date.now();
+      // Only create a sparkle every 50ms (prevents lag)
+      if (now - lastSparkle < 50) return;
+      lastSparkle = now;
+
       let sparkle = document.createElement('div');
       sparkle.className = 'sparkle';
       document.body.appendChild(sparkle);
 
-      let size = Math.random() * 10 + 5; // Random size between 5 and 15
+      let size = Math.random() * 10 + 5;
       sparkle.style.width = size + 'px';
       sparkle.style.height = size + 'px';
       sparkle.style.left = e.clientX + 'px';
       sparkle.style.top = e.clientY + 'px';
-      sparkle.style.background = `radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%)`;
+      sparkle.style.background = `radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%)`;
       sparkle.style.borderRadius = '50%';
       sparkle.style.position = 'fixed';
       sparkle.style.pointerEvents = 'none';
@@ -683,26 +617,22 @@
       }, 500);
     });
 
-    // Floating Light Orbs
+    // 2. Floating Light Orbs
     const orbContainer = document.querySelector('.orb-container');
-    const numOrbs = 8; // Number of orbs
+    const numOrbs = 8; 
 
     for (let i = 0; i < numOrbs; i++) {
       let orb = document.createElement('div');
       orb.className = 'orb';
-      orb.style.width = `${Math.random() * 100 + 50}px`; // Size between 50 and 150px
+      orb.style.width = `${Math.random() * 100 + 50}px`; 
       orb.style.height = orb.style.width;
       orb.style.left = `${Math.random() * 100}vw`;
       orb.style.top = `${Math.random() * 100}vh`;
       orb.style.animationDelay = `${Math.random() * 10}s`;
-      orb.style.setProperty('--x', `${Math.random() * 200 - 100}px`); // Random X movement
-      orb.style.setProperty('--y', `${Math.random() * 200 - 100}px`); // Random Y movement
+      orb.style.setProperty('--x', `${Math.random() * 200 - 100}px`); 
+      orb.style.setProperty('--y', `${Math.random() * 200 - 100}px`); 
       orbContainer.appendChild(orb);
     }
-
-    // Twinkling Stars (CSS handles this, but adding a class for consistency if needed)
-    // No JS needed for the current CSS implementation
-
   </script>
 </body>
 </html>
