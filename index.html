@@ -46,6 +46,73 @@
       background-size: contain;
       background-repeat: no-repeat;
     }
+
+    /* ==== THE FLYING FAIRY ==== */
+    .fairy-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; /* Touches pass through */
+      z-index: 50; /* Above background, below text/cards */
+      animation: flyX 25s ease-in-out infinite alternate;
+    }
+    
+    .fairy-mover {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 40px; height: 40px;
+      animation: flyY 17s ease-in-out infinite alternate;
+    }
+
+    /* Fairy Body (Tiny glowing dot) */
+    .fairy-body {
+      width: 8px; height: 8px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.9);
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    /* Axicon/Prism Wings */
+    .fairy-wings {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 50px; height: 40px;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      animation: flutter 0.2s infinite linear alternate;
+    }
+    
+    .fairy-wings::before, .fairy-wings::after {
+      content: '';
+      position: absolute;
+      top: 0; width: 50%; height: 100%;
+      border-radius: 50% 50% 5px 5px;
+      /* AXICON GRADIENT: Cyan, Magenta, White for prism effect */
+      background: radial-gradient(circle at center, rgba(255,255,255,0.9), rgba(0,255,255,0.4), rgba(255,0,255,0.4));
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    
+    .fairy-wings::before { left: 0; transform-origin: right center; transform: rotate(10deg); }
+    .fairy-wings::after { right: 0; transform-origin: left center; transform: rotate(-10deg); }
+
+    /* Animations for Fairy Movement */
+    @keyframes flyX {
+      0% { transform: translateX(0vw); }
+      100% { transform: translateX(90vw); }
+    }
+    @keyframes flyY {
+      0% { transform: translateY(-40vh); }
+      100% { transform: translateY(40vh); }
+    }
+    @keyframes flutter {
+      0% { transform: translate(-50%, -50%) scaleX(1) scaleY(1); opacity: 0.9; }
+      100% { transform: translate(-50%, -50%) scaleX(0.7) scaleY(0.9); opacity: 0.6; }
+    }
     
     section {
       padding: 80px 20px;
@@ -395,6 +462,14 @@
   <!-- Floating Orbs Container -->
   <div class="orb-container"></div>
   
+  <!-- THE FLYING FAIRY (New!) -->
+  <div class="fairy-container">
+    <div class="fairy-mover">
+      <div class="fairy-wings"></div>
+      <div class="fairy-body"></div>
+    </div>
+  </div>
+  
   <!-- Mobile Wand Element (Hidden until touch) -->
   <div class="mobile-wand"></div>
 
@@ -648,7 +723,6 @@
       
       // 1. Move the Mobile Wand
       mobileWand.style.display = 'block';
-      // Offset slightly so you can see it next to your finger
       mobileWand.style.left = (touch.clientX - 10) + 'px'; 
       mobileWand.style.top = (touch.clientY - 10) + 'px';
 
