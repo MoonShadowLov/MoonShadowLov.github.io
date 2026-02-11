@@ -7,7 +7,7 @@
   <style>
     /* ==== Base ==== */
     html {
-      scroll-behavior: smooth; /* smooth scrolling */
+      scroll-behavior: smooth;
     }
     * {
       box-sizing: border-box;
@@ -18,16 +18,23 @@
       font-family: "Georgia", "Times New Roman", serif;
       color: #3b2158;
       background: #fbe9ff;
-      line-height: 1.6; /* Slightly increased for readability */
+      line-height: 1.6;
       text-align: center;
       overflow-x: hidden;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M17 12l-5 5-5-5M12 17l5-5-5-5"/></svg>') 12 12, auto;
+      
+      /* MAGIC WAND CURSOR SETTING */
+      /* This replaces the mouse pointer with a Wand Icon */
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>') 0 22, auto;
     }
+    
+    /* Ensure links also use the wand */
     a {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%238c6bbb" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l7 7"/><path d="M19.5 2.5l2 2"/><path d="M16 6l-1-1"/><path d="M2 22l9.5-9.5"/><path d="M8.5 15.5l3 3"/><path d="M10 10l.5.5"/><path d="M13.5 13.5l.5.5"/></svg>') 0 22, pointer;
       color: inherit;
       text-decoration: none;
       transition: color 0.3s;
     }
+    
     section {
       padding: 80px 20px;
       position: relative;
@@ -68,7 +75,7 @@
       z-index: 1;
     }
     .brand-name {
-      font-size: 48px; /* Slightly larger */
+      font-size: 48px;
       letter-spacing: 0.18em;
       text-transform: capitalize;
       text-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -160,7 +167,7 @@
     }
     .card {
       background: rgba(255,255,255,0.95);
-      border-radius: 8px; /* Slightly softer corners */
+      border-radius: 8px;
       padding: 30px 22px 28px;
       position: relative;
       min-height: 210px;
@@ -168,12 +175,10 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    /* Add Interaction to cards */
     .card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
-
     .card-star {
       width: 26px; height: 26px;
       border-radius: 50%;
@@ -193,7 +198,6 @@
       opacity: 0;
       animation: twinkle 2.5s infinite ease-out 0.5s;
     }
-
     .card-title {
       font-size: 20px;
       margin-bottom: 12px;
@@ -580,15 +584,11 @@
   </footer>
 
   <script>
-    // 1. Optimized Sparkle Trail (Throttled for performance)
+    // == SPARKLE LOGIC (Works on Mouse AND Touch) ==
     let lastSparkle = 0;
     
-    document.addEventListener('mousemove', function(e) {
-      const now = Date.now();
-      // Only create a sparkle every 50ms (prevents lag)
-      if (now - lastSparkle < 50) return;
-      lastSparkle = now;
-
+    // Function to create the sparkle element
+    function createSparkle(x, y) {
       let sparkle = document.createElement('div');
       sparkle.className = 'sparkle';
       document.body.appendChild(sparkle);
@@ -596,8 +596,8 @@
       let size = Math.random() * 10 + 5;
       sparkle.style.width = size + 'px';
       sparkle.style.height = size + 'px';
-      sparkle.style.left = e.clientX + 'px';
-      sparkle.style.top = e.clientY + 'px';
+      sparkle.style.left = x + 'px';
+      sparkle.style.top = y + 'px';
       sparkle.style.background = `radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%)`;
       sparkle.style.borderRadius = '50%';
       sparkle.style.position = 'fixed';
@@ -612,9 +612,28 @@
         sparkle.style.transform = `scale(0) translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px)`;
         sparkle.remove();
       }, 500);
+    }
+
+    // 1. Mouse Event Listener
+    document.addEventListener('mousemove', function(e) {
+      const now = Date.now();
+      if (now - lastSparkle < 50) return; // Throttling
+      lastSparkle = now;
+      createSparkle(e.clientX, e.clientY);
     });
 
-    // 2. Floating Light Orbs
+    // 2. Touch Event Listener (For Mobile!)
+    document.addEventListener('touchmove', function(e) {
+      const now = Date.now();
+      if (now - lastSparkle < 50) return; // Throttling
+      lastSparkle = now;
+      
+      // Get the position of the first finger
+      let touch = e.touches[0];
+      createSparkle(touch.clientX, touch.clientY);
+    });
+
+    // 3. Floating Light Orbs
     const orbContainer = document.querySelector('.orb-container');
     const numOrbs = 8; 
 
