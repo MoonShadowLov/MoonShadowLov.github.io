@@ -62,73 +62,108 @@
       100% { transform: translate(0, 0) scale(0.5); opacity: 0.7; }
     }
 
-    /* ==== THE FAIRY (CODED SVG + FLAPPING WINGS) ==== */
+    /* ==== ENHANCED FAIRY SYSTEM (4 FAIRIES) ==== */
     .fairy-container {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       pointer-events: none;
       z-index: 50;
-      animation: flyX 45s ease-in-out infinite alternate;
+      overflow: hidden;
     }
 
-    .fairy-mover {
+    .fairy-wrapper {
       position: absolute;
-      top: 50%; left: 50%;
-      width: 120px; height: 120px;
-      animation: flyY 28s ease-in-out infinite alternate;
-      transform-style: preserve-3d;
-      perspective: 800px;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
     }
 
-    /* Make fairy small here */
-    .fairy-svg{
-      width: 56px;  /* adjust size here */
+    /* Fairy 1 - Purple/Pink (Original) - Horizontal waves */
+    .fairy-1 {
+      animation: fairy1Path 35s ease-in-out infinite;
+    }
+    @keyframes fairy1Path {
+      0%, 100% { left: -10%; top: 20%; }
+      25% { left: 30%; top: 15%; }
+      50% { left: 60%; top: 25%; }
+      75% { left: 90%; top: 18%; }
+    }
+
+    /* Fairy 2 - Cyan/Aqua - Diagonal rising */
+    .fairy-2 {
+      animation: fairy2Path 40s ease-in-out infinite;
+    }
+    @keyframes fairy2Path {
+      0%, 100% { left: 100%; top: 70%; }
+      25% { left: 70%; top: 50%; }
+      50% { left: 40%; top: 35%; }
+      75% { left: 10%; top: 60%; }
+    }
+
+    /* Fairy 3 - Golden/Yellow - Circular motion */
+    .fairy-3 {
+      animation: fairy3Path 45s ease-in-out infinite;
+    }
+    @keyframes fairy3Path {
+      0%, 100% { left: 50%; top: 10%; }
+      25% { left: 80%; top: 40%; }
+      50% { left: 50%; top: 70%; }
+      75% { left: 20%; top: 40%; }
+    }
+
+    /* Fairy 4 - Green/Mint - Vertical waves */
+    .fairy-4 {
+      animation: fairy4Path 38s ease-in-out infinite;
+    }
+    @keyframes fairy4Path {
+      0%, 100% { left: 15%; top: 80%; }
+      25% { left: 25%; top: 60%; }
+      50% { left: 35%; top: 30%; }
+      75% { left: 45%; top: 50%; }
+    }
+
+    /* Fairy SVG base styling */
+    .fairy-svg {
+      width: 56px;
       height: auto;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       overflow: visible;
       filter:
         drop-shadow(0 0 6px rgba(255,255,255,0.95))
         drop-shadow(0 0 14px rgba(210,160,255,0.55));
+      transform-origin: center;
     }
 
-    /* wing animation */
-    .wing{
+    /* Wing animation */
+    .wing {
       transform-box: fill-box;
       transform-origin: 50% 45%;
       backface-visibility: hidden;
     }
-    .wing-left{
+    .wing-left {
       transform-origin: 100% 45%;
       animation: wingFlapL 0.12s ease-in-out infinite alternate;
     }
-    .wing-right{
+    .wing-right {
       transform-origin: 0% 45%;
       animation: wingFlapR 0.12s ease-in-out infinite alternate;
     }
 
-    @keyframes wingFlapL{
+    @keyframes wingFlapL {
       from { transform: rotate(10deg) scaleX(1); }
-      to   { transform: rotate(-18deg) scaleX(0.72); }
+      to { transform: rotate(-18deg) scaleX(0.72); }
     }
-    @keyframes wingFlapR{
+    @keyframes wingFlapR {
       from { transform: rotate(-10deg) scaleX(1); }
-      to   { transform: rotate(18deg) scaleX(0.72); }
+      to { transform: rotate(18deg) scaleX(0.72); }
     }
 
-    /* Fairy flight path */
-    @keyframes flyX {
-      0% { transform: translateX(-60vw) rotateY(0deg); }
-      49% { transform: translateX(110vw) rotateY(0deg); }
-      50% { transform: translateX(110vw) rotateY(180deg); }
-      100% { transform: translateX(-60vw) rotateY(180deg); }
+    /* Gentle bobbing animation */
+    .fairy-bobbing {
+      animation: gentleBob 3s ease-in-out infinite;
     }
-    @keyframes flyY {
-      0% { transform: translateY(-30vh); }
-      100% { transform: translateY(30vh); }
+    @keyframes gentleBob {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
     }
 
     /* ==== Layout ==== */
@@ -437,12 +472,12 @@
       .writing-box { padding: 28px 18px; }
       .story-title { font-size: 16px; }
       .story-text { font-size: 14px; }
-      .fairy-svg { width: 48px; }
+      .fairy-svg { width: 44px; }
     }
 
     /* Optional: respect reduced motion */
     @media (prefers-reduced-motion: reduce) {
-      .fairy-container, .fairy-mover, .wing-left, .wing-right, .orb {
+      .fairy-wrapper, .wing-left, .wing-right, .orb, .fairy-bobbing {
         animation: none !important;
       }
     }
@@ -453,112 +488,218 @@
   <!-- Floating Orbs Container -->
   <div class="orb-container"></div>
 
-  <!-- THE FLYING FAIRY (CODED SVG + FLAPPING WINGS) -->
-  <div class="fairy-container">
-    <div class="fairy-mover">
-      <svg class="fairy-svg" viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <defs>
-          <linearGradient id="wingGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%"  stop-color="#b9a7ff" stop-opacity="0.85"/>
-            <stop offset="35%" stop-color="#68f3ff" stop-opacity="0.55"/>
-            <stop offset="70%" stop-color="#7bffb8" stop-opacity="0.45"/>
-            <stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/>
-          </linearGradient>
-
-          <linearGradient id="dressGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#ffb8ff" stop-opacity="0.95"/>
-            <stop offset="55%" stop-color="#7fe6ff" stop-opacity="0.85"/>
-            <stop offset="100%" stop-color="#bda0ff" stop-opacity="0.85"/>
-          </linearGradient>
-
-          <linearGradient id="hairGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#ff87d7"/>
-            <stop offset="55%" stop-color="#a96bff"/>
-            <stop offset="100%" stop-color="#6a4cff"/>
-          </linearGradient>
-
-          <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2.2" result="b"/>
-            <feColorMatrix in="b" type="matrix"
-              values="1 0 0 0 0
-                      0 1 0 0 0
-                      0 0 1 0 0
-                      0 0 0 0.65 0" result="g"/>
-            <feMerge>
-              <feMergeNode in="g"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-
-          <filter id="sparkle" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="0.6" result="sb"/>
-            <feMerge>
-              <feMergeNode in="sb"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-        </defs>
-
-        <!-- Wings -->
-        <g class="wing wing-left" filter="url(#softGlow)">
-          <path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z"
-                fill="url(#wingGrad)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
-          <path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z"
-                fill="url(#wingGrad)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
-          <path d="M100 88 C 78 80, 50 86, 40 104" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
-          <path d="M102 104 C 80 108, 58 120, 52 140" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
-        </g>
-
-        <g class="wing wing-right" filter="url(#softGlow)">
-          <path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z"
-                fill="url(#wingGrad)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
-          <path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z"
-                fill="url(#wingGrad)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
-          <path d="M120 88 C 142 80, 170 86, 180 104" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
-          <path d="M118 104 C 140 108, 162 120, 168 140" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
-        </g>
-
-        <!-- Body -->
-        <g class="fairy-core" filter="url(#softGlow)">
-          <path d="M82 88 C 86 58, 102 48, 110 48 C 118 48, 134 58, 138 88
-                   C 140 104, 132 122, 128 136 C 124 150, 132 162, 138 170
-                   C 126 172, 114 160, 110 150 C 106 160, 94 172, 82 170
-                   C 88 162, 96 150, 92 136 C 88 122, 80 104, 82 88 Z"
-                fill="url(#hairGrad)" opacity="0.95"/>
-
-          <circle cx="110" cy="70" r="16" fill="#ffe6f4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
-          <ellipse cx="104" cy="72" rx="2.2" ry="3.3" fill="#3b2158" opacity="0.9"/>
-          <ellipse cx="116" cy="72" rx="2.2" ry="3.3" fill="#3b2158" opacity="0.9"/>
-
-          <rect x="106" y="84" width="8" height="10" rx="3" fill="#ffdff0" opacity="0.95"/>
-
-          <path d="M96 94 C 100 88, 106 86, 110 86 C 114 86, 120 88, 124 94
-                   C 124 106, 120 114, 110 114 C 100 114, 96 106, 96 94 Z"
-                fill="url(#dressGrad)"/>
-
-          <path d="M110 112 C 90 118, 78 134, 76 162 C 88 176, 102 182, 110 182
-                   C 118 182, 132 176, 144 162 C 142 134, 130 118, 110 112 Z"
-                fill="url(#dressGrad)" opacity="0.95"/>
-
-          <path d="M96 110 C 84 118, 78 126, 72 132"
-                fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
-          <path d="M124 110 C 136 118, 142 126, 148 132"
-                fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
-
-          <path d="M104 182 C 102 196, 102 206, 104 216"
-                fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round"/>
-          <path d="M116 182 C 118 196, 118 206, 116 216"
-                fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round"/>
-
-          <g filter="url(#sparkle)" opacity="0.9">
-            <circle cx="86" cy="92" r="1.6" fill="#ffffff"/>
-            <circle cx="140" cy="98" r="1.4" fill="#ffffff"/>
-            <circle cx="96" cy="146" r="1.6" fill="#ffffff"/>
-            <circle cx="126" cy="154" r="1.3" fill="#ffffff"/>
-            <circle cx="110" cy="132" r="1.8" fill="#ffffff"/>
+  <!-- FOUR FLYING FAIRIES -->
+  <div class="fairy-container" id="fairyContainer">
+    <!-- Fairy 1 - Purple/Pink (Original colors) -->
+    <div class="fairy-wrapper fairy-1" data-fairy="1">
+      <div class="fairy-bobbing">
+        <svg class="fairy-svg" viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="wingGrad1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#b9a7ff" stop-opacity="0.85"/>
+              <stop offset="35%" stop-color="#d8b3ff" stop-opacity="0.65"/>
+              <stop offset="70%" stop-color="#ffc6ff" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/>
+            </linearGradient>
+            <linearGradient id="dressGrad1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ffb8ff" stop-opacity="0.95"/>
+              <stop offset="55%" stop-color="#d8a0ff" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="#bda0ff" stop-opacity="0.85"/>
+            </linearGradient>
+            <linearGradient id="hairGrad1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ff87d7"/>
+              <stop offset="55%" stop-color="#a96bff"/>
+              <stop offset="100%" stop-color="#6a4cff"/>
+            </linearGradient>
+            <filter id="softGlow1" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="2.2" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.65 0" result="g"/>
+              <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <g class="wing wing-left" filter="url(#softGlow1)">
+            <path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z" fill="url(#wingGrad1)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
+            <path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z" fill="url(#wingGrad1)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
           </g>
-        </g>
-      </svg>
+          <g class="wing wing-right" filter="url(#softGlow1)">
+            <path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z" fill="url(#wingGrad1)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
+            <path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z" fill="url(#wingGrad1)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
+          </g>
+          <g class="fairy-core" filter="url(#softGlow1)">
+            <path d="M82 88 C 86 58, 102 48, 110 48 C 118 48, 134 58, 138 88 C 140 104, 132 122, 128 136 C 124 150, 132 162, 138 170 C 126 172, 114 160, 110 150 C 106 160, 94 172, 82 170 C 88 162, 96 150, 92 136 C 88 122, 80 104, 82 88 Z" fill="url(#hairGrad1)" opacity="0.95"/>
+            <circle cx="110" cy="70" r="16" fill="#ffe6f4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
+            <ellipse cx="104" cy="72" rx="2.2" ry="3.3" fill="#3b2158" opacity="0.9"/>
+            <ellipse cx="116" cy="72" rx="2.2" ry="3.3" fill="#3b2158" opacity="0.9"/>
+            <rect x="106" y="84" width="8" height="10" rx="3" fill="#ffdff0" opacity="0.95"/>
+            <path d="M96 94 C 100 88, 106 86, 110 86 C 114 86, 120 88, 124 94 C 124 106, 120 114, 110 114 C 100 114, 96 106, 96 94 Z" fill="url(#dressGrad1)"/>
+            <path d="M110 112 C 90 118, 78 134, 76 162 C 88 176, 102 182, 110 182 C 118 182, 132 176, 144 162 C 142 134, 130 118, 110 112 Z" fill="url(#dressGrad1)" opacity="0.95"/>
+            <path d="M96 110 C 84 118, 78 126, 72 132" fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+            <path d="M124 110 C 136 118, 142 126, 148 132" fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+            <path d="M104 182 C 102 196, 102 206, 104 216" fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round"/>
+            <path d="M116 182 C 118 196, 118 206, 116 216" fill="none" stroke="#ffdff0" stroke-width="5" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Fairy 2 - Cyan/Aqua with arms up pose -->
+    <div class="fairy-wrapper fairy-2" data-fairy="2">
+      <div class="fairy-bobbing">
+        <svg class="fairy-svg" viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="wingGrad2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#68f3ff" stop-opacity="0.85"/>
+              <stop offset="35%" stop-color="#7bffb8" stop-opacity="0.65"/>
+              <stop offset="70%" stop-color="#a0ffea" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/>
+            </linearGradient>
+            <linearGradient id="dressGrad2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#7bffb8" stop-opacity="0.95"/>
+              <stop offset="55%" stop-color="#68f3ff" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="#4dd5e8" stop-opacity="0.85"/>
+            </linearGradient>
+            <linearGradient id="hairGrad2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#4dd5e8"/>
+              <stop offset="55%" stop-color="#68f3ff"/>
+              <stop offset="100%" stop-color="#7bffb8"/>
+            </linearGradient>
+            <filter id="softGlow2" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="2.2" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.65 0" result="g"/>
+              <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <g class="wing wing-left" filter="url(#softGlow2)">
+            <path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z" fill="url(#wingGrad2)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
+            <path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z" fill="url(#wingGrad2)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
+          </g>
+          <g class="wing wing-right" filter="url(#softGlow2)">
+            <path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z" fill="url(#wingGrad2)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
+            <path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z" fill="url(#wingGrad2)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
+          </g>
+          <g class="fairy-core" filter="url(#softGlow2)">
+            <path d="M82 88 C 86 58, 102 48, 110 48 C 118 48, 134 58, 138 88 C 140 104, 132 122, 128 136 C 124 150, 132 162, 138 170 C 126 172, 114 160, 110 150 C 106 160, 94 172, 82 170 C 88 162, 96 150, 92 136 C 88 122, 80 104, 82 88 Z" fill="url(#hairGrad2)" opacity="0.95"/>
+            <circle cx="110" cy="70" r="16" fill="#e6fffa" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
+            <ellipse cx="104" cy="72" rx="2.2" ry="3.3" fill="#2a5858" opacity="0.9"/>
+            <ellipse cx="116" cy="72" rx="2.2" ry="3.3" fill="#2a5858" opacity="0.9"/>
+            <rect x="106" y="84" width="8" height="10" rx="3" fill="#cfffff" opacity="0.95"/>
+            <path d="M96 94 C 100 88, 106 86, 110 86 C 114 86, 120 88, 124 94 C 124 106, 120 114, 110 114 C 100 114, 96 106, 96 94 Z" fill="url(#dressGrad2)"/>
+            <path d="M110 112 C 90 118, 78 134, 76 162 C 88 176, 102 182, 110 182 C 118 182, 132 176, 144 162 C 142 134, 130 118, 110 112 Z" fill="url(#dressGrad2)" opacity="0.95"/>
+            <!-- Arms raised up -->
+            <path d="M96 110 C 84 98, 78 86, 72 76" fill="none" stroke="#cfffff" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+            <path d="M124 110 C 136 98, 142 86, 148 76" fill="none" stroke="#cfffff" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+            <path d="M104 182 C 102 196, 102 206, 104 216" fill="none" stroke="#cfffff" stroke-width="5" stroke-linecap="round"/>
+            <path d="M116 182 C 118 196, 118 206, 116 216" fill="none" stroke="#cfffff" stroke-width="5" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Fairy 3 - Golden/Yellow with sideways pose -->
+    <div class="fairy-wrapper fairy-3" data-fairy="3">
+      <div class="fairy-bobbing">
+        <svg class="fairy-svg" viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="wingGrad3" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ffeb99" stop-opacity="0.85"/>
+              <stop offset="35%" stop-color="#ffd966" stop-opacity="0.65"/>
+              <stop offset="70%" stop-color="#fff4cc" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/>
+            </linearGradient>
+            <linearGradient id="dressGrad3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ffeb99" stop-opacity="0.95"/>
+              <stop offset="55%" stop-color="#ffd966" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="#ffcc33" stop-opacity="0.85"/>
+            </linearGradient>
+            <linearGradient id="hairGrad3" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ffaa00"/>
+              <stop offset="55%" stop-color="#ffd966"/>
+              <stop offset="100%" stop-color="#ffeb99"/>
+            </linearGradient>
+            <filter id="softGlow3" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="2.2" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.65 0" result="g"/>
+              <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <g class="wing wing-left" filter="url(#softGlow3)">
+            <path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z" fill="url(#wingGrad3)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
+            <path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z" fill="url(#wingGrad3)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
+          </g>
+          <g class="wing wing-right" filter="url(#softGlow3)">
+            <path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z" fill="url(#wingGrad3)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
+            <path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z" fill="url(#wingGrad3)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
+          </g>
+          <g class="fairy-core" filter="url(#softGlow3)">
+            <path d="M82 88 C 86 58, 102 48, 110 48 C 118 48, 134 58, 138 88 C 140 104, 132 122, 128 136 C 124 150, 132 162, 138 170 C 126 172, 114 160, 110 150 C 106 160, 94 172, 82 170 C 88 162, 96 150, 92 136 C 88 122, 80 104, 82 88 Z" fill="url(#hairGrad3)" opacity="0.95"/>
+            <circle cx="110" cy="70" r="16" fill="#fffaeb" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
+            <ellipse cx="104" cy="72" rx="2.2" ry="3.3" fill="#5c4a1a" opacity="0.9"/>
+            <ellipse cx="116" cy="72" rx="2.2" ry="3.3" fill="#5c4a1a" opacity="0.9"/>
+            <rect x="106" y="84" width="8" height="10" rx="3" fill="#fff8e1" opacity="0.95"/>
+            <path d="M96 94 C 100 88, 106 86, 110 86 C 114 86, 120 88, 124 94 C 124 106, 120 114, 110 114 C 100 114, 96 106, 96 94 Z" fill="url(#dressGrad3)"/>
+            <path d="M110 112 C 90 118, 78 134, 76 162 C 88 176, 102 182, 110 182 C 118 182, 132 176, 144 162 C 142 134, 130 118, 110 112 Z" fill="url(#dressGrad3)" opacity="0.95"/>
+            <!-- Arms sideways -->
+            <path d="M96 110 C 74 112, 62 114, 54 116" fill="none" stroke="#fff8e1" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+            <path d="M124 110 C 146 112, 158 114, 166 116" fill="none" stroke="#fff8e1" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+            <!-- Legs crossed -->
+            <path d="M104 182 C 106 196, 112 206, 116 216" fill="none" stroke="#fff8e1" stroke-width="5" stroke-linecap="round"/>
+            <path d="M116 182 C 114 196, 108 206, 104 216" fill="none" stroke="#fff8e1" stroke-width="5" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Fairy 4 - Green/Mint with dancing pose -->
+    <div class="fairy-wrapper fairy-4" data-fairy="4">
+      <div class="fairy-bobbing">
+        <svg class="fairy-svg" viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="wingGrad4" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#99ffcc" stop-opacity="0.85"/>
+              <stop offset="35%" stop-color="#66ffaa" stop-opacity="0.65"/>
+              <stop offset="70%" stop-color="#ccffee" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/>
+            </linearGradient>
+            <linearGradient id="dressGrad4" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#99ffcc" stop-opacity="0.95"/>
+              <stop offset="55%" stop-color="#66ffaa" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="#33ff88" stop-opacity="0.85"/>
+            </linearGradient>
+            <linearGradient id="hairGrad4" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#00dd77"/>
+              <stop offset="55%" stop-color="#66ffaa"/>
+              <stop offset="100%" stop-color="#99ffcc"/>
+            </linearGradient>
+            <filter id="softGlow4" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="2.2" result="b"/>
+              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.65 0" result="g"/>
+              <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <g class="wing wing-left" filter="url(#softGlow4)">
+            <path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z" fill="url(#wingGrad4)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
+            <path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z" fill="url(#wingGrad4)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
+          </g>
+          <g class="wing wing-right" filter="url(#softGlow4)">
+            <path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z" fill="url(#wingGrad4)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
+            <path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z" fill="url(#wingGrad4)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
+          </g>
+          <g class="fairy-core" filter="url(#softGlow4)">
+            <path d="M82 88 C 86 58, 102 48, 110 48 C 118 48, 134 58, 138 88 C 140 104, 132 122, 128 136 C 124 150, 132 162, 138 170 C 126 172, 114 160, 110 150 C 106 160, 94 172, 82 170 C 88 162, 96 150, 92 136 C 88 122, 80 104, 82 88 Z" fill="url(#hairGrad4)" opacity="0.95"/>
+            <circle cx="110" cy="70" r="16" fill="#f0fff7" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
+            <ellipse cx="104" cy="72" rx="2.2" ry="3.3" fill="#1a4d33" opacity="0.9"/>
+            <ellipse cx="116" cy="72" rx="2.2" ry="3.3" fill="#1a4d33" opacity="0.9"/>
+            <rect x="106" y="84" width="8" height="10" rx="3" fill="#e6fff2" opacity="0.95"/>
+            <path d="M96 94 C 100 88, 106 86, 110 86 C 114 86, 120 88, 124 94 C 124 106, 120 114, 110 114 C 100 114, 96 106, 96 94 Z" fill="url(#dressGrad4)"/>
+            <path d="M110 112 C 90 118, 78 134, 76 162 C 88 176, 102 182, 110 182 C 118 182, 132 176, 144 162 C 142 134, 130 118, 110 112 Z" fill="url(#dressGrad4)" opacity="0.95"/>
+            <!-- Arms in dancing position -->
+            <path d="M96 110 C 90 120, 88 130, 86 138" fill="none" stroke="#e6fff2" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+            <path d="M124 110 C 130 98, 136 90, 142 82" fill="none" stroke="#e6fff2" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+            <path d="M104 182 C 102 196, 102 206, 104 216" fill="none" stroke="#e6fff2" stroke-width="5" stroke-linecap="round"/>
+            <path d="M116 182 C 118 196, 118 206, 116 216" fill="none" stroke="#e6fff2" stroke-width="5" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
     </div>
   </div>
 
@@ -740,7 +881,128 @@
   </footer>
 
   <script>
-    // 1) SPARKLE & WAND LOGIC
+    // ========================================
+    // ENHANCED FAIRY INTERACTION SYSTEM
+    // ========================================
+    
+    const fairies = document.querySelectorAll('.fairy-wrapper');
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let isTouching = false;
+
+    // Smooth mouse/touch tracking
+    function updateCursorPosition(x, y) {
+      mouseX = x;
+      mouseY = y;
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      updateCursorPosition(e.clientX, e.clientY);
+    });
+
+    document.addEventListener('touchmove', (e) => {
+      isTouching = true;
+      const touch = e.touches[0];
+      updateCursorPosition(touch.clientX, touch.clientY);
+    });
+
+    document.addEventListener('touchend', () => {
+      isTouching = false;
+    });
+
+    // Fairy interaction logic
+    function updateFairyInteraction() {
+      fairies.forEach(fairy => {
+        const rect = fairy.getBoundingClientRect();
+        const fairyCenterX = rect.left + rect.width / 2;
+        const fairyCenterY = rect.top + rect.height / 2;
+        
+        const deltaX = mouseX - fairyCenterX;
+        const deltaY = mouseY - fairyCenterY;
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        
+        // Interaction radius - fairies react when cursor is within 200px
+        const interactionRadius = 200;
+        
+        if (distance < interactionRadius) {
+          // Calculate gentle offset (fairies move slightly away)
+          const strength = Math.max(0, 1 - distance / interactionRadius);
+          const offsetX = -deltaX * strength * 0.15;
+          const offsetY = -deltaY * strength * 0.15;
+          
+          fairy.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        } else {
+          fairy.style.transform = 'translate(0, 0)';
+        }
+      });
+      
+      requestAnimationFrame(updateFairyInteraction);
+    }
+    
+    // Start interaction loop
+    updateFairyInteraction();
+
+    // ========================================
+    // FAIRY DUST TRAIL SYSTEM
+    // ========================================
+    
+    function createFairyDust(x, y, color) {
+      const dust = document.createElement('div');
+      document.body.appendChild(dust);
+
+      const size = Math.random() * 6 + 2;
+      dust.style.width = size + 'px';
+      dust.style.height = size + 'px';
+      dust.style.left = x + 'px';
+      dust.style.top = y + 'px';
+      dust.style.background = color || 'white';
+      dust.style.boxShadow = `0 0 6px ${color || 'rgba(255,255,255,0.95)'}, 0 0 12px rgba(210,160,255,0.45)`;
+      dust.style.borderRadius = '50%';
+      dust.style.position = 'fixed';
+      dust.style.pointerEvents = 'none';
+      dust.style.zIndex = '45';
+      dust.style.opacity = '0.85';
+      dust.style.transition = 'all 1.5s linear';
+
+      setTimeout(() => {
+        dust.style.opacity = '0';
+        dust.style.transform = `translateY(30px) translateX(${Math.random() * 16 - 8}px)`;
+      }, 50);
+
+      setTimeout(() => dust.remove(), 1550);
+    }
+
+    // Fairy dust colors for each fairy
+    const dustColors = {
+      '1': '#ffb8ff', // Purple/Pink
+      '2': '#68f3ff', // Cyan/Aqua
+      '3': '#ffd966', // Golden/Yellow
+      '4': '#66ffaa'  // Green/Mint
+    };
+
+    // Create dust trail for each fairy
+    setInterval(() => {
+      fairies.forEach(fairy => {
+        const fairyNum = fairy.getAttribute('data-fairy');
+        const svg = fairy.querySelector('.fairy-svg');
+        if (!svg) return;
+        
+        const rect = svg.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        createFairyDust(
+          centerX + (Math.random() * 14 - 7), 
+          centerY + (Math.random() * 14 - 7),
+          dustColors[fairyNum]
+        );
+      });
+    }, 180);
+
+    // ========================================
+    // SPARKLE & WAND LOGIC
+    // ========================================
+    
     let lastEventTime = 0;
     const mobileWand = document.querySelector('.mobile-wand');
 
@@ -769,32 +1031,6 @@
       }, 500);
     }
 
-    function createFairyDust(x, y) {
-      const dust = document.createElement('div');
-      document.body.appendChild(dust);
-
-      const size = Math.random() * 6 + 2;
-      dust.style.width = size + 'px';
-      dust.style.height = size + 'px';
-      dust.style.left = x + 'px';
-      dust.style.top = y + 'px';
-      dust.style.background = `white`;
-      dust.style.boxShadow = `0 0 6px rgba(255,255,255,0.95), 0 0 12px rgba(210,160,255,0.45)`;
-      dust.style.borderRadius = '50%';
-      dust.style.position = 'fixed';
-      dust.style.pointerEvents = 'none';
-      dust.style.zIndex = '45';
-      dust.style.opacity = '0.85';
-      dust.style.transition = 'all 1.5s linear';
-
-      setTimeout(() => {
-        dust.style.opacity = '0';
-        dust.style.transform = `translateY(30px) translateX(${Math.random() * 16 - 8}px)`;
-      }, 50);
-
-      setTimeout(() => dust.remove(), 1550);
-    }
-
     document.addEventListener('mousemove', (e) => {
       const now = Date.now();
       if (now - lastEventTime < 50) return;
@@ -818,7 +1054,10 @@
       mobileWand.style.display = 'none';
     });
 
-    // 2) ORBS
+    // ========================================
+    // ORBS
+    // ========================================
+    
     const orbContainer = document.querySelector('.orb-container');
     const numOrbs = 8;
 
@@ -834,17 +1073,6 @@
       orb.style.setProperty('--y', `${Math.random() * 200 - 100}px`);
       orbContainer.appendChild(orb);
     }
-
-    // 3) FAIRY DUST TRAIL (tracks the visible SVG)
-    const fairyTarget = document.querySelector('.fairy-svg');
-
-    setInterval(() => {
-      if (!fairyTarget) return;
-      const rect = fairyTarget.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      createFairyDust(centerX + (Math.random() * 14 - 7), centerY + (Math.random() * 14 - 7));
-    }, 150);
   </script>
 </body>
 </html>
