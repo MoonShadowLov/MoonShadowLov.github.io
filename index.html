@@ -664,6 +664,58 @@
       margin-bottom: 8px;
     }
 
+    /* ==== Language Switcher ==== */
+    .language-switcher {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 101;
+    }
+
+    .language-btn {
+      padding: 8px 16px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,230,255,0.9));
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(140, 107, 187, 0.4);
+      border-radius: 20px;
+      color: #3b2158;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
+      box-shadow: 0 4px 12px rgba(140, 107, 187, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .language-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(140, 107, 187, 0.3);
+      border-color: rgba(140, 107, 187, 0.6);
+    }
+
+    .language-btn.active {
+      background: linear-gradient(135deg, #e0b0ff, #c080ff);
+      border-color: #a060ff;
+      color: #2b123d;
+      box-shadow: 0 4px 12px rgba(140, 107, 187, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .language-switcher {
+        top: 10px;
+        right: 10px;
+        gap: 6px;
+      }
+
+      .language-btn {
+        padding: 6px 12px;
+        font-size: 10px;
+      }
+    }
+
     /* ==== Easter Egg ==== */
     .easter-egg-trigger {
       position: fixed;
@@ -958,6 +1010,13 @@
 </head>
 
 <body>
+  <!-- Language Switcher -->
+  <div class="language-switcher">
+    <button class="language-btn active" data-lang="en">English</button>
+    <button class="language-btn" data-lang="es">Español</button>
+    <button class="language-btn" data-lang="pt">Português</button>
+  </div>
+
   <!-- Floating Orbs Container -->
   <div class="orb-container"></div>
 
@@ -1401,6 +1460,257 @@
   </footer>
 
   <script>
+    // ========================================
+    // LANGUAGE TRANSLATION SYSTEM
+    // ========================================
+    
+    const translations = {
+      en: {
+        heroSubtitle: "FIND WHAT SPARKS YOUR CURIOSITY",
+        greeting: "GREETINGS, EARTHLING!",
+        welcomeTitle: "Welcome to my creative corner! And thank you for stopping by!",
+        welcomeText: "This is a place where imagination knows no bounds.",
+        sectionHeading: "Let's Create,",
+        sectionSubheading: "Dream, and Discover",
+        cardTitle1: "My Favorite Finds",
+        cardText1: "I only share what I genuinely love. These products have earned their spot in my life (and cart!).",
+        cardButton1: "Store",
+        cardTitle2: "Image & Video Editing",
+        cardText2: "Exploring the fusion of art, artificial intelligence, and creative editing tools.",
+        cardTitle3: "My Creations",
+        cardText3: "Weaving dreams through pixels and light—the language my soul speaks.",
+        writingHeading: "My Writing Samples",
+        storyTitle1: "Lira",
+        storyText1: "In the quiet heart of the midnight forest, Lira the indigo fairy danced on the edge of moonbeams. With every flutter of her shimmering wings, she painted the air in the deep blue hues, weaving spells that soothed restless dreams and guided lost travelers home.",
+        storyTitle2: "Candy",
+        storyText2: "Candy's days blurred together, a haze of neon lights and empty promises. Once, her laughter filled rooms; now, shadows clung to her eyes, and every morning felt heavier than the last. The pills promised escape, but left her stranded on lonely islands of regret.",
+        journeyText: "My art is a journey through color and code, where each piece is a reflection of curiosity and wonder.",
+        journeyLabel1: "Behind-the-Scenes",
+        journeyTitle1: "Every creative piece starts as a whisper in my mind, inspired by the unseen.",
+        journeyText1: "I love sharing the process—from the first spark of an idea to the final touches on each creation.",
+        journeyLabel2: "Indigo Dreams",
+        journeyTitle2: "A collection of dreamy, mystical pieces bathed in deep blues and soft light.",
+        journeyText2: "These works explore the space between night and dawn, where imagination glows the brightest.",
+        journeyLabel3: "To my community",
+        journeyTitle3: "Though the journey may be harsh and confusing, we live every second of it, so let's embrace and enjoy the ride.",
+        journeyText3: "Your curiosity, kindness, and presence turn this little corner of the internet into a shared sanctuary.",
+        footerText: "Thank you for exploring my creative world—your curiosity and support mean everything to me.",
+        footerCashApp: "Cash App",
+        footerContact: "Contact Me",
+        footerEmailBtn: "Email Me",
+        easterEgg1Title: "✨ You Found the Secret! ✨",
+        easterEgg1Text: "Congratulations, curious soul! You've discovered the hidden treasure of this enchanted garden.",
+        easterEgg1MessageTitle: "MoonShadow's Secret Message:",
+        easterEgg1Message: "In the quiet moments between dreams and reality, magic lives. You are more creative, more powerful, and more loved than you know. Keep dancing with the fairies, and never stop believing in the impossible.",
+        easterEgg1Signature: "– With starlight and wonder, MoonShadow 🌙✨",
+        easterEgg2Title: "⭐ A Hidden Treasure! ⭐",
+        easterEgg2Text: "You truly are an explorer of hidden wonders! Here's a magical message just for you.",
+        easterEgg2MessageTitle: "A Whisper from the Stars:",
+        easterEgg2Message: "Every ending is a new beginning in disguise. The darkest nights birth the brightest stars. When you feel lost, remember: even the moon goes through phases, yet it always returns in full glory. Your light will shine again.",
+        easterEgg2Signature: "– Keep shining, beautiful soul ⭐💫",
+        fairy1Name: "Luna Starwhisper",
+        fairy1Power: "Weaves dreams from moonlight and brings peaceful sleep to weary souls",
+        fairy2Name: "Aqua Crystalwing",
+        fairy2Power: "Commands the gentle waters and heals hearts with soothing waves",
+        fairy3Name: "Solara Goldenheart",
+        fairy3Power: "Spreads joy and warmth, turning darkness into radiant light",
+        fairy4Name: "Fern Meadowdance",
+        fairy4Power: "Nurtures growth and breathes life into all things green and wild"
+      },
+      es: {
+        heroSubtitle: "ENCUENTRA LO QUE DESPIERTA TU CURIOSIDAD",
+        greeting: "¡SALUDOS, TERRÍCOLA!",
+        welcomeTitle: "¡Bienvenido a mi rincón creativo! ¡Y gracias por visitarme!",
+        welcomeText: "Este es un lugar donde la imaginación no tiene límites.",
+        sectionHeading: "Vamos a Crear,",
+        sectionSubheading: "Soñar y Descubrir",
+        cardTitle1: "Mis Favoritos",
+        cardText1: "Solo comparto lo que genuinamente amo. ¡Estos productos se han ganado su lugar en mi vida (y mi carrito)!",
+        cardButton1: "Tienda",
+        cardTitle2: "Edición de Imagen y Video",
+        cardText2: "Explorando la fusión del arte, la inteligencia artificial y las herramientas de edición creativa.",
+        cardTitle3: "Mis Creaciones",
+        cardText3: "Tejiendo sueños a través de píxeles y luz—el lenguaje que habla mi alma.",
+        writingHeading: "Mis Muestras de Escritura",
+        storyTitle1: "Lira",
+        storyText1: "En el corazón tranquilo del bosque de medianoche, Lira la hada índigo bailaba en el borde de los rayos de luna. Con cada aleteo de sus alas brillantes, pintaba el aire en profundos tonos azules, tejiendo hechizos que calmaban sueños inquietos y guiaban a los viajeros perdidos a casa.",
+        storyTitle2: "Candy",
+        storyText2: "Los días de Candy se difuminaban, una neblina de luces de neón y promesas vacías. Una vez, su risa llenaba habitaciones; ahora, las sombras se aferraban a sus ojos, y cada mañana se sentía más pesada que la anterior. Las pastillas prometían escape, pero la dejaron varada en islas solitarias de arrepentimiento.",
+        journeyText: "Mi arte es un viaje a través del color y el código, donde cada pieza es un reflejo de curiosidad y asombro.",
+        journeyLabel1: "Detrás de Escena",
+        journeyTitle1: "Cada pieza creativa comienza como un susurro en mi mente, inspirado por lo invisible.",
+        journeyText1: "Me encanta compartir el proceso—desde la primera chispa de una idea hasta los toques finales de cada creación.",
+        journeyLabel2: "Sueños Índigo",
+        journeyTitle2: "Una colección de piezas oníricas y místicas bañadas en azules profundos y luz suave.",
+        journeyText2: "Estas obras exploran el espacio entre la noche y el amanecer, donde la imaginación brilla más intensamente.",
+        journeyLabel3: "A mi comunidad",
+        journeyTitle3: "Aunque el viaje pueda ser duro y confuso, vivimos cada segundo de él, así que abracemos y disfrutemos el camino.",
+        journeyText3: "Tu curiosidad, bondad y presencia convierten este pequeño rincón de internet en un santuario compartido.",
+        footerText: "Gracias por explorar mi mundo creativo—tu curiosidad y apoyo significan todo para mí.",
+        footerCashApp: "Cash App",
+        footerContact: "Contáctame",
+        footerEmailBtn: "Envíame un Email",
+        easterEgg1Title: "✨ ¡Encontraste el Secreto! ✨",
+        easterEgg1Text: "¡Felicitaciones, alma curiosa! Has descubierto el tesoro escondido de este jardín encantado.",
+        easterEgg1MessageTitle: "Mensaje Secreto de MoonShadow:",
+        easterEgg1Message: "En los momentos tranquilos entre los sueños y la realidad, vive la magia. Eres más creativo, más poderoso y más amado de lo que sabes. Sigue bailando con las hadas y nunca dejes de creer en lo imposible.",
+        easterEgg1Signature: "– Con luz de estrellas y asombro, MoonShadow 🌙✨",
+        easterEgg2Title: "⭐ ¡Un Tesoro Escondido! ⭐",
+        easterEgg2Text: "¡Realmente eres un explorador de maravillas ocultas! Aquí hay un mensaje mágico solo para ti.",
+        easterEgg2MessageTitle: "Un Susurro de las Estrellas:",
+        easterEgg2Message: "Cada final es un nuevo comienzo disfrazado. Las noches más oscuras dan luz a las estrellas más brillantes. Cuando te sientas perdido, recuerda: incluso la luna pasa por fases, pero siempre regresa en gloria completa. Tu luz brillará de nuevo.",
+        easterEgg2Signature: "– Sigue brillando, alma hermosa ⭐💫",
+        fairy1Name: "Luna Susurro Estelar",
+        fairy1Power: "Teje sueños de luz de luna y trae sueño pacífico a las almas cansadas",
+        fairy2Name: "Aqua Ala de Cristal",
+        fairy2Power: "Comanda las aguas gentiles y sana corazones con olas relajantes",
+        fairy3Name: "Solara Corazón Dorado",
+        fairy3Power: "Esparce alegría y calidez, convirtiendo la oscuridad en luz radiante",
+        fairy4Name: "Helecho Danza del Prado",
+        fairy4Power: "Nutre el crecimiento y respira vida en todo lo verde y salvaje"
+      },
+      pt: {
+        heroSubtitle: "ENCONTRE O QUE DESPERTA SUA CURIOSIDADE",
+        greeting: "SAUDAÇÕES, TERRESTRE!",
+        welcomeTitle: "Bem-vindo ao meu cantinho criativo! E obrigado por visitar!",
+        welcomeText: "Este é um lugar onde a imaginação não tem limites.",
+        sectionHeading: "Vamos Criar,",
+        sectionSubheading: "Sonhar e Descobrir",
+        cardTitle1: "Meus Favoritos",
+        cardText1: "Só compartilho o que realmente amo. Esses produtos conquistaram seu lugar na minha vida (e no meu carrinho)!",
+        cardButton1: "Loja",
+        cardTitle2: "Edição de Imagem e Vídeo",
+        cardText2: "Explorando a fusão de arte, inteligência artificial e ferramentas de edição criativa.",
+        cardTitle3: "Minhas Criações",
+        cardText3: "Tecendo sonhos através de pixels e luz—a linguagem que minha alma fala.",
+        writingHeading: "Minhas Amostras de Escrita",
+        storyTitle1: "Lira",
+        storyText1: "No coração tranquilo da floresta da meia-noite, Lira a fada índigo dançava na borda dos raios de luar. Com cada vibração de suas asas brilhantes, ela pintava o ar em tons de azul profundo, tecendo feitiços que acalmavam sonhos inquietos e guiavam viajantes perdidos para casa.",
+        storyTitle2: "Candy",
+        storyText2: "Os dias de Candy se confundiam, uma névoa de luzes de néon e promessas vazias. Uma vez, seu riso enchia salas; agora, sombras se agarravam aos seus olhos, e cada manhã parecia mais pesada que a anterior. As pílulas prometiam fuga, mas a deixaram presa em ilhas solitárias de arrependimento.",
+        journeyText: "Minha arte é uma jornada através de cor e código, onde cada peça é um reflexo de curiosidade e maravilha.",
+        journeyLabel1: "Nos Bastidores",
+        journeyTitle1: "Cada peça criativa começa como um sussurro em minha mente, inspirado pelo invisível.",
+        journeyText1: "Adoro compartilhar o processo—desde a primeira faísca de uma ideia até os toques finais de cada criação.",
+        journeyLabel2: "Sonhos Índigo",
+        journeyTitle2: "Uma coleção de peças oníricas e místicas banhadas em azuis profundos e luz suave.",
+        journeyText2: "Essas obras exploram o espaço entre a noite e o amanhecer, onde a imaginação brilha mais intensamente.",
+        journeyLabel3: "Para minha comunidade",
+        journeyTitle3: "Embora a jornada possa ser áspera e confusa, vivemos cada segundo dela, então vamos abraçar e aproveitar o passeio.",
+        journeyText3: "Sua curiosidade, bondade e presença transformam este pequeno cantinho da internet em um santuário compartilhado.",
+        footerText: "Obrigado por explorar meu mundo criativo—sua curiosidade e apoio significam tudo para mim.",
+        footerCashApp: "Cash App",
+        footerContact: "Entre em Contato",
+        footerEmailBtn: "Me Envie um Email",
+        easterEgg1Title: "✨ Você Encontrou o Segredo! ✨",
+        easterEgg1Text: "Parabéns, alma curiosa! Você descobriu o tesouro escondido deste jardim encantado.",
+        easterEgg1MessageTitle: "Mensagem Secreta de MoonShadow:",
+        easterEgg1Message: "Nos momentos tranquilos entre sonhos e realidade, a magia vive. Você é mais criativo, mais poderoso e mais amado do que imagina. Continue dançando com as fadas e nunca pare de acreditar no impossível.",
+        easterEgg1Signature: "– Com luz das estrelas e maravilha, MoonShadow 🌙✨",
+        easterEgg2Title: "⭐ Um Tesouro Escondido! ⭐",
+        easterEgg2Text: "Você realmente é um explorador de maravilhas ocultas! Aqui está uma mensagem mágica só para você.",
+        easterEgg2MessageTitle: "Um Sussurro das Estrelas:",
+        easterEgg2Message: "Todo fim é um novo começo disfarçado. As noites mais escuras dão origem às estrelas mais brilhantes. Quando você se sentir perdido, lembre-se: até a lua passa por fases, mas sempre retorna em glória completa. Sua luz brilhará novamente.",
+        easterEgg2Signature: "– Continue brilhando, alma linda ⭐💫",
+        fairy1Name: "Luna Sussurro Estelar",
+        fairy1Power: "Tece sonhos de luz lunar e traz sono pacífico para almas cansadas",
+        fairy2Name: "Aqua Asa de Cristal",
+        fairy2Power: "Comanda as águas gentis e cura corações com ondas suaves",
+        fairy3Name: "Solara Coração Dourado",
+        fairy3Power: "Espalha alegria e calor, transformando escuridão em luz radiante",
+        fairy4Name: "Samambaia Dança do Prado",
+        fairy4Power: "Nutre o crescimento e respira vida em tudo que é verde e selvagem"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function translatePage(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+      
+      // Update all text content
+      document.querySelector('.hero-subtitle').textContent = t.heroSubtitle;
+      document.querySelector('.bubble-title').textContent = t.greeting;
+      document.querySelector('.welcome-title').textContent = t.welcomeTitle;
+      document.querySelector('.welcome-text').textContent = t.welcomeText;
+      document.querySelector('.section-heading').textContent = t.sectionHeading;
+      document.querySelector('.section-subheading').textContent = t.sectionSubheading;
+      
+      const cards = document.querySelectorAll('.card');
+      cards[0].querySelector('.card-title').textContent = t.cardTitle1;
+      cards[0].querySelector('.card-text').innerHTML = t.cardText1 + '<br><br><a href="https://linktr.ee/MoonShadowTheSun" target="_blank" class="whimsical-button">' + t.cardButton1 + '</a>';
+      cards[1].querySelector('.card-title').textContent = t.cardTitle2;
+      cards[1].querySelector('.card-text').textContent = t.cardText2;
+      cards[2].querySelector('.card-title').textContent = t.cardTitle3;
+      cards[2].querySelector('.card-text').textContent = t.cardText3;
+      
+      document.querySelectorAll('.section-heading')[1].textContent = t.writingHeading;
+      
+      const stories = document.querySelectorAll('.story-block');
+      stories[0].querySelector('.story-title').textContent = t.storyTitle1;
+      stories[0].querySelector('.story-text').textContent = t.storyText1;
+      stories[1].querySelector('.story-title').textContent = t.storyTitle2;
+      stories[1].querySelector('.story-text').textContent = t.storyText2;
+      
+      document.querySelector('.journey-text').textContent = t.journeyText;
+      
+      const journeyCards = document.querySelectorAll('.journey-card');
+      journeyCards[0].querySelector('.journey-label').textContent = t.journeyLabel1;
+      journeyCards[0].querySelector('.journey-title').textContent = t.journeyTitle1;
+      journeyCards[0].querySelector('.journey-text-small').textContent = t.journeyText1;
+      journeyCards[1].querySelector('.journey-label').textContent = t.journeyLabel2;
+      journeyCards[1].querySelector('.journey-title').textContent = t.journeyTitle2;
+      journeyCards[1].querySelector('.journey-text-small').textContent = t.journeyText2;
+      journeyCards[2].querySelector('.journey-label').textContent = t.journeyLabel3;
+      journeyCards[2].querySelector('.journey-title').textContent = t.journeyTitle3;
+      journeyCards[2].querySelector('.journey-text-small').textContent = t.journeyText3;
+      
+      document.querySelector('footer p').textContent = t.footerText;
+      document.querySelector('.footer-item-title').textContent = t.footerCashApp;
+      document.querySelectorAll('.footer-item-title')[1].textContent = t.footerContact;
+      document.querySelectorAll('.whimsical-button')[2].textContent = t.footerEmailBtn;
+      
+      // Easter Eggs
+      document.querySelector('#easterEggModal h3').textContent = t.easterEgg1Title;
+      document.querySelector('#easterEggModal > .easter-egg-content > p').textContent = t.easterEgg1Text;
+      document.querySelector('#easterEggModal .secret-message p:first-child strong').textContent = t.easterEgg1MessageTitle;
+      document.querySelector('#easterEggModal .secret-message p:nth-child(2)').textContent = t.easterEgg1Message;
+      document.querySelector('#easterEggModal .secret-message p:last-child').textContent = t.easterEgg1Signature;
+      
+      document.querySelector('#easterEggModal2 h3').textContent = t.easterEgg2Title;
+      document.querySelector('#easterEggModal2 > .easter-egg-content > p').textContent = t.easterEgg2Text;
+      document.querySelector('#easterEggModal2 .secret-message p:first-child strong').textContent = t.easterEgg2MessageTitle;
+      document.querySelector('#easterEggModal2 .secret-message p:nth-child(2)').textContent = t.easterEgg2Message;
+      document.querySelector('#easterEggModal2 .secret-message p:last-child').textContent = t.easterEgg2Signature;
+      
+      // Update fairy data
+      fairyData['1'].name = t.fairy1Name;
+      fairyData['1'].power = t.fairy1Power;
+      fairyData['2'].name = t.fairy2Name;
+      fairyData['2'].power = t.fairy2Power;
+      fairyData['3'].name = t.fairy3Name;
+      fairyData['3'].power = t.fairy3Power;
+      fairyData['4'].name = t.fairy4Name;
+      fairyData['4'].power = t.fairy4Power;
+      
+      // Update active button
+      document.querySelectorAll('.language-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    // Language button listeners
+    document.querySelectorAll('.language-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        translatePage(lang);
+      });
+    });
+
     // ========================================
     // OPTIMIZED FAIRY INTERACTION SYSTEM
     // ========================================
