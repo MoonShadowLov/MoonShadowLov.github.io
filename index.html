@@ -784,13 +784,14 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(59, 33, 88, 0.95);
-      z-index: 999;
+      background: rgba(59, 33, 88, 0.92);
+      z-index: 10000;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .easter-egg-modal.active {
@@ -805,13 +806,52 @@
 
     .easter-egg-content {
       background: linear-gradient(135deg, #fef5ff, #e3c0ff);
-      padding: 40px;
-      border-radius: 20px;
-      max-width: 500px;
-      text-align: center;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
       position: relative;
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      animation: slideIn 0.5s ease;
+      animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden; /* Ensure children don't spill out */
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    /* Header for title and close button */
+    .modal-header {
+      padding: 25px 25px 15px;
+      position: relative;
+      flex-shrink: 0;
+      text-align: center;
+    }
+
+    /* Scrollable body */
+    .modal-body {
+      padding: 0 25px 30px;
+      overflow-y: auto;
+      flex-grow: 1;
+      scrollbar-width: thin;
+      scrollbar-color: #b192df transparent;
+    }
+
+    .modal-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    .modal-body::-webkit-scrollbar-thumb {
+      background-color: #b192df;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .easter-egg-content {
+        max-width: 90%;
+        max-height: 75vh;
+        border-radius: 20px;
+      }
+      .modal-header { padding: 20px 20px 10px; }
+      .modal-body { padding: 0 20px 25px; }
     }
 
     @keyframes slideIn {
@@ -821,20 +861,21 @@
 
     .easter-egg-close {
       position: absolute;
-      top: 15px;
-      right: 15px;
-      background: none;
+      top: 12px;
+      right: 12px;
+      background: rgba(59, 33, 88, 0.05);
       border: none;
-      font-size: 28px;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
+      font-size: 24px;
+      cursor: pointer;
       color: #3b2158;
-      width: 35px;
-      height: 35px;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
       transition: all 0.3s ease;
+      z-index: 10;
     }
 
     .easter-egg-close:hover {
@@ -843,9 +884,10 @@
     }
 
     .easter-egg-content h3 {
-      font-size: 28px;
-      margin-bottom: 20px;
+      font-size: clamp(20px, 5vw, 26px);
+      margin: 0;
       color: #3b2158;
+      line-height: 1.2;
     }
 
     .easter-egg-content p {
@@ -902,8 +944,54 @@
       }
 
       .easter-egg-content {
-        padding: 30px 20px;
+      background: linear-gradient(135deg, #fef5ff, #e3c0ff);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      overflow: hidden; /* Ensure children don't spill out */
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    /* Header for title and close button */
+    .modal-header {
+      padding: 25px 25px 15px;
+      position: relative;
+      flex-shrink: 0;
+      text-align: center;
+    }
+
+    /* Scrollable body */
+    .modal-body {
+      padding: 0 25px 30px;
+      overflow-y: auto;
+      flex-grow: 1;
+      scrollbar-width: thin;
+      scrollbar-color: #b192df transparent;
+    }
+
+    .modal-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    .modal-body::-webkit-scrollbar-thumb {
+      background-color: #b192df;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .easter-egg-content {
+        max-width: 90%;
+        max-height: 75vh;
+        border-radius: 20px;
       }
+      .modal-header { padding: 20px 20px 10px; }
+      .modal-body { padding: 0 20px 25px; }
+    }
     }
 
     /* Reduced motion support */
@@ -929,14 +1017,15 @@
       background: linear-gradient(135deg, rgba(254, 245, 255, 0.98), rgba(227, 192, 255, 0.95));
       border: 2px solid rgba(177, 146, 223, 0.6);
       border-radius: 16px;
-      padding: 20px 28px;
+      padding: 20px;
       box-shadow: 0 10px 40px rgba(140, 107, 187, 0.4);
       z-index: 9998;
       pointer-events: none;
       opacity: 0;
       transform: scale(0.8) translateY(10px);
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      max-width: 280px;
+      width: 280px;
+      max-width: calc(100vw - 40px);
       text-align: center;
     }
 
@@ -1275,9 +1364,12 @@
   <!-- Easter Egg Modal -->
   <div class="easter-egg-modal" id="easterEggModal">
     <div class="easter-egg-content">
-      <button class="easter-egg-close" id="closeModal">×</button>
-      <h3>✨ You Found the Secret! ✨</h3>
-      <p>Congratulations, curious soul! You've discovered the hidden treasure of this enchanted garden.</p>
+      <div class="modal-header">
+        <button class="easter-egg-close" id="closeModal">×</button>
+        <h3>✨ You Found the Secret! ✨</h3>
+      </div>
+      <div class="modal-body">
+        <p>Congratulations, curious soul! You've discovered the hidden treasure of this enchanted garden.</p>
       <div class="secret-message">
         <p><strong>MoonShadow's Secret Message:</strong></p>
         <p>"In the quiet moments between dreams and reality, magic lives. You are more creative, more powerful, and more loved than you know. Keep dancing with the fairies, and never stop believing in the impossible."</p>
@@ -1285,19 +1377,24 @@
       </div>
     </div>
   </div>
+  </div>
 
   <!-- Second Easter Egg Modal -->
   <div class="easter-egg-modal" id="easterEggModal2">
     <div class="easter-egg-content">
-      <button class="easter-egg-close" id="closeModal2">×</button>
-      <h3>⭐ A Hidden Treasure! ⭐</h3>
-      <p>You truly are an explorer of hidden wonders! Here's a magical message just for you.</p>
+      <div class="modal-header">
+        <button class="easter-egg-close" id="closeModal2">×</button>
+        <h3>⭐ A Hidden Treasure! ⭐</h3>
+      </div>
+      <div class="modal-body">
+        <p>You truly are an explorer of hidden wonders! Here's a magical message just for you.</p>
       <div class="secret-message">
         <p><strong>A Whisper from the Stars:</strong></p>
         <p>"Every ending is a new beginning in disguise. The darkest nights birth the brightest stars. When you feel lost, remember: even the moon goes through phases, yet it always returns in full glory. Your light will shine again."</p>
         <p style="margin-top: 15px; font-size: 14px;">– Keep shining, beautiful soul ⭐💫</p>
       </div>
     </div>
+  </div>
   </div>
 
   <!-- Hero -->
