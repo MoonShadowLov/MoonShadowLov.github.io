@@ -217,6 +217,8 @@
       text-transform: capitalize;
       text-shadow: 0 2px 4px rgba(0,0,0,0.1);
       line-height: 1.3;
+      max-width: 90%;
+      margin: 0 auto;
     }
     
     .brand-name span {
@@ -697,10 +699,10 @@
     }
 
     .language-btn.active {
-      background: #3b2158;
-      border-color: #3b2158;
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(59, 33, 88, 0.4);
+      background: linear-gradient(135deg, #e0b0ff, #c080ff);
+      border-color: #a060ff;
+      color: #2b123d;
+      box-shadow: 0 4px 12px rgba(140, 107, 187, 0.4);
     }
 
     @media (max-width: 768px) {
@@ -784,14 +786,14 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(59, 33, 88, 0.92);
-      z-index: 10000;
+      background: rgba(59, 33, 88, 0.95);
+      z-index: 999;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      overflow-y: auto;
     }
 
     .easter-egg-modal.active {
@@ -806,52 +808,16 @@
 
     .easter-egg-content {
       background: linear-gradient(135deg, #fef5ff, #e3c0ff);
-      border-radius: 24px;
+      padding: 55px 30px 30px;
+      border-radius: 20px;
+      max-width: 500px;
       width: 100%;
-      max-width: 480px;
-      max-height: 80vh;
-      display: flex;
-      flex-direction: column;
+      text-align: center;
       position: relative;
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      overflow: hidden; /* Ensure children don't spill out */
-      border: 1px solid rgba(255, 255, 255, 0.5);
-    }
-
-    /* Header for title and close button */
-    .modal-header {
-      padding: 25px 25px 15px;
-      position: relative;
-      flex-shrink: 0;
-      text-align: center;
-    }
-
-    /* Scrollable body */
-    .modal-body {
-      padding: 0 25px 30px;
+      animation: slideIn 0.5s ease;
+      max-height: 80vh;
       overflow-y: auto;
-      flex-grow: 1;
-      scrollbar-width: thin;
-      scrollbar-color: #b192df transparent;
-    }
-
-    .modal-body::-webkit-scrollbar {
-      width: 6px;
-    }
-    .modal-body::-webkit-scrollbar-thumb {
-      background-color: #b192df;
-      border-radius: 10px;
-    }
-
-    @media (max-width: 600px) {
-      .easter-egg-content {
-        max-width: 90%;
-        max-height: 75vh;
-        border-radius: 20px;
-      }
-      .modal-header { padding: 20px 20px 10px; }
-      .modal-body { padding: 0 20px 25px; }
     }
 
     @keyframes slideIn {
@@ -859,35 +825,65 @@
       to { transform: translateY(0); opacity: 1; }
     }
 
+    .easter-egg-content h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #3b2158;
+    }
+
+    .easter-egg-content p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #4a2a6f;
+      margin-bottom: 15px;
+    }
+
+    .secret-message {
+      background: rgba(255,255,255,0.6);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-style: italic;
+      color: #5a3a7d;
+      border: 1px solid rgba(140, 107, 187, 0.3);
+    }
+
     .easter-egg-close {
       position: absolute;
-      top: 12px;
-      right: 12px;
-      background: rgba(59, 33, 88, 0.05);
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: #3b2158;
-      width: 32px;
-      height: 32px;
+      top: 10px;
+      right: 10px;
+      background: linear-gradient(135deg, #e0b0ff, #c080ff);
+      border: 3px solid #8c6bbb;
+      font-size: 28px;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
+      color: #2b123d;
+      font-weight: bold;
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
       transition: all 0.3s ease;
       z-index: 10;
+      box-shadow: 0 4px 12px rgba(59, 33, 88, 0.4);
     }
 
     .easter-egg-close:hover {
-      background: rgba(140, 107, 187, 0.2);
-      transform: rotate(90deg);
+      background: linear-gradient(135deg, #c080ff, #a060ff);
+      transform: rotate(90deg) scale(1.1);
+      border-color: #6a3a9f;
+      box-shadow: 0 6px 16px rgba(59, 33, 88, 0.6);
+    }
+
+    .easter-egg-close:active {
+      transform: rotate(90deg) scale(0.95);
     }
 
     .easter-egg-content h3 {
-      font-size: clamp(20px, 5vw, 26px);
-      margin: 0;
+      font-size: 28px;
+      margin-bottom: 20px;
       color: #3b2158;
-      line-height: 1.2;
     }
 
     .easter-egg-content p {
@@ -943,55 +939,55 @@
         height: 45px;
       }
 
+      /* Smaller, more manageable popup on mobile */
       .easter-egg-content {
-      background: linear-gradient(135deg, #fef5ff, #e3c0ff);
-      border-radius: 24px;
-      width: 100%;
-      max-width: 480px;
-      max-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      overflow: hidden; /* Ensure children don't spill out */
-      border: 1px solid rgba(255, 255, 255, 0.5);
-    }
-
-    /* Header for title and close button */
-    .modal-header {
-      padding: 25px 25px 15px;
-      position: relative;
-      flex-shrink: 0;
-      text-align: center;
-    }
-
-    /* Scrollable body */
-    .modal-body {
-      padding: 0 25px 30px;
-      overflow-y: auto;
-      flex-grow: 1;
-      scrollbar-width: thin;
-      scrollbar-color: #b192df transparent;
-    }
-
-    .modal-body::-webkit-scrollbar {
-      width: 6px;
-    }
-    .modal-body::-webkit-scrollbar-thumb {
-      background-color: #b192df;
-      border-radius: 10px;
-    }
-
-    @media (max-width: 600px) {
-      .easter-egg-content {
+        padding: 65px 18px 18px;
+        margin: 20px 15px;
         max-width: 90%;
-        max-height: 75vh;
-        border-radius: 20px;
+        max-height: 70vh;
+        border-radius: 16px;
       }
-      .modal-header { padding: 20px 20px 10px; }
-      .modal-body { padding: 0 20px 25px; }
-    }
+
+      .easter-egg-content h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+        line-height: 1.3;
+      }
+
+      .easter-egg-content p {
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 12px;
+      }
+
+      .secret-message {
+        padding: 12px;
+        font-size: 13px;
+        margin-top: 12px;
+      }
+
+      .secret-message p {
+        font-size: 13px;
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+
+      /* HUGE visible close button for mobile */
+      .easter-egg-close {
+        width: 60px;
+        height: 60px;
+        font-size: 36px;
+        top: 5px;
+        right: 5px;
+        background: linear-gradient(135deg, #e0b0ff, #c080ff);
+        border: 4px solid #8c6bbb;
+        box-shadow: 0 6px 20px rgba(59, 33, 88, 0.6);
+      }
+
+      .easter-egg-close:active {
+        transform: scale(0.9);
+        box-shadow: 0 3px 10px rgba(59, 33, 88, 0.5);
+      }
     }
 
     /* Reduced motion support */
@@ -1017,15 +1013,14 @@
       background: linear-gradient(135deg, rgba(254, 245, 255, 0.98), rgba(227, 192, 255, 0.95));
       border: 2px solid rgba(177, 146, 223, 0.6);
       border-radius: 16px;
-      padding: 20px;
+      padding: 20px 28px;
       box-shadow: 0 10px 40px rgba(140, 107, 187, 0.4);
       z-index: 9998;
       pointer-events: none;
       opacity: 0;
       transform: scale(0.8) translateY(10px);
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      width: 280px;
-      max-width: calc(100vw - 40px);
+      max-width: 280px;
       text-align: center;
     }
 
@@ -1101,7 +1096,7 @@
 <body>
   <!-- Language Switcher -->
   <div class="language-switcher">
-    <button class="language-btn" data-lang="en">English</button>
+    <button class="language-btn active" data-lang="en">English</button>
     <button class="language-btn" data-lang="es">Español</button>
     <button class="language-btn" data-lang="pt">Português</button>
   </div>
@@ -1364,12 +1359,9 @@
   <!-- Easter Egg Modal -->
   <div class="easter-egg-modal" id="easterEggModal">
     <div class="easter-egg-content">
-      <div class="modal-header">
-        <button class="easter-egg-close" id="closeModal">×</button>
-        <h3>✨ You Found the Secret! ✨</h3>
-      </div>
-      <div class="modal-body">
-        <p>Congratulations, curious soul! You've discovered the hidden treasure of this enchanted garden.</p>
+      <button class="easter-egg-close" id="closeModal">×</button>
+      <h3>✨ You Found the Secret! ✨</h3>
+      <p>Congratulations, curious soul! You've discovered the hidden treasure of this enchanted garden.</p>
       <div class="secret-message">
         <p><strong>MoonShadow's Secret Message:</strong></p>
         <p>"In the quiet moments between dreams and reality, magic lives. You are more creative, more powerful, and more loved than you know. Keep dancing with the fairies, and never stop believing in the impossible."</p>
@@ -1377,24 +1369,19 @@
       </div>
     </div>
   </div>
-  </div>
 
   <!-- Second Easter Egg Modal -->
   <div class="easter-egg-modal" id="easterEggModal2">
     <div class="easter-egg-content">
-      <div class="modal-header">
-        <button class="easter-egg-close" id="closeModal2">×</button>
-        <h3>⭐ A Hidden Treasure! ⭐</h3>
-      </div>
-      <div class="modal-body">
-        <p>You truly are an explorer of hidden wonders! Here's a magical message just for you.</p>
+      <button class="easter-egg-close" id="closeModal2">×</button>
+      <h3>⭐ A Hidden Treasure! ⭐</h3>
+      <p>You truly are an explorer of hidden wonders! Here's a magical message just for you.</p>
       <div class="secret-message">
         <p><strong>A Whisper from the Stars:</strong></p>
         <p>"Every ending is a new beginning in disguise. The darkest nights birth the brightest stars. When you feel lost, remember: even the moon goes through phases, yet it always returns in full glory. Your light will shine again."</p>
         <p style="margin-top: 15px; font-size: 14px;">– Keep shining, beautiful soul ⭐💫</p>
       </div>
     </div>
-  </div>
   </div>
 
   <!-- Hero -->
@@ -1768,48 +1755,30 @@
       document.querySelectorAll('.footer-item-title')[1].textContent = t.footerContact;
       document.querySelectorAll('.whimsical-button')[2].textContent = t.footerEmailBtn;
       
-      // Easter Eggs - Updated for new scrollable structure
-      const modal1 = document.getElementById('easterEggModal');
-      if (modal1) {
-        modal1.querySelector('h3').textContent = t.easterEgg1Title;
-        modal1.querySelector('.modal-body p').textContent = t.easterEgg1Text;
-        modal1.querySelector('.secret-message p:first-child strong').textContent = t.easterEgg1MessageTitle;
-        modal1.querySelector('.secret-message p:nth-child(2)').textContent = t.easterEgg1Message;
-        modal1.querySelector('.secret-message p:last-child').textContent = t.easterEgg1Signature;
-      }
+      // Easter Eggs
+      document.querySelector('#easterEggModal h3').textContent = t.easterEgg1Title;
+      document.querySelector('#easterEggModal > .easter-egg-content > p').textContent = t.easterEgg1Text;
+      document.querySelector('#easterEggModal .secret-message p:first-child strong').textContent = t.easterEgg1MessageTitle;
+      document.querySelector('#easterEggModal .secret-message p:nth-child(2)').textContent = t.easterEgg1Message;
+      document.querySelector('#easterEggModal .secret-message p:last-child').textContent = t.easterEgg1Signature;
       
-      const modal2 = document.getElementById('easterEggModal2');
-      if (modal2) {
-        modal2.querySelector('h3').textContent = t.easterEgg2Title;
-        modal2.querySelector('.modal-body p').textContent = t.easterEgg2Text;
-        modal2.querySelector('.secret-message p:first-child strong').textContent = t.easterEgg2MessageTitle;
-        modal2.querySelector('.secret-message p:nth-child(2)').textContent = t.easterEgg2Message;
-        modal2.querySelector('.secret-message p:last-child').textContent = t.easterEgg2Signature;
-      }
+      document.querySelector('#easterEggModal2 h3').textContent = t.easterEgg2Title;
+      document.querySelector('#easterEggModal2 > .easter-egg-content > p').textContent = t.easterEgg2Text;
+      document.querySelector('#easterEggModal2 .secret-message p:first-child strong').textContent = t.easterEgg2MessageTitle;
+      document.querySelector('#easterEggModal2 .secret-message p:nth-child(2)').textContent = t.easterEgg2Message;
+      document.querySelector('#easterEggModal2 .secret-message p:last-child').textContent = t.easterEgg2Signature;
       
       // Update fairy data
-      if (typeof fairyData !== 'undefined') {
-        fairyData['1'].name = t.fairy1Name;
-        fairyData['1'].power = t.fairy1Power;
-        fairyData['2'].name = t.fairy2Name;
-        fairyData['2'].power = t.fairy2Power;
-        fairyData['3'].name = t.fairy3Name;
-        fairyData['3'].power = t.fairy3Power;
-        fairyData['4'].name = t.fairy4Name;
-        fairyData['4'].power = t.fairy4Power;
-      }
-
-      // If a fairy info popup is currently active, update its content immediately
-      const fairyInfo = document.getElementById('fairyInfo');
-      if (fairyInfo && fairyInfo.classList.contains('active')) {
-        const activeFairyNum = activeFairy ? activeFairy.getAttribute('data-fairy') : null;
-        if (activeFairyNum && fairyData[activeFairyNum]) {
-          document.getElementById('fairyName').textContent = fairyData[activeFairyNum].name;
-          document.getElementById('fairyPower').textContent = fairyData[activeFairyNum].power;
-        }
-      }
+      fairyData['1'].name = t.fairy1Name;
+      fairyData['1'].power = t.fairy1Power;
+      fairyData['2'].name = t.fairy2Name;
+      fairyData['2'].power = t.fairy2Power;
+      fairyData['3'].name = t.fairy3Name;
+      fairyData['3'].power = t.fairy3Power;
+      fairyData['4'].name = t.fairy4Name;
+      fairyData['4'].power = t.fairy4Power;
       
-      // Update active button styling
+      // Update active button
       document.querySelectorAll('.language-btn').forEach(btn => {
         btn.classList.remove('active');
         if (btn.getAttribute('data-lang') === lang) {
@@ -1817,8 +1786,6 @@
         }
       });
     }
-
-    translatePage('en');
 
     // Language button listeners
     document.querySelectorAll('.language-btn').forEach(btn => {
