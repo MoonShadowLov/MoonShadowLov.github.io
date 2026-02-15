@@ -678,7 +678,7 @@
       align-items: center;
       justify-content: center;
       font-size: 24px;
-      cursor: pointer;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
       z-index: 100;
       box-shadow: 0 4px 15px rgba(140, 107, 187, 0.3);
       transition: all 0.3s ease;
@@ -688,6 +688,37 @@
     .easter-egg-trigger:hover {
       transform: scale(1.1) rotate(15deg);
       box-shadow: 0 6px 25px rgba(140, 107, 187, 0.5);
+    }
+
+    /* Second Easter Egg */
+    .easter-egg-trigger-2 {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle, rgba(255,235,153,0.9), rgba(255,204,102,0.7));
+      border-radius: 50%;
+      border: 2px solid rgba(255, 187, 51, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(255, 187, 51, 0.3);
+      transition: all 0.3s ease;
+      animation: pulse2 2.5s infinite;
+    }
+
+    .easter-egg-trigger-2:hover {
+      transform: scale(1.1) rotate(-15deg);
+      box-shadow: 0 6px 25px rgba(255, 187, 51, 0.5);
+    }
+
+    @keyframes pulse2 {
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 187, 51, 0.3); }
+      50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 187, 51, 0.5); }
     }
 
     @keyframes pulse {
@@ -743,7 +774,7 @@
       background: none;
       border: none;
       font-size: 28px;
-      cursor: pointer;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
       color: #3b2158;
       width: 35px;
       height: 35px;
@@ -811,6 +842,13 @@
         height: 45px;
       }
 
+      .easter-egg-trigger-2 {
+        bottom: 15px;
+        left: 15px;
+        width: 45px;
+        height: 45px;
+      }
+
       .easter-egg-content {
         padding: 30px 20px;
       }
@@ -833,11 +871,88 @@
       }
     }
 
-    /* Performance optimization */
-    .fairy-wrapper,
-    .fairy-svg,
-    .orb {
-      will-change: transform;
+    /* ==== Fairy Info Popup ==== */
+    .fairy-info {
+      position: fixed;
+      background: linear-gradient(135deg, rgba(254, 245, 255, 0.98), rgba(227, 192, 255, 0.95));
+      border: 2px solid rgba(177, 146, 223, 0.6);
+      border-radius: 16px;
+      padding: 20px 28px;
+      box-shadow: 0 10px 40px rgba(140, 107, 187, 0.4);
+      z-index: 9998;
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.8) translateY(10px);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-width: 280px;
+      text-align: center;
+    }
+
+    .fairy-info.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+    }
+
+    .fairy-info-name {
+      font-size: 22px;
+      font-weight: bold;
+      color: #3b2158;
+      margin-bottom: 8px;
+      text-shadow: 0 0 10px rgba(177, 146, 223, 0.5);
+    }
+
+    .fairy-info-power {
+      font-size: 14px;
+      color: #4a2a6f;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .fairy-info-close {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
+      color: #8c6bbb;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .fairy-info-close:hover {
+      background: rgba(140, 107, 187, 0.2);
+      transform: rotate(90deg);
+    }
+
+    /* Make fairies clickable but keep wand cursor */
+    .fairy-wrapper {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
+    }
+
+    .fairy-wrapper:hover .fairy-svg {
+      filter: drop-shadow(0 0 10px rgba(255,255,255,1)) drop-shadow(0 0 20px rgba(210,160,255,0.8));
+      transform: scale(1.1);
+    }
+
+    .fairy-svg {
+      transition: all 0.3s ease;
+    }
+
+    /* Fairy stays in place when info is shown */
+    .fairy-wrapper.showing-info {
+      animation-play-state: paused !important;
+    }
+
+    .fairy-wrapper.showing-info .fairy-bobbing {
+      animation-play-state: running !important;
     }
   </style>
 </head>
@@ -1083,9 +1198,19 @@
     </svg>
   </div>
 
-  <!-- Easter Egg Trigger -->
+  <!-- Fairy Info Popup -->
+  <div class="fairy-info" id="fairyInfo">
+    <button class="fairy-info-close" id="closeFairyInfo">×</button>
+    <div class="fairy-info-name" id="fairyName"></div>
+    <div class="fairy-info-power" id="fairyPower"></div>
+  </div>
+
+  <!-- Easter Egg Triggers -->
   <div class="easter-egg-trigger" id="easterEggBtn" title="Click for a surprise! ✨">
     🌙
+  </div>
+  <div class="easter-egg-trigger-2" id="easterEggBtn2" title="Another secret awaits! ✨">
+    ⭐
   </div>
 
   <!-- Easter Egg Modal -->
@@ -1098,6 +1223,20 @@
         <p><strong>MoonShadow's Secret Message:</strong></p>
         <p>"In the quiet moments between dreams and reality, magic lives. You are more creative, more powerful, and more loved than you know. Keep dancing with the fairies, and never stop believing in the impossible."</p>
         <p style="margin-top: 15px; font-size: 14px;">– With starlight and wonder, MoonShadow 🌙✨</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Easter Egg Modal -->
+  <div class="easter-egg-modal" id="easterEggModal2">
+    <div class="easter-egg-content">
+      <button class="easter-egg-close" id="closeModal2">×</button>
+      <h3>⭐ A Hidden Treasure! ⭐</h3>
+      <p>You truly are an explorer of hidden wonders! Here's a magical message just for you.</p>
+      <div class="secret-message">
+        <p><strong>A Whisper from the Stars:</strong></p>
+        <p>"Every ending is a new beginning in disguise. The darkest nights birth the brightest stars. When you feel lost, remember: even the moon goes through phases, yet it always returns in full glory. Your light will shine again."</p>
+        <p style="margin-top: 15px; font-size: 14px;">– Keep shining, beautiful soul ⭐💫</p>
       </div>
     </div>
   </div>
@@ -1286,7 +1425,7 @@
       updateCursorPosition(touch.clientX, touch.clientY);
     }, { passive: true });
 
-    // Optimized fairy interaction with RAF
+    // Optimized fairy interaction with RAF - fairies react to cursor/finger
     function updateFairyInteraction() {
       fairies.forEach(fairy => {
         const rect = fairy.getBoundingClientRect();
@@ -1297,16 +1436,28 @@
         const deltaY = mouseY - fairyCenterY;
         const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
         
-        const interactionRadius = 200;
+        const interactionRadius = 250; // Increased for better mobile interaction
         
         if (distance < interactionRadius) {
           const strength = Math.max(0, 1 - distance / interactionRadius);
-          const offsetX = -deltaX * strength * 0.15;
-          const offsetY = -deltaY * strength * 0.15;
+          const offsetX = -deltaX * strength * 0.2; // Slightly more reactive
+          const offsetY = -deltaY * strength * 0.2;
           
           fairy.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+          
+          // Add hover glow when cursor is near
+          const svg = fairy.querySelector('.fairy-svg');
+          if (svg && distance < 150) {
+            svg.style.filter = 'drop-shadow(0 0 10px rgba(255,255,255,1)) drop-shadow(0 0 20px rgba(210,160,255,0.9))';
+          } else if (svg) {
+            svg.style.filter = 'drop-shadow(0 0 6px rgba(255,255,255,0.95)) drop-shadow(0 0 14px rgba(210,160,255,0.55))';
+          }
         } else {
           fairy.style.transform = 'translate(0, 0)';
+          const svg = fairy.querySelector('.fairy-svg');
+          if (svg) {
+            svg.style.filter = 'drop-shadow(0 0 6px rgba(255,255,255,0.95)) drop-shadow(0 0 14px rgba(210,160,255,0.55))';
+          }
         }
       });
       
@@ -1484,6 +1635,96 @@
     }
 
     // ========================================
+    // FAIRY CLICK INTERACTION
+    // ========================================
+    
+    const fairyInfo = document.getElementById('fairyInfo');
+    const fairyName = document.getElementById('fairyName');
+    const fairyPower = document.getElementById('fairyPower');
+    const closeFairyInfo = document.getElementById('closeFairyInfo');
+    let activeFairy = null;
+
+    // Fairy data - names and magic powers
+    const fairyData = {
+      '1': {
+        name: 'Luna Starwhisper',
+        power: 'Weaves dreams from moonlight and brings peaceful sleep to weary souls'
+      },
+      '2': {
+        name: 'Aqua Crystalwing',
+        power: 'Commands the gentle waters and heals hearts with soothing waves'
+      },
+      '3': {
+        name: 'Solara Goldenheart',
+        power: 'Spreads joy and warmth, turning darkness into radiant light'
+      },
+      '4': {
+        name: 'Fern Meadowdance',
+        power: 'Nurtures growth and breathes life into all things green and wild'
+      }
+    };
+
+    // Add click listeners to fairies
+    fairies.forEach(fairy => {
+      fairy.style.pointerEvents = 'auto';
+      
+      fairy.addEventListener('click', (e) => {
+        const fairyNum = fairy.getAttribute('data-fairy');
+        const data = fairyData[fairyNum];
+        
+        // Set fairy info
+        fairyName.textContent = data.name;
+        fairyPower.textContent = data.power;
+        
+        // Pause fairy's path animation so she stays floating near her info
+        fairy.classList.add('showing-info');
+        activeFairy = fairy;
+        
+        // Position popup near the fairy
+        const rect = fairy.getBoundingClientRect();
+        const popupX = Math.min(Math.max(10, rect.left), window.innerWidth - 300);
+        const popupY = Math.min(rect.top + rect.height + 20, window.innerHeight - 200);
+        
+        fairyInfo.style.left = popupX + 'px';
+        fairyInfo.style.top = popupY + 'px';
+        
+        // Show popup
+        fairyInfo.classList.add('active');
+        
+        // Create magical sparkle burst
+        for (let i = 0; i < 15; i++) {
+          setTimeout(() => {
+            createSparkle(
+              rect.left + rect.width / 2 + (Math.random() - 0.5) * 100,
+              rect.top + rect.height / 2 + (Math.random() - 0.5) * 100
+            );
+          }, i * 30);
+        }
+      });
+    });
+
+    // Function to close fairy info and let fairy continue
+    function closeFairyInfoPopup() {
+      fairyInfo.classList.remove('active');
+      if (activeFairy) {
+        activeFairy.classList.remove('showing-info');
+        activeFairy = null;
+      }
+    }
+
+    // Close fairy info
+    closeFairyInfo.addEventListener('click', closeFairyInfoPopup);
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (fairyInfo.classList.contains('active') && 
+          !fairyInfo.contains(e.target) && 
+          !e.target.closest('.fairy-wrapper')) {
+        closeFairyInfoPopup();
+      }
+    });
+
+    // ========================================
     // EASTER EGG FUNCTIONALITY
     // ========================================
     
@@ -1491,6 +1732,11 @@
     const easterEggModal = document.getElementById('easterEggModal');
     const closeModal = document.getElementById('closeModal');
 
+    const easterEggBtn2 = document.getElementById('easterEggBtn2');
+    const easterEggModal2 = document.getElementById('easterEggModal2');
+    const closeModal2 = document.getElementById('closeModal2');
+
+    // First Easter Egg
     easterEggBtn.addEventListener('click', () => {
       easterEggModal.classList.add('active');
       
@@ -1514,10 +1760,39 @@
       }
     });
 
+    // Second Easter Egg
+    easterEggBtn2.addEventListener('click', () => {
+      easterEggModal2.classList.add('active');
+      
+      // Extra sparkle effect with golden colors
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const x = window.innerWidth / 2 + (Math.random() - 0.5) * 300;
+          const y = window.innerHeight / 2 + (Math.random() - 0.5) * 300;
+          createSparkle(x, y);
+        }, i * 50);
+      }
+    });
+
+    closeModal2.addEventListener('click', () => {
+      easterEggModal2.classList.remove('active');
+    });
+
+    easterEggModal2.addEventListener('click', (e) => {
+      if (e.target === easterEggModal2) {
+        easterEggModal2.classList.remove('active');
+      }
+    });
+
     // Close on Escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && easterEggModal.classList.contains('active')) {
-        easterEggModal.classList.remove('active');
+      if (e.key === 'Escape') {
+        if (easterEggModal.classList.contains('active')) {
+          easterEggModal.classList.remove('active');
+        }
+        if (easterEggModal2.classList.contains('active')) {
+          easterEggModal2.classList.remove('active');
+        }
       }
     });
 
