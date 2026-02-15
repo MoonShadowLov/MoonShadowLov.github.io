@@ -697,10 +697,10 @@
     }
 
     .language-btn.active {
-      background: linear-gradient(135deg, #e0b0ff, #c080ff);
-      border-color: #a060ff;
-      color: #2b123d;
-      box-shadow: 0 4px 12px rgba(140, 107, 187, 0.4);
+      background: #3b2158;
+      border-color: #3b2158;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(59, 33, 88, 0.4);
     }
 
     @media (max-width: 768px) {
@@ -1101,7 +1101,7 @@
 <body>
   <!-- Language Switcher -->
   <div class="language-switcher">
-    <button class="language-btn active" data-lang="en">English</button>
+    <button class="language-btn" data-lang="en">English</button>
     <button class="language-btn" data-lang="es">Español</button>
     <button class="language-btn" data-lang="pt">Português</button>
   </div>
@@ -1768,30 +1768,48 @@
       document.querySelectorAll('.footer-item-title')[1].textContent = t.footerContact;
       document.querySelectorAll('.whimsical-button')[2].textContent = t.footerEmailBtn;
       
-      // Easter Eggs
-      document.querySelector('#easterEggModal h3').textContent = t.easterEgg1Title;
-      document.querySelector('#easterEggModal > .easter-egg-content > p').textContent = t.easterEgg1Text;
-      document.querySelector('#easterEggModal .secret-message p:first-child strong').textContent = t.easterEgg1MessageTitle;
-      document.querySelector('#easterEggModal .secret-message p:nth-child(2)').textContent = t.easterEgg1Message;
-      document.querySelector('#easterEggModal .secret-message p:last-child').textContent = t.easterEgg1Signature;
+      // Easter Eggs - Updated for new scrollable structure
+      const modal1 = document.getElementById('easterEggModal');
+      if (modal1) {
+        modal1.querySelector('h3').textContent = t.easterEgg1Title;
+        modal1.querySelector('.modal-body p').textContent = t.easterEgg1Text;
+        modal1.querySelector('.secret-message p:first-child strong').textContent = t.easterEgg1MessageTitle;
+        modal1.querySelector('.secret-message p:nth-child(2)').textContent = t.easterEgg1Message;
+        modal1.querySelector('.secret-message p:last-child').textContent = t.easterEgg1Signature;
+      }
       
-      document.querySelector('#easterEggModal2 h3').textContent = t.easterEgg2Title;
-      document.querySelector('#easterEggModal2 > .easter-egg-content > p').textContent = t.easterEgg2Text;
-      document.querySelector('#easterEggModal2 .secret-message p:first-child strong').textContent = t.easterEgg2MessageTitle;
-      document.querySelector('#easterEggModal2 .secret-message p:nth-child(2)').textContent = t.easterEgg2Message;
-      document.querySelector('#easterEggModal2 .secret-message p:last-child').textContent = t.easterEgg2Signature;
+      const modal2 = document.getElementById('easterEggModal2');
+      if (modal2) {
+        modal2.querySelector('h3').textContent = t.easterEgg2Title;
+        modal2.querySelector('.modal-body p').textContent = t.easterEgg2Text;
+        modal2.querySelector('.secret-message p:first-child strong').textContent = t.easterEgg2MessageTitle;
+        modal2.querySelector('.secret-message p:nth-child(2)').textContent = t.easterEgg2Message;
+        modal2.querySelector('.secret-message p:last-child').textContent = t.easterEgg2Signature;
+      }
       
       // Update fairy data
-      fairyData['1'].name = t.fairy1Name;
-      fairyData['1'].power = t.fairy1Power;
-      fairyData['2'].name = t.fairy2Name;
-      fairyData['2'].power = t.fairy2Power;
-      fairyData['3'].name = t.fairy3Name;
-      fairyData['3'].power = t.fairy3Power;
-      fairyData['4'].name = t.fairy4Name;
-      fairyData['4'].power = t.fairy4Power;
+      if (typeof fairyData !== 'undefined') {
+        fairyData['1'].name = t.fairy1Name;
+        fairyData['1'].power = t.fairy1Power;
+        fairyData['2'].name = t.fairy2Name;
+        fairyData['2'].power = t.fairy2Power;
+        fairyData['3'].name = t.fairy3Name;
+        fairyData['3'].power = t.fairy3Power;
+        fairyData['4'].name = t.fairy4Name;
+        fairyData['4'].power = t.fairy4Power;
+      }
+
+      // If a fairy info popup is currently active, update its content immediately
+      const fairyInfo = document.getElementById('fairyInfo');
+      if (fairyInfo && fairyInfo.classList.contains('active')) {
+        const activeFairyNum = activeFairy ? activeFairy.getAttribute('data-fairy') : null;
+        if (activeFairyNum && fairyData[activeFairyNum]) {
+          document.getElementById('fairyName').textContent = fairyData[activeFairyNum].name;
+          document.getElementById('fairyPower').textContent = fairyData[activeFairyNum].power;
+        }
+      }
       
-      // Update active button
+      // Update active button styling
       document.querySelectorAll('.language-btn').forEach(btn => {
         btn.classList.remove('active');
         if (btn.getAttribute('data-lang') === lang) {
@@ -1799,6 +1817,8 @@
         }
       });
     }
+
+    translatePage('en');
 
     // Language button listeners
     document.querySelectorAll('.language-btn').forEach(btn => {
