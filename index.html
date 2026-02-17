@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>MoonShadow The SunFlower</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     /* ==== Base ==== */
@@ -17,7 +18,6 @@
       line-height: 1.6;
       text-align: center;
       overflow-x: hidden;
-      /* Custom fairy wand cursor */
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, auto;
     }
 
@@ -84,7 +84,6 @@
       will-change: transform;
     }
 
-    /* Optimized fairy animations */
     .fairy-1 { animation: fairy1Path 35s ease-in-out infinite; }
     @keyframes fairy1Path {
       0%, 100% { left: -10%; top: 20%; }
@@ -117,7 +116,6 @@
       75% { left: 45%; top: 50%; }
     }
 
-    /* Fairy SVG styling */
     .fairy-svg {
       width: 56px;
       height: auto;
@@ -126,7 +124,6 @@
       transform-origin: center;
     }
 
-    /* Wing animation - optimized */
     .wing {
       transform-box: fill-box;
       backface-visibility: hidden;
@@ -217,6 +214,8 @@
       text-transform: capitalize;
       text-shadow: 0 2px 4px rgba(0,0,0,0.1);
       line-height: 1.3;
+      max-width: 90%;
+      margin: 0 auto;
     }
     
     .brand-name span {
@@ -279,7 +278,6 @@
       text-shadow: 0 0 20px rgba(177, 146, 223, 0.4), 0 0 40px rgba(177, 146, 223, 0.2);
     }
 
-    /* Magical glow underline */
     .bubble-title::after {
       content: '';
       position: absolute;
@@ -298,7 +296,6 @@
       50% { opacity: 1; width: 80%; }
     }
 
-    /* Floating sparkles */
     .bubble-title::before {
       content: '✶';
       position: absolute;
@@ -417,7 +414,7 @@
       color: #55347f;
     }
 
-    /* Button */
+    /* ==== Buttons ==== */
     .whimsical-button {
       display: inline-block;
       padding: 10px 25px;
@@ -457,6 +454,107 @@
     
     .whimsical-button:hover::before {
       left: 100%;
+    }
+
+    /* ==== Bless This Moment button (mystical font) ==== */
+    .bless-button {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #e0b0ff, #c080ff);
+      color: #2b0e40;
+      font-family: 'Cinzel Decorative', 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      border: 1px solid #a060ff;
+      box-shadow: 0 4px 18px rgba(140, 107, 187, 0.35), 0 0 12px rgba(210, 160, 255, 0.2);
+      transition: all 0.35s ease;
+      margin-top: 15px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      text-shadow: 0 0 10px rgba(177, 146, 223, 0.5);
+    }
+
+    .bless-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+      transition: all 0.7s ease;
+      z-index: -1;
+    }
+
+    .bless-button:hover {
+      background: linear-gradient(135deg, #c080ff, #e0b0ff);
+      box-shadow: 0 6px 22px rgba(140, 107, 187, 0.5), 0 0 20px rgba(210, 160, 255, 0.4);
+      transform: translateY(-2px);
+      text-shadow: 0 0 16px rgba(177, 146, 223, 0.8);
+    }
+
+    .bless-button:hover::before {
+      left: 100%;
+    }
+
+    /* ==== Go Back fairy button ==== */
+    .go-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 20px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(240,210,255,0.85));
+      color: #3b2158;
+      font-family: "Georgia", serif;
+      font-size: 13px;
+      font-style: italic;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      border: 1.5px solid rgba(160,96,255,0.45);
+      box-shadow: 0 3px 12px rgba(140,107,187,0.2), 0 0 8px rgba(210,160,255,0.15);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      backdrop-filter: blur(4px);
+    }
+
+    .go-back-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+      transition: all 0.6s ease;
+      z-index: -1;
+    }
+
+    .go-back-btn:hover {
+      background: linear-gradient(135deg, rgba(224,176,255,0.9), rgba(192,128,255,0.8));
+      box-shadow: 0 5px 16px rgba(140,107,187,0.35), 0 0 14px rgba(210,160,255,0.3);
+      transform: translateY(-2px);
+      border-color: rgba(160,96,255,0.7);
+    }
+
+    .go-back-btn:hover::before {
+      left: 100%;
+    }
+
+    .go-back-btn .fairy-arrow {
+      font-size: 15px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .go-back-btn:hover .fairy-arrow {
+      transform: translateX(-3px);
     }
 
     /* ==== Writing Samples ==== */
@@ -568,7 +666,6 @@
       text-shadow: 0 0 15px rgba(122, 75, 181, 0.3), 0 0 30px rgba(122, 75, 181, 0.15);
     }
 
-    /* Mystical glow effect */
     .journey-label::before {
       content: '';
       position: absolute;
@@ -588,7 +685,6 @@
       50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.7; }
     }
 
-    /* Magical underline */
     .journey-label::after {
       content: '';
       position: absolute;
@@ -664,6 +760,37 @@
       margin-bottom: 8px;
     }
 
+    /* ==== Footer Logo ==== */
+    .footer-logo-wrap {
+      margin-top: 48px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer-logo {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      border-radius: 50%;
+      box-shadow: 0 0 16px rgba(177, 146, 223, 0.5), 0 0 32px rgba(210, 160, 255, 0.25);
+      opacity: 0.9;
+      transition: all 0.4s ease;
+      animation: logoPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes logoPulse {
+      0%, 100% { box-shadow: 0 0 16px rgba(177, 146, 223, 0.5), 0 0 32px rgba(210, 160, 255, 0.25); }
+      50% { box-shadow: 0 0 22px rgba(177, 146, 223, 0.75), 0 0 44px rgba(210, 160, 255, 0.4); }
+    }
+
+    .footer-logo:hover {
+      opacity: 1;
+      transform: scale(1.08) rotate(5deg);
+      box-shadow: 0 0 28px rgba(177, 146, 223, 0.8), 0 0 55px rgba(210, 160, 255, 0.5);
+    }
+
     /* ==== Language Switcher ==== */
     .language-switcher {
       position: fixed;
@@ -697,10 +824,10 @@
     }
 
     .language-btn.active {
-      background: #3b2158;
-      border-color: #3b2158;
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(59, 33, 88, 0.4);
+      background: linear-gradient(135deg, #e0b0ff, #c080ff);
+      border-color: #a060ff;
+      color: #2b123d;
+      box-shadow: 0 4px 12px rgba(140, 107, 187, 0.4);
     }
 
     @media (max-width: 768px) {
@@ -742,7 +869,6 @@
       box-shadow: 0 6px 25px rgba(140, 107, 187, 0.5);
     }
 
-    /* Second Easter Egg */
     .easter-egg-trigger-2 {
       position: fixed;
       bottom: 20px;
@@ -785,13 +911,13 @@
       width: 100%;
       height: 100%;
       background: rgba(59, 33, 88, 0.92);
-      z-index: 10000;
+      z-index: 999;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      overflow-y: auto;
     }
 
     .easter-egg-modal.active {
@@ -806,52 +932,16 @@
 
     .easter-egg-content {
       background: linear-gradient(135deg, #fef5ff, #e3c0ff);
-      border-radius: 24px;
+      padding: 30px 26px 26px;
+      border-radius: 20px;
+      max-width: 440px;
       width: 100%;
-      max-width: 480px;
-      max-height: 80vh;
-      display: flex;
-      flex-direction: column;
+      text-align: center;
       position: relative;
       box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      overflow: hidden; /* Ensure children don't spill out */
-      border: 1px solid rgba(255, 255, 255, 0.5);
-    }
-
-    /* Header for title and close button */
-    .modal-header {
-      padding: 25px 25px 15px;
-      position: relative;
-      flex-shrink: 0;
-      text-align: center;
-    }
-
-    /* Scrollable body */
-    .modal-body {
-      padding: 0 25px 30px;
+      animation: slideIn 0.5s ease;
+      max-height: 80vh;
       overflow-y: auto;
-      flex-grow: 1;
-      scrollbar-width: thin;
-      scrollbar-color: #b192df transparent;
-    }
-
-    .modal-body::-webkit-scrollbar {
-      width: 6px;
-    }
-    .modal-body::-webkit-scrollbar-thumb {
-      background-color: #b192df;
-      border-radius: 10px;
-    }
-
-    @media (max-width: 600px) {
-      .easter-egg-content {
-        max-width: 90%;
-        max-height: 75vh;
-        border-radius: 20px;
-      }
-      .modal-header { padding: 20px 20px 10px; }
-      .modal-body { padding: 0 20px 25px; }
     }
 
     @keyframes slideIn {
@@ -859,156 +949,72 @@
       to { transform: translateY(0); opacity: 1; }
     }
 
+    .easter-egg-content h3 {
+      font-size: 22px;
+      margin-bottom: 14px;
+      color: #3b2158;
+      margin-top: 4px;
+    }
+
+    .easter-egg-content > p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #4a2a6f;
+      margin-bottom: 12px;
+    }
+
+    .secret-message {
+      background: rgba(255,255,255,0.6);
+      padding: 16px;
+      border-radius: 10px;
+      margin-top: 14px;
+      font-style: italic;
+      color: #5a3a7d;
+      border: 1px solid rgba(140, 107, 187, 0.3);
+    }
+
+    .secret-message p {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .secret-message p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ==== Small X close button (3x smaller than before) ==== */
     .easter-egg-close {
       position: absolute;
-      top: 12px;
-      right: 12px;
-      background: rgba(59, 33, 88, 0.05);
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      color: #3b2158;
-      width: 32px;
-      height: 32px;
+      top: 8px;
+      right: 8px;
+      background: linear-gradient(135deg, #e0b0ff, #c080ff);
+      border: 1.5px solid #8c6bbb;
+      font-size: 13px;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
+      color: #2b123d;
+      font-weight: bold;
+      width: 22px;
+      height: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
       transition: all 0.3s ease;
       z-index: 10;
+      box-shadow: 0 2px 6px rgba(59, 33, 88, 0.35);
+      line-height: 1;
     }
 
     .easter-egg-close:hover {
-      background: rgba(140, 107, 187, 0.2);
-      transform: rotate(90deg);
+      background: linear-gradient(135deg, #c080ff, #a060ff);
+      transform: rotate(90deg) scale(1.15);
+      border-color: #6a3a9f;
+      box-shadow: 0 3px 10px rgba(59, 33, 88, 0.5);
     }
 
-    .easter-egg-content h3 {
-      font-size: clamp(20px, 5vw, 26px);
-      margin: 0;
-      color: #3b2158;
-      line-height: 1.2;
-    }
-
-    .easter-egg-content p {
-      font-size: 16px;
-      line-height: 1.8;
-      color: #4a2a6f;
-      margin-bottom: 15px;
-    }
-
-    .secret-message {
-      background: rgba(255,255,255,0.6);
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
-      font-style: italic;
-      color: #5a3a7d;
-      border: 1px solid rgba(140, 107, 187, 0.3);
-    }
-
-    /* Mobile responsiveness */
-    @media (max-width: 768px) {
-      .fairy-svg {
-        width: 44px;
-      }
-      
-      section {
-        padding: 60px 15px;
-      }
-      
-      .writing-box {
-        padding: 28px 18px;
-      }
-      
-      .story-title {
-        font-size: 16px;
-      }
-      
-      .story-text {
-        font-size: 14px;
-      }
-
-      .easter-egg-trigger {
-        bottom: 15px;
-        right: 15px;
-        width: 45px;
-        height: 45px;
-      }
-
-      .easter-egg-trigger-2 {
-        bottom: 15px;
-        left: 15px;
-        width: 45px;
-        height: 45px;
-      }
-
-      .easter-egg-content {
-      background: linear-gradient(135deg, #fef5ff, #e3c0ff);
-      border-radius: 24px;
-      width: 100%;
-      max-width: 480px;
-      max-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      animation: slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      overflow: hidden; /* Ensure children don't spill out */
-      border: 1px solid rgba(255, 255, 255, 0.5);
-    }
-
-    /* Header for title and close button */
-    .modal-header {
-      padding: 25px 25px 15px;
-      position: relative;
-      flex-shrink: 0;
-      text-align: center;
-    }
-
-    /* Scrollable body */
-    .modal-body {
-      padding: 0 25px 30px;
-      overflow-y: auto;
-      flex-grow: 1;
-      scrollbar-width: thin;
-      scrollbar-color: #b192df transparent;
-    }
-
-    .modal-body::-webkit-scrollbar {
-      width: 6px;
-    }
-    .modal-body::-webkit-scrollbar-thumb {
-      background-color: #b192df;
-      border-radius: 10px;
-    }
-
-    @media (max-width: 600px) {
-      .easter-egg-content {
-        max-width: 90%;
-        max-height: 75vh;
-        border-radius: 20px;
-      }
-      .modal-header { padding: 20px 20px 10px; }
-      .modal-body { padding: 0 20px 25px; }
-    }
-    }
-
-    /* Reduced motion support */
-    @media (prefers-reduced-motion: reduce) {
-      .fairy-wrapper,
-      .wing-left,
-      .wing-right,
-      .orb,
-      .fairy-bobbing,
-      .bubble-title::after,
-      .easter-egg-trigger {
-        animation: none !important;
-      }
-      
-      * {
-        transition: none !important;
-      }
+    .easter-egg-close:active {
+      transform: rotate(90deg) scale(0.95);
     }
 
     /* ==== Fairy Info Popup ==== */
@@ -1017,15 +1023,14 @@
       background: linear-gradient(135deg, rgba(254, 245, 255, 0.98), rgba(227, 192, 255, 0.95));
       border: 2px solid rgba(177, 146, 223, 0.6);
       border-radius: 16px;
-      padding: 20px;
+      padding: 20px 28px;
       box-shadow: 0 10px 40px rgba(140, 107, 187, 0.4);
       z-index: 9998;
       pointer-events: none;
       opacity: 0;
       transform: scale(0.8) translateY(10px);
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      width: 280px;
-      max-width: calc(100vw - 40px);
+      max-width: 280px;
       text-align: center;
     }
 
@@ -1073,7 +1078,6 @@
       transform: rotate(90deg);
     }
 
-    /* Make fairies clickable but keep wand cursor */
     .fairy-wrapper {
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
     }
@@ -1087,7 +1091,6 @@
       transition: all 0.3s ease;
     }
 
-    /* Fairy stays in place when info is shown */
     .fairy-wrapper.showing-info {
       animation-play-state: paused !important;
     }
@@ -1095,13 +1098,116 @@
     .fairy-wrapper.showing-info .fairy-bobbing {
       animation-play-state: running !important;
     }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .fairy-svg {
+        width: 44px;
+      }
+      
+      section {
+        padding: 60px 15px;
+      }
+      
+      .writing-box {
+        padding: 28px 18px;
+      }
+      
+      .story-title {
+        font-size: 16px;
+      }
+      
+      .story-text {
+        font-size: 14px;
+      }
+
+      .easter-egg-trigger {
+        bottom: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+      }
+
+      .easter-egg-trigger-2 {
+        bottom: 15px;
+        left: 15px;
+        width: 45px;
+        height: 45px;
+      }
+
+      .easter-egg-content {
+        padding: 26px 16px 18px;
+        margin: 10px;
+        max-width: 92vw;
+        max-height: 75vh;
+        border-radius: 16px;
+      }
+
+      .easter-egg-content h3 {
+        font-size: 17px;
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+
+      .easter-egg-content > p {
+        font-size: 13px;
+        line-height: 1.55;
+        margin-bottom: 10px;
+      }
+
+      .secret-message {
+        padding: 12px;
+        margin-top: 10px;
+      }
+
+      .secret-message p {
+        font-size: 12px;
+        line-height: 1.55;
+        margin-bottom: 8px;
+      }
+
+      .easter-egg-close {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        top: 7px;
+        right: 7px;
+      }
+
+      .footer-logo {
+        width: 52px;
+        height: 52px;
+      }
+
+      .bless-button {
+        font-size: 11px;
+        padding: 10px 20px;
+      }
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+      .fairy-wrapper,
+      .wing-left,
+      .wing-right,
+      .orb,
+      .fairy-bobbing,
+      .bubble-title::after,
+      .easter-egg-trigger {
+        animation: none !important;
+      }
+      
+      * {
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 
 <body>
   <!-- Language Switcher -->
   <div class="language-switcher">
-    <button class="language-btn" data-lang="en">English</button>
+    <button class="language-btn active" data-lang="en">English</button>
     <button class="language-btn" data-lang="es">Español</button>
     <button class="language-btn" data-lang="pt">Português</button>
   </div>
@@ -1354,47 +1460,41 @@
   </div>
 
   <!-- Easter Egg Triggers -->
-  <div class="easter-egg-trigger" id="easterEggBtn" title="Click for a surprise! ✨">
-    🌙
-  </div>
-  <div class="easter-egg-trigger-2" id="easterEggBtn2" title="Another secret awaits! ✨">
-    ⭐
-  </div>
+  <div class="easter-egg-trigger" id="easterEggBtn" title="Click for a surprise! ✨">🌙</div>
+  <div class="easter-egg-trigger-2" id="easterEggBtn2" title="Another secret awaits! ✨">⭐</div>
 
-  <!-- Easter Egg Modal -->
+  <!-- Easter Egg Modal 1 -->
   <div class="easter-egg-modal" id="easterEggModal">
     <div class="easter-egg-content">
-      <div class="modal-header">
-        <button class="easter-egg-close" id="closeModal">×</button>
-        <h3>✨ You Found the Secret! ✨</h3>
-      </div>
-      <div class="modal-body">
-        <p>Congratulations, curious soul! You've discovered the hidden treasure of this enchanted garden.</p>
+      <button class="easter-egg-close" id="closeModal">×</button>
+      <h3>✨ You Found the Secret! ✨</h3>
+      <p>Congratulations, curious soul! You've discovered the hidden treasure of this enchanted garden.</p>
       <div class="secret-message">
         <p><strong>MoonShadow's Secret Message:</strong></p>
         <p>"In the quiet moments between dreams and reality, magic lives. You are more creative, more powerful, and more loved than you know. Keep dancing with the fairies, and never stop believing in the impossible."</p>
-        <p style="margin-top: 15px; font-size: 14px;">– With starlight and wonder, MoonShadow 🌙✨</p>
+        <p style="font-size: 13px;">– With starlight and wonder, MoonShadow 🌙✨</p>
       </div>
+      <a href="#" class="go-back-btn" id="goBackModal1" style="margin-top:18px;" onclick="document.getElementById('easterEggModal').classList.remove('active'); return false;">
+        <span class="fairy-arrow">🧚</span> Back to the Magic
+      </a>
     </div>
   </div>
-  </div>
 
-  <!-- Second Easter Egg Modal -->
+  <!-- Easter Egg Modal 2 -->
   <div class="easter-egg-modal" id="easterEggModal2">
     <div class="easter-egg-content">
-      <div class="modal-header">
-        <button class="easter-egg-close" id="closeModal2">×</button>
-        <h3>⭐ A Hidden Treasure! ⭐</h3>
-      </div>
-      <div class="modal-body">
-        <p>You truly are an explorer of hidden wonders! Here's a magical message just for you.</p>
+      <button class="easter-egg-close" id="closeModal2">×</button>
+      <h3>⭐ A Hidden Treasure! ⭐</h3>
+      <p>You truly are an explorer of hidden wonders! Here's a magical message just for you.</p>
       <div class="secret-message">
         <p><strong>A Whisper from the Stars:</strong></p>
         <p>"Every ending is a new beginning in disguise. The darkest nights birth the brightest stars. When you feel lost, remember: even the moon goes through phases, yet it always returns in full glory. Your light will shine again."</p>
-        <p style="margin-top: 15px; font-size: 14px;">– Keep shining, beautiful soul ⭐💫</p>
+        <p style="font-size: 13px;">– Keep shining, beautiful soul ⭐💫</p>
       </div>
+      <a href="#" class="go-back-btn" id="goBackModal2" style="margin-top:18px;" onclick="document.getElementById('easterEggModal2').classList.remove('active'); return false;">
+        <span class="fairy-arrow">🧚</span> Back to the Magic
+      </a>
     </div>
-  </div>
   </div>
 
   <!-- Hero -->
@@ -1530,7 +1630,7 @@
     </div>
   </section>
 
-  <!-- Contact -->
+  <!-- Contact / Footer -->
   <footer class="bg-moon">
     <section>
       <div class="container">
@@ -1539,19 +1639,25 @@
         </p>
 
         <div class="footer-grid">
+          <!-- Cash App: title removed, bless button kept with Cash App link -->
           <div>
-            <div class="footer-item-title">Bless This Moment</div>
             <div class="footer-item-value">
-              <a href="https://cash.app/$moonshadowflower""https://www.paypal.com/paypalme/carinaIsaza"  target="_blank" class="whimsical-button">Leave Token</a>
+              <a href="https://cash.app/$moonshadowflower" target="_blank" class="bless-button" id="blessBtn">✦ Bless This Moment ✦</a>
             </div>
           </div>
+          <!-- Email: title removed, button kept -->
           <div>
-            <div class="footer-item-title">Contact Me</div>
             <div class="footer-item-value">
-              <a href="mailto:Moonshadowthesunflower@gmail.com"class="whimsical-button">Email Me</a>
+              <a href="mailto:Moonshadowthesunflower@gmail.com" class="whimsical-button" id="emailBtn">Email Me</a>
             </div>
           </div>
         </div>
+
+        <!-- Footer Logo -->
+        <div class="footer-logo-wrap">
+          <img src="fairy1.png" alt="MoonShadow Logo" class="footer-logo" />
+        </div>
+
       </div>
     </section>
   </footer>
@@ -1592,19 +1698,20 @@
         journeyTitle3: "Though the journey may be harsh and confusing, we live every second of it, so let's embrace and enjoy the ride.",
         journeyText3: "Your curiosity, kindness, and presence turn this little corner of the internet into a shared sanctuary.",
         footerText: "Thank you for exploring my creative world—your curiosity and support mean everything to me.",
-        footerCashApp: "Cash App",
-        footerContact: "Contact Me",
-        footerEmailBtn: "Email Me",
+        blessBtn: "✦ Bless This Moment ✦",
+        emailBtn: "Email Me",
         easterEgg1Title: "✨ You Found the Secret! ✨",
         easterEgg1Text: "Congratulations, curious soul! You've discovered the hidden treasure of this enchanted garden.",
         easterEgg1MessageTitle: "MoonShadow's Secret Message:",
-        easterEgg1Message: "In the quiet moments between dreams and reality, magic lives. You are more creative, more powerful, and more loved than you know. Keep dancing with the fairies, and never stop believing in the impossible.",
+        easterEgg1Message: "\"In the quiet moments between dreams and reality, magic lives. You are more creative, more powerful, and more loved than you know. Keep dancing with the fairies, and never stop believing in the impossible.\"",
         easterEgg1Signature: "– With starlight and wonder, MoonShadow 🌙✨",
+        easterEgg1Back: "🧚 Back to the Magic",
         easterEgg2Title: "⭐ A Hidden Treasure! ⭐",
         easterEgg2Text: "You truly are an explorer of hidden wonders! Here's a magical message just for you.",
         easterEgg2MessageTitle: "A Whisper from the Stars:",
-        easterEgg2Message: "Every ending is a new beginning in disguise. The darkest nights birth the brightest stars. When you feel lost, remember: even the moon goes through phases, yet it always returns in full glory. Your light will shine again.",
+        easterEgg2Message: "\"Every ending is a new beginning in disguise. The darkest nights birth the brightest stars. When you feel lost, remember: even the moon goes through phases, yet it always returns in full glory. Your light will shine again.\"",
         easterEgg2Signature: "– Keep shining, beautiful soul ⭐💫",
+        easterEgg2Back: "🧚 Back to the Magic",
         fairy1Name: "Luna Starwhisper",
         fairy1Power: "Weaves dreams from moonlight and brings peaceful sleep to weary souls",
         fairy2Name: "Aqua Crystalwing",
@@ -1644,19 +1751,20 @@
         journeyTitle3: "Aunque el viaje pueda ser duro y confuso, vivimos cada segundo de él, así que abracemos y disfrutemos el camino.",
         journeyText3: "Tu curiosidad, bondad y presencia convierten este pequeño rincón de internet en un santuario compartido.",
         footerText: "Gracias por explorar mi mundo creativo—tu curiosidad y apoyo significan todo para mí.",
-        footerCashApp: "Cash App",
-        footerContact: "Contáctame",
-        footerEmailBtn: "Envíame un Email",
+        blessBtn: "✦ Bendice Este Momento ✦",
+        emailBtn: "Envíame un Email",
         easterEgg1Title: "✨ ¡Encontraste el Secreto! ✨",
         easterEgg1Text: "¡Felicitaciones, alma curiosa! Has descubierto el tesoro escondido de este jardín encantado.",
         easterEgg1MessageTitle: "Mensaje Secreto de MoonShadow:",
-        easterEgg1Message: "En los momentos tranquilos entre los sueños y la realidad, vive la magia. Eres más creativo, más poderoso y más amado de lo que sabes. Sigue bailando con las hadas y nunca dejes de creer en lo imposible.",
+        easterEgg1Message: "\"En los momentos tranquilos entre los sueños y la realidad, vive la magia. Eres más creativo, más poderoso y más amado de lo que sabes. Sigue bailando con las hadas y nunca dejes de creer en lo imposible.\"",
         easterEgg1Signature: "– Con luz de estrellas y asombro, MoonShadow 🌙✨",
+        easterEgg1Back: "🧚 Volver a la Magia",
         easterEgg2Title: "⭐ ¡Un Tesoro Escondido! ⭐",
         easterEgg2Text: "¡Realmente eres un explorador de maravillas ocultas! Aquí hay un mensaje mágico solo para ti.",
         easterEgg2MessageTitle: "Un Susurro de las Estrellas:",
-        easterEgg2Message: "Cada final es un nuevo comienzo disfrazado. Las noches más oscuras dan luz a las estrellas más brillantes. Cuando te sientas perdido, recuerda: incluso la luna pasa por fases, pero siempre regresa en gloria completa. Tu luz brillará de nuevo.",
+        easterEgg2Message: "\"Cada final es un nuevo comienzo disfrazado. Las noches más oscuras dan luz a las estrellas más brillantes. Cuando te sientas perdido, recuerda: incluso la luna pasa por fases, pero siempre regresa en gloria completa. Tu luz brillará de nuevo.\"",
         easterEgg2Signature: "– Sigue brillando, alma hermosa ⭐💫",
+        easterEgg2Back: "🧚 Volver a la Magia",
         fairy1Name: "Luna Susurro Estelar",
         fairy1Power: "Teje sueños de luz de luna y trae sueño pacífico a las almas cansadas",
         fairy2Name: "Aqua Ala de Cristal",
@@ -1696,19 +1804,20 @@
         journeyTitle3: "Embora a jornada possa ser áspera e confusa, vivemos cada segundo dela, então vamos abraçar e aproveitar o passeio.",
         journeyText3: "Sua curiosidade, bondade e presença transformam este pequeno cantinho da internet em um santuário compartilhado.",
         footerText: "Obrigado por explorar meu mundo criativo—sua curiosidade e apoio significam tudo para mim.",
-        footerCashApp: "Cash App",
-        footerContact: "Entre em Contato",
-        footerEmailBtn: "Me Envie um Email",
+        blessBtn: "✦ Abençoa Este Momento ✦",
+        emailBtn: "Me Envie um Email",
         easterEgg1Title: "✨ Você Encontrou o Segredo! ✨",
         easterEgg1Text: "Parabéns, alma curiosa! Você descobriu o tesouro escondido deste jardim encantado.",
         easterEgg1MessageTitle: "Mensagem Secreta de MoonShadow:",
-        easterEgg1Message: "Nos momentos tranquilos entre sonhos e realidade, a magia vive. Você é mais criativo, mais poderoso e mais amado do que imagina. Continue dançando com as fadas e nunca pare de acreditar no impossível.",
+        easterEgg1Message: "\"Nos momentos tranquilos entre sonhos e realidade, a magia vive. Você é mais criativo, mais poderoso e mais amado do que imagina. Continue dançando com as fadas e nunca pare de acreditar no impossível.\"",
         easterEgg1Signature: "– Com luz das estrelas e maravilha, MoonShadow 🌙✨",
+        easterEgg1Back: "🧚 Voltar à Magia",
         easterEgg2Title: "⭐ Um Tesouro Escondido! ⭐",
         easterEgg2Text: "Você realmente é um explorador de maravilhas ocultas! Aqui está uma mensagem mágica só para você.",
         easterEgg2MessageTitle: "Um Sussurro das Estrelas:",
-        easterEgg2Message: "Todo fim é um novo começo disfarçado. As noites mais escuras dão origem às estrelas mais brilhantes. Quando você se sentir perdido, lembre-se: até a lua passa por fases, mas sempre retorna em glória completa. Sua luz brilhará novamente.",
+        easterEgg2Message: "\"Todo fim é um novo começo disfarçado. As noites mais escuras dão origem às estrelas mais brilhantes. Quando você se sentir perdido, lembre-se: até a lua passa por fases, mas sempre retorna em glória completa. Sua luz brilhará novamente.\"",
         easterEgg2Signature: "– Continue brilhando, alma linda ⭐💫",
+        easterEgg2Back: "🧚 Voltar à Magia",
         fairy1Name: "Luna Sussurro Estelar",
         fairy1Power: "Tece sonhos de luz lunar e traz sono pacífico para almas cansadas",
         fairy2Name: "Aqua Asa de Cristal",
@@ -1726,7 +1835,6 @@
       currentLang = lang;
       const t = translations[lang];
       
-      // Update all text content
       document.querySelector('.hero-subtitle').textContent = t.heroSubtitle;
       document.querySelector('.bubble-title').textContent = t.greeting;
       document.querySelector('.welcome-title').textContent = t.welcomeTitle;
@@ -1764,52 +1872,44 @@
       journeyCards[2].querySelector('.journey-text-small').textContent = t.journeyText3;
       
       document.querySelector('footer p').textContent = t.footerText;
-      document.querySelector('.footer-item-title').textContent = t.footerCashApp;
-      document.querySelectorAll('.footer-item-title')[1].textContent = t.footerContact;
-      document.querySelectorAll('.whimsical-button')[2].textContent = t.footerEmailBtn;
+
+      // Bless button & email button
+      const blessBtn = document.getElementById('blessBtn');
+      if (blessBtn) blessBtn.textContent = t.blessBtn;
+      const emailBtn = document.getElementById('emailBtn');
+      if (emailBtn) emailBtn.textContent = t.emailBtn;
       
-      // Easter Eggs - Updated for new scrollable structure
-      const modal1 = document.getElementById('easterEggModal');
-      if (modal1) {
-        modal1.querySelector('h3').textContent = t.easterEgg1Title;
-        modal1.querySelector('.modal-body p').textContent = t.easterEgg1Text;
-        modal1.querySelector('.secret-message p:first-child strong').textContent = t.easterEgg1MessageTitle;
-        modal1.querySelector('.secret-message p:nth-child(2)').textContent = t.easterEgg1Message;
-        modal1.querySelector('.secret-message p:last-child').textContent = t.easterEgg1Signature;
-      }
-      
-      const modal2 = document.getElementById('easterEggModal2');
-      if (modal2) {
-        modal2.querySelector('h3').textContent = t.easterEgg2Title;
-        modal2.querySelector('.modal-body p').textContent = t.easterEgg2Text;
-        modal2.querySelector('.secret-message p:first-child strong').textContent = t.easterEgg2MessageTitle;
-        modal2.querySelector('.secret-message p:nth-child(2)').textContent = t.easterEgg2Message;
-        modal2.querySelector('.secret-message p:last-child').textContent = t.easterEgg2Signature;
-      }
+      // Easter Egg 1
+      document.querySelector('#easterEggModal h3').textContent = t.easterEgg1Title;
+      document.querySelector('#easterEggModal > .easter-egg-content > p').textContent = t.easterEgg1Text;
+      const ee1Paras = document.querySelectorAll('#easterEggModal .secret-message p');
+      if (ee1Paras[0]) ee1Paras[0].innerHTML = '<strong>' + t.easterEgg1MessageTitle + '</strong>';
+      if (ee1Paras[1]) ee1Paras[1].textContent = t.easterEgg1Message;
+      if (ee1Paras[2]) ee1Paras[2].textContent = t.easterEgg1Signature;
+      const back1 = document.getElementById('goBackModal1');
+      if (back1) back1.innerHTML = '<span class="fairy-arrow">🧚</span> ' + t.easterEgg1Back.replace('🧚 ', '');
+
+      // Easter Egg 2
+      document.querySelector('#easterEggModal2 h3').textContent = t.easterEgg2Title;
+      document.querySelector('#easterEggModal2 > .easter-egg-content > p').textContent = t.easterEgg2Text;
+      const ee2Paras = document.querySelectorAll('#easterEggModal2 .secret-message p');
+      if (ee2Paras[0]) ee2Paras[0].innerHTML = '<strong>' + t.easterEgg2MessageTitle + '</strong>';
+      if (ee2Paras[1]) ee2Paras[1].textContent = t.easterEgg2Message;
+      if (ee2Paras[2]) ee2Paras[2].textContent = t.easterEgg2Signature;
+      const back2 = document.getElementById('goBackModal2');
+      if (back2) back2.innerHTML = '<span class="fairy-arrow">🧚</span> ' + t.easterEgg2Back.replace('🧚 ', '');
       
       // Update fairy data
-      if (typeof fairyData !== 'undefined') {
-        fairyData['1'].name = t.fairy1Name;
-        fairyData['1'].power = t.fairy1Power;
-        fairyData['2'].name = t.fairy2Name;
-        fairyData['2'].power = t.fairy2Power;
-        fairyData['3'].name = t.fairy3Name;
-        fairyData['3'].power = t.fairy3Power;
-        fairyData['4'].name = t.fairy4Name;
-        fairyData['4'].power = t.fairy4Power;
-      }
-
-      // If a fairy info popup is currently active, update its content immediately
-      const fairyInfo = document.getElementById('fairyInfo');
-      if (fairyInfo && fairyInfo.classList.contains('active')) {
-        const activeFairyNum = activeFairy ? activeFairy.getAttribute('data-fairy') : null;
-        if (activeFairyNum && fairyData[activeFairyNum]) {
-          document.getElementById('fairyName').textContent = fairyData[activeFairyNum].name;
-          document.getElementById('fairyPower').textContent = fairyData[activeFairyNum].power;
-        }
-      }
+      fairyData['1'].name = t.fairy1Name;
+      fairyData['1'].power = t.fairy1Power;
+      fairyData['2'].name = t.fairy2Name;
+      fairyData['2'].power = t.fairy2Power;
+      fairyData['3'].name = t.fairy3Name;
+      fairyData['3'].power = t.fairy3Power;
+      fairyData['4'].name = t.fairy4Name;
+      fairyData['4'].power = t.fairy4Power;
       
-      // Update active button styling
+      // Update active button
       document.querySelectorAll('.language-btn').forEach(btn => {
         btn.classList.remove('active');
         if (btn.getAttribute('data-lang') === lang) {
@@ -1818,9 +1918,6 @@
       });
     }
 
-    translatePage('en');
-
-    // Language button listeners
     document.querySelectorAll('.language-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const lang = btn.getAttribute('data-lang');
@@ -1837,22 +1934,17 @@
     let mouseY = window.innerHeight / 2;
     let rafId = null;
 
-    // Throttled cursor tracking
-    function updateCursorPosition(x, y) {
-      mouseX = x;
-      mouseY = y;
-    }
-
     document.addEventListener('mousemove', (e) => {
-      updateCursorPosition(e.clientX, e.clientY);
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     });
 
     document.addEventListener('touchmove', (e) => {
       const touch = e.touches[0];
-      updateCursorPosition(touch.clientX, touch.clientY);
+      mouseX = touch.clientX;
+      mouseY = touch.clientY;
     }, { passive: true });
 
-    // Optimized fairy interaction with RAF - fairies react to cursor/finger
     function updateFairyInteraction() {
       fairies.forEach(fairy => {
         const rect = fairy.getBoundingClientRect();
@@ -1863,16 +1955,13 @@
         const deltaY = mouseY - fairyCenterY;
         const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
         
-        const interactionRadius = 250; // Increased for better mobile interaction
+        const interactionRadius = 250;
         
         if (distance < interactionRadius) {
           const strength = Math.max(0, 1 - distance / interactionRadius);
-          const offsetX = -deltaX * strength * 0.2; // Slightly more reactive
+          const offsetX = -deltaX * strength * 0.2;
           const offsetY = -deltaY * strength * 0.2;
-          
           fairy.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-          
-          // Add hover glow when cursor is near
           const svg = fairy.querySelector('.fairy-svg');
           if (svg && distance < 150) {
             svg.style.filter = 'drop-shadow(0 0 10px rgba(255,255,255,1)) drop-shadow(0 0 20px rgba(210,160,255,0.9))';
@@ -1894,7 +1983,7 @@
     updateFairyInteraction();
 
     // ========================================
-    // OPTIMIZED FAIRY DUST TRAIL
+    // FAIRY DUST TRAIL
     // ========================================
     
     const dustColors = {
@@ -1907,7 +1996,6 @@
     function createFairyDust(x, y, color) {
       const dust = document.createElement('div');
       const size = Math.random() * 6 + 2;
-      
       Object.assign(dust.style, {
         width: size + 'px',
         height: size + 'px',
@@ -1923,38 +2011,30 @@
         transition: 'all 1.5s linear',
         willChange: 'transform, opacity'
       });
-      
       document.body.appendChild(dust);
-
       requestAnimationFrame(() => {
         dust.style.opacity = '0';
         dust.style.transform = `translateY(30px) translateX(${Math.random() * 16 - 8}px)`;
       });
-
       setTimeout(() => dust.remove(), 1550);
     }
 
-    // Optimized dust trail
     setInterval(() => {
       fairies.forEach(fairy => {
         const fairyNum = fairy.getAttribute('data-fairy');
         const svg = fairy.querySelector('.fairy-svg');
         if (!svg) return;
-        
         const rect = svg.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        
         createFairyDust(
-          centerX + (Math.random() * 14 - 7), 
-          centerY + (Math.random() * 14 - 7),
+          rect.left + rect.width / 2 + (Math.random() * 14 - 7),
+          rect.top + rect.height / 2 + (Math.random() * 14 - 7),
           dustColors[fairyNum]
         );
       });
     }, 180);
 
     // ========================================
-    // OPTIMIZED SPARKLE & WAND
+    // SPARKLE & WAND
     // ========================================
     
     let lastSparkleTime = 0;
@@ -1962,7 +2042,6 @@
     const sparklePool = [];
     const SPARKLE_POOL_SIZE = 20;
 
-    // Pre-create sparkle elements
     for (let i = 0; i < SPARKLE_POOL_SIZE; i++) {
       const sparkle = document.createElement('div');
       Object.assign(sparkle.style, {
@@ -1983,12 +2062,9 @@
       const now = Date.now();
       if (now - lastSparkleTime < 50) return;
       lastSparkleTime = now;
-
       const sparkle = sparklePool[sparkleIndex];
       sparkleIndex = (sparkleIndex + 1) % SPARKLE_POOL_SIZE;
-
       const size = Math.random() * 10 + 5;
-      
       Object.assign(sparkle.style, {
         width: size + 'px',
         height: size + 'px',
@@ -2000,15 +2076,11 @@
         display: 'block',
         transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
       });
-
       requestAnimationFrame(() => {
         sparkle.style.opacity = '0';
         sparkle.style.transform = `scale(0) translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px)`;
       });
-
-      setTimeout(() => {
-        sparkle.style.display = 'none';
-      }, 800);
+      setTimeout(() => { sparkle.style.display = 'none'; }, 800);
     }
 
     document.addEventListener('mousemove', (e) => {
@@ -2019,7 +2091,6 @@
 
     document.addEventListener('touchmove', (e) => {
       if (!touchActive) return;
-      
       const touch = e.touches[0];
       mobileWand.style.display = 'block';
       mobileWand.style.left = touch.clientX + 'px';
@@ -2027,27 +2098,21 @@
       createSparkle(touch.clientX, touch.clientY);
     }, { passive: true });
 
-    document.addEventListener('touchstart', () => {
-      touchActive = true;
-    }, { passive: true });
-
+    document.addEventListener('touchstart', () => { touchActive = true; }, { passive: true });
     document.addEventListener('touchend', () => {
       touchActive = false;
       mobileWand.style.display = 'none';
     }, { passive: true });
 
     // ========================================
-    // OPTIMIZED ORBS
+    // ORBS
     // ========================================
     
     const orbContainer = document.querySelector('.orb-container');
-    const numOrbs = 8;
-
-    for (let i = 0; i < numOrbs; i++) {
+    for (let i = 0; i < 8; i++) {
       const orb = document.createElement('div');
       orb.className = 'orb';
       const size = Math.random() * 100 + 50;
-      
       Object.assign(orb.style, {
         width: size + 'px',
         height: size + 'px',
@@ -2055,7 +2120,6 @@
         top: Math.random() * 100 + 'vh',
         animationDelay: Math.random() * 10 + 's'
       });
-      
       orb.style.setProperty('--x', `${Math.random() * 200 - 100}px`);
       orb.style.setProperty('--y', `${Math.random() * 200 - 100}px`);
       orbContainer.appendChild(orb);
@@ -2066,59 +2130,33 @@
     // ========================================
     
     const fairyInfo = document.getElementById('fairyInfo');
-    const fairyName = document.getElementById('fairyName');
-    const fairyPower = document.getElementById('fairyPower');
+    const fairyNameEl = document.getElementById('fairyName');
+    const fairyPowerEl = document.getElementById('fairyPower');
     const closeFairyInfo = document.getElementById('closeFairyInfo');
     let activeFairy = null;
 
-    // Fairy data - names and magic powers
     const fairyData = {
-      '1': {
-        name: 'Luna Starwhisper',
-        power: 'Weaves dreams from moonlight and brings peaceful sleep to weary souls'
-      },
-      '2': {
-        name: 'Aqua Crystalwing',
-        power: 'Commands the gentle waters and heals hearts with soothing waves'
-      },
-      '3': {
-        name: 'Solara Goldenheart',
-        power: 'Spreads joy and warmth, turning darkness into radiant light'
-      },
-      '4': {
-        name: 'Fern Meadowdance',
-        power: 'Nurtures growth and breathes life into all things green and wild'
-      }
+      '1': { name: 'Luna Starwhisper', power: 'Weaves dreams from moonlight and brings peaceful sleep to weary souls' },
+      '2': { name: 'Aqua Crystalwing', power: 'Commands the gentle waters and heals hearts with soothing waves' },
+      '3': { name: 'Solara Goldenheart', power: 'Spreads joy and warmth, turning darkness into radiant light' },
+      '4': { name: 'Fern Meadowdance', power: 'Nurtures growth and breathes life into all things green and wild' }
     };
 
-    // Add click listeners to fairies
     fairies.forEach(fairy => {
       fairy.style.pointerEvents = 'auto';
-      
       fairy.addEventListener('click', (e) => {
         const fairyNum = fairy.getAttribute('data-fairy');
         const data = fairyData[fairyNum];
-        
-        // Set fairy info
-        fairyName.textContent = data.name;
-        fairyPower.textContent = data.power;
-        
-        // Pause fairy's path animation so she stays floating near her info
+        fairyNameEl.textContent = data.name;
+        fairyPowerEl.textContent = data.power;
         fairy.classList.add('showing-info');
         activeFairy = fairy;
-        
-        // Position popup near the fairy
         const rect = fairy.getBoundingClientRect();
         const popupX = Math.min(Math.max(10, rect.left), window.innerWidth - 300);
         const popupY = Math.min(rect.top + rect.height + 20, window.innerHeight - 200);
-        
         fairyInfo.style.left = popupX + 'px';
         fairyInfo.style.top = popupY + 'px';
-        
-        // Show popup
         fairyInfo.classList.add('active');
-        
-        // Create magical sparkle burst
         for (let i = 0; i < 15; i++) {
           setTimeout(() => {
             createSparkle(
@@ -2130,7 +2168,6 @@
       });
     });
 
-    // Function to close fairy info and let fairy continue
     function closeFairyInfoPopup() {
       fairyInfo.classList.remove('active');
       if (activeFairy) {
@@ -2139,13 +2176,11 @@
       }
     }
 
-    // Close fairy info
     closeFairyInfo.addEventListener('click', closeFairyInfoPopup);
 
-    // Close when clicking outside
     document.addEventListener('click', (e) => {
-      if (fairyInfo.classList.contains('active') && 
-          !fairyInfo.contains(e.target) && 
+      if (fairyInfo.classList.contains('active') &&
+          !fairyInfo.contains(e.target) &&
           !e.target.closest('.fairy-wrapper')) {
         closeFairyInfoPopup();
       }
@@ -2163,63 +2198,44 @@
     const easterEggModal2 = document.getElementById('easterEggModal2');
     const closeModal2 = document.getElementById('closeModal2');
 
-    // First Easter Egg
     easterEggBtn.addEventListener('click', () => {
       easterEggModal.classList.add('active');
-      
-      // Extra sparkle effect when opening
       for (let i = 0; i < 20; i++) {
         setTimeout(() => {
-          const x = window.innerWidth / 2 + (Math.random() - 0.5) * 300;
-          const y = window.innerHeight / 2 + (Math.random() - 0.5) * 300;
-          createSparkle(x, y);
+          createSparkle(
+            window.innerWidth / 2 + (Math.random() - 0.5) * 300,
+            window.innerHeight / 2 + (Math.random() - 0.5) * 300
+          );
         }, i * 50);
       }
     });
 
-    closeModal.addEventListener('click', () => {
-      easterEggModal.classList.remove('active');
-    });
-
+    closeModal.addEventListener('click', () => { easterEggModal.classList.remove('active'); });
     easterEggModal.addEventListener('click', (e) => {
-      if (e.target === easterEggModal) {
-        easterEggModal.classList.remove('active');
-      }
+      if (e.target === easterEggModal) easterEggModal.classList.remove('active');
     });
 
-    // Second Easter Egg
     easterEggBtn2.addEventListener('click', () => {
       easterEggModal2.classList.add('active');
-      
-      // Extra sparkle effect with golden colors
       for (let i = 0; i < 20; i++) {
         setTimeout(() => {
-          const x = window.innerWidth / 2 + (Math.random() - 0.5) * 300;
-          const y = window.innerHeight / 2 + (Math.random() - 0.5) * 300;
-          createSparkle(x, y);
+          createSparkle(
+            window.innerWidth / 2 + (Math.random() - 0.5) * 300,
+            window.innerHeight / 2 + (Math.random() - 0.5) * 300
+          );
         }, i * 50);
       }
     });
 
-    closeModal2.addEventListener('click', () => {
-      easterEggModal2.classList.remove('active');
-    });
-
+    closeModal2.addEventListener('click', () => { easterEggModal2.classList.remove('active'); });
     easterEggModal2.addEventListener('click', (e) => {
-      if (e.target === easterEggModal2) {
-        easterEggModal2.classList.remove('active');
-      }
+      if (e.target === easterEggModal2) easterEggModal2.classList.remove('active');
     });
 
-    // Close on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        if (easterEggModal.classList.contains('active')) {
-          easterEggModal.classList.remove('active');
-        }
-        if (easterEggModal2.classList.contains('active')) {
-          easterEggModal2.classList.remove('active');
-        }
+        easterEggModal.classList.remove('active');
+        easterEggModal2.classList.remove('active');
       }
     });
 
@@ -2227,17 +2243,11 @@
     // PERFORMANCE OPTIMIZATION
     // ========================================
     
-    // Pause animations when page is not visible
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
-        if (rafId) {
-          cancelAnimationFrame(rafId);
-          rafId = null;
-        }
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
       } else {
-        if (!rafId) {
-          updateFairyInteraction();
-        }
+        if (!rafId) updateFairyInteraction();
       }
     });
   </script>
