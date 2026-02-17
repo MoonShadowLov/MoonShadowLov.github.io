@@ -28,7 +28,7 @@
       transition: color 0.3s;
     }
 
-    /* Mobile Wand - Enhanced */
+    /* Mobile Wand */
     .mobile-wand {
       position: fixed;
       width: 40px;
@@ -43,15 +43,12 @@
     /* ==== Floating Orbs ==== */
     .orb-container {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       pointer-events: none;
       z-index: 0;
       overflow: hidden;
     }
-    
     .orb {
       position: absolute;
       background: radial-gradient(circle, rgba(177, 146, 223, 0.7) 0%, rgba(177, 146, 223, 0) 70%);
@@ -59,31 +56,26 @@
       animation: floatAndFade 15s infinite ease-in-out;
       will-change: transform, opacity;
     }
-    
     @keyframes floatAndFade {
       0% { transform: translate(0, 0) scale(0.5); opacity: 0.7; }
       50% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0.3; }
       100% { transform: translate(0, 0) scale(0.5); opacity: 0.7; }
     }
 
-    /* ==== ENHANCED FAIRY SYSTEM ==== */
+    /* ==== FAIRY SYSTEM ==== */
     .fairy-container {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       pointer-events: none;
       z-index: 50;
       overflow: hidden;
     }
-
     .fairy-wrapper {
       position: absolute;
       transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       will-change: transform;
     }
-
     .fairy-1 { animation: fairy1Path 35s ease-in-out infinite; }
     @keyframes fairy1Path {
       0%, 100% { left: -10%; top: 20%; }
@@ -91,7 +83,6 @@
       50% { left: 60%; top: 25%; }
       75% { left: 90%; top: 18%; }
     }
-
     .fairy-2 { animation: fairy2Path 40s ease-in-out infinite; }
     @keyframes fairy2Path {
       0%, 100% { left: 100%; top: 70%; }
@@ -99,7 +90,6 @@
       50% { left: 40%; top: 35%; }
       75% { left: 10%; top: 60%; }
     }
-
     .fairy-3 { animation: fairy3Path 45s ease-in-out infinite; }
     @keyframes fairy3Path {
       0%, 100% { left: 50%; top: 10%; }
@@ -107,7 +97,6 @@
       50% { left: 50%; top: 70%; }
       75% { left: 20%; top: 40%; }
     }
-
     .fairy-4 { animation: fairy4Path 38s ease-in-out infinite; }
     @keyframes fairy4Path {
       0%, 100% { left: 15%; top: 80%; }
@@ -115,7 +104,6 @@
       50% { left: 35%; top: 30%; }
       75% { left: 45%; top: 50%; }
     }
-
     .fairy-svg {
       width: 56px;
       height: auto;
@@ -123,81 +111,27 @@
       filter: drop-shadow(0 0 6px rgba(255,255,255,0.95)) drop-shadow(0 0 14px rgba(210,160,255,0.55));
       transform-origin: center;
     }
-
-    .wing {
-      transform-box: fill-box;
-      backface-visibility: hidden;
-    }
-    
-    .wing-left {
-      transform-origin: 100% 45%;
-      animation: wingFlapL 0.12s ease-in-out infinite alternate;
-    }
-    
-    .wing-right {
-      transform-origin: 0% 45%;
-      animation: wingFlapR 0.12s ease-in-out infinite alternate;
-    }
-
-    @keyframes wingFlapL {
-      from { transform: rotate(10deg) scaleX(1); }
-      to { transform: rotate(-18deg) scaleX(0.72); }
-    }
-    
-    @keyframes wingFlapR {
-      from { transform: rotate(-10deg) scaleX(1); }
-      to { transform: rotate(18deg) scaleX(0.72); }
-    }
-
-    .fairy-bobbing {
-      animation: gentleBob 3s ease-in-out infinite;
-    }
-    
+    .wing { transform-box: fill-box; backface-visibility: hidden; }
+    .wing-left { transform-origin: 100% 45%; animation: wingFlapL 0.12s ease-in-out infinite alternate; }
+    .wing-right { transform-origin: 0% 45%; animation: wingFlapR 0.12s ease-in-out infinite alternate; }
+    @keyframes wingFlapL { from { transform: rotate(10deg) scaleX(1); } to { transform: rotate(-18deg) scaleX(0.72); } }
+    @keyframes wingFlapR { from { transform: rotate(-10deg) scaleX(1); } to { transform: rotate(18deg) scaleX(0.72); } }
+    .fairy-bobbing { animation: gentleBob 3s ease-in-out infinite; }
     @keyframes gentleBob {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-8px) rotate(2deg); }
     }
 
     /* ==== Layout ==== */
-    section {
-      padding: 80px 20px;
-      position: relative;
-      z-index: 1;
-    }
-    
-    header, footer {
-      position: relative;
-      z-index: 1;
-    }
-    
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 15px;
-    }
+    section { padding: 80px 20px; position: relative; z-index: 1; }
+    header, footer { position: relative; z-index: 1; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 15px; }
 
     /* ==== Backgrounds ==== */
-    .bg-hero {
-      background: radial-gradient(circle at top, #fef5ff, #d6a7ff 40%, #7f6fd8 80%);
-      color: #2b123d;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .bg-clouds {
-      background: linear-gradient(#ffeafd, #f8ccff);
-      color: #3b2158;
-    }
-    
-    .bg-purple {
-      background: linear-gradient(#c79be8, #9063c9);
-      color: #f9f3ff;
-    }
-    
-    .bg-moon {
-      background: radial-gradient(circle at center, #fef5ff 0%, #d2b7ff 45%, #fdf2ff 100%);
-      color: #2e1844;
-    }
+    .bg-hero { background: radial-gradient(circle at top, #fef5ff, #d6a7ff 40%, #7f6fd8 80%); color: #2b123d; position: relative; overflow: hidden; }
+    .bg-clouds { background: linear-gradient(#ffeafd, #f8ccff); color: #3b2158; }
+    .bg-purple { background: linear-gradient(#c79be8, #9063c9); color: #f9f3ff; }
+    .bg-moon { background: radial-gradient(circle at center, #fef5ff 0%, #d2b7ff 45%, #fdf2ff 100%); color: #2e1844; }
 
     /* ==== Hero ==== */
     .hero {
@@ -207,7 +141,6 @@
       justify-content: center;
       padding: 40px 20px;
     }
-    
     .brand-name {
       font-size: clamp(32px, 6vw, 48px);
       letter-spacing: 0.18em;
@@ -217,21 +150,10 @@
       max-width: 90%;
       margin: 0 auto;
     }
-    
-    .brand-name span {
-      letter-spacing: 0.05em;
-    }
-    
-    .hero-subtitle {
-      margin-top: 24px;
-      font-size: clamp(11px, 2vw, 14px);
-      letter-spacing: 0.21em;
-      text-transform: uppercase;
-    }
-    
+    .brand-name span { letter-spacing: 0.05em; }
+    .hero-subtitle { margin-top: 24px; font-size: clamp(11px, 2vw, 14px); letter-spacing: 0.21em; text-transform: uppercase; }
     .hero-star {
-      width: 40px;
-      height: 40px;
+      width: 40px; height: 40px;
       border-radius: 50%;
       border: 2px solid #2b123d;
       display: inline-flex;
@@ -245,20 +167,16 @@
       overflow: hidden;
       box-shadow: 0 0 15px rgba(255,255,255,0.5);
     }
-    
     .hero-star::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
+      top: 50%; left: 50%;
+      width: 100%; height: 100%;
       background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
       transform: translate(-50%, -50%) scale(0);
       opacity: 0;
       animation: twinkle 3s infinite ease-out;
     }
-    
     @keyframes twinkle {
       0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
       50% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
@@ -277,7 +195,6 @@
       position: relative;
       text-shadow: 0 0 20px rgba(177, 146, 223, 0.4), 0 0 40px rgba(177, 146, 223, 0.2);
     }
-
     .bubble-title::after {
       content: '';
       position: absolute;
@@ -290,12 +207,10 @@
       box-shadow: 0 0 10px rgba(177, 146, 223, 0.6), 0 0 20px rgba(177, 146, 223, 0.3);
       animation: shimmerUnderline 3s infinite ease-in-out;
     }
-
     @keyframes shimmerUnderline {
       0%, 100% { opacity: 0.6; width: 60%; }
       50% { opacity: 1; width: 80%; }
     }
-
     .bubble-title::before {
       content: '✶';
       position: absolute;
@@ -307,112 +222,29 @@
       animation: sparkleFloat 2s infinite ease-in-out;
       text-shadow: 0 0 10px rgba(177, 146, 223, 0.8);
     }
-
     @keyframes sparkleFloat {
       0%, 100% { transform: translateY(-50%) scale(1); opacity: 0.7; }
       50% { transform: translateY(-60%) scale(1.2); opacity: 1; }
     }
-
     .bubble-title:hover {
       color: #8c6bbb;
       transform: translateY(-2px);
       text-shadow: 0 0 25px rgba(177, 146, 223, 0.7), 0 0 50px rgba(177, 146, 223, 0.4), 0 2px 8px rgba(140, 107, 187, 0.3);
     }
-
-    .bubble-title:hover::after {
-      width: 100%;
-      box-shadow: 0 0 15px rgba(177, 146, 223, 0.8), 0 0 30px rgba(177, 146, 223, 0.5);
-    }
-
-    .welcome-title {
-      font-size: clamp(24px, 4vw, 32px);
-      max-width: 700px;
-      margin: 0 auto 16px;
-      color: #321847;
-    }
-    
-    .welcome-text {
-      font-size: clamp(16px, 2.5vw, 18px);
-      max-width: 720px;
-      margin: 0 auto;
-      color: #3d224f;
-    }
+    .bubble-title:hover::after { width: 100%; box-shadow: 0 0 15px rgba(177, 146, 223, 0.8), 0 0 30px rgba(177, 146, 223, 0.5); }
+    .welcome-title { font-size: clamp(24px, 4vw, 32px); max-width: 700px; margin: 0 auto 16px; color: #321847; }
+    .welcome-text { font-size: clamp(16px, 2.5vw, 18px); max-width: 720px; margin: 0 auto; color: #3d224f; }
 
     /* ==== Cards ==== */
-    .section-heading {
-      font-size: clamp(26px, 4vw, 30px);
-      margin-bottom: 14px;
-      color: #fdf8ff;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    
-    .section-subheading {
-      font-size: clamp(18px, 3vw, 22px);
-      margin-bottom: 40px;
-      color: #f5e9ff;
-    }
-    
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-      gap: 24px;
-    }
-    
-    .card {
-      background: rgba(255,255,255,0.95);
-      border-radius: 8px;
-      padding: 30px 22px 28px;
-      position: relative;
-      min-height: 210px;
-      color: #3a2255;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-    
-    .card-star {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      border: 1px solid #3a2255;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      margin: 0 auto 12px;
-      color: #7a4bb5;
-      background: #f8efff;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .card-star::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-      animation: twinkle 2.5s infinite ease-out 0.5s;
-    }
-    
-    .card-title {
-      font-size: 20px;
-      margin-bottom: 12px;
-      color: #4b2e73;
-    }
-    
-    .card-text {
-      font-size: 14px;
-      color: #55347f;
-    }
+    .section-heading { font-size: clamp(26px, 4vw, 30px); margin-bottom: 14px; color: #fdf8ff; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .section-subheading { font-size: clamp(18px, 3vw, 22px); margin-bottom: 40px; color: #f5e9ff; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 24px; }
+    .card { background: rgba(255,255,255,0.95); border-radius: 8px; padding: 30px 22px 28px; position: relative; min-height: 210px; color: #3a2255; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+    .card-star { width: 26px; height: 26px; border-radius: 50%; border: 1px solid #3a2255; display: flex; align-items: center; justify-content: center; font-size: 14px; margin: 0 auto 12px; color: #7a4bb5; background: #f8efff; position: relative; overflow: hidden; }
+    .card-star::before { content: ''; position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%); transform: translate(-50%, -50%) scale(0); opacity: 0; animation: twinkle 2.5s infinite ease-out 0.5s; }
+    .card-title { font-size: 20px; margin-bottom: 12px; color: #4b2e73; }
+    .card-text { font-size: 14px; color: #55347f; }
 
     /* ==== Buttons ==== */
     .whimsical-button {
@@ -433,30 +265,41 @@
       overflow: hidden;
       z-index: 1;
     }
-    
-    .whimsical-button:hover {
-      background: linear-gradient(135deg, #c080ff, #e0b0ff);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-      transform: translateY(-2px);
+    .whimsical-button:hover { background: linear-gradient(135deg, #c080ff, #e0b0ff); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); transform: translateY(-2px); }
+    .whimsical-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent); transition: all 0.7s ease; z-index: -1; }
+    .whimsical-button:hover::before { left: 100%; }
+
+    /* ==== Podcast Button ==== */
+    .podcast-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 25px;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #ffb8ff, #d4a5ff, #c080ff);
+      color: #2b0e40;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      border: 1px solid #a060ff;
+      box-shadow: 0 4px 14px rgba(192, 128, 255, 0.35), 0 0 10px rgba(255, 184, 255, 0.2);
+      transition: all 0.3s ease;
+      margin-top: 15px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
-    
-    .whimsical-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-      transition: all 0.7s ease;
-      z-index: -1;
-    }
-    
-    .whimsical-button:hover::before {
-      left: 100%;
+    .podcast-button:hover { background: linear-gradient(135deg, #c080ff, #ffb8ff, #d4a5ff); box-shadow: 0 6px 20px rgba(192, 128, 255, 0.5), 0 0 18px rgba(255, 184, 255, 0.35); transform: translateY(-2px); }
+    .podcast-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent); transition: all 0.7s ease; z-index: -1; }
+    .podcast-button:hover::before { left: 100%; }
+    .podcast-icon { font-size: 16px; display: inline-block; animation: podcastPulse 2s ease-in-out infinite; }
+    @keyframes podcastPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
     }
 
-    /* ==== Bless This Moment button (mystical font) ==== */
+    /* ==== Bless Button ==== */
     .bless-button {
       display: inline-block;
       padding: 12px 28px;
@@ -477,29 +320,9 @@
       z-index: 1;
       text-shadow: 0 0 10px rgba(177, 146, 223, 0.5);
     }
-
-    .bless-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
-      transition: all 0.7s ease;
-      z-index: -1;
-    }
-
-    .bless-button:hover {
-      background: linear-gradient(135deg, #c080ff, #e0b0ff);
-      box-shadow: 0 6px 22px rgba(140, 107, 187, 0.5), 0 0 20px rgba(210, 160, 255, 0.4);
-      transform: translateY(-2px);
-      text-shadow: 0 0 16px rgba(177, 146, 223, 0.8);
-    }
-
-    .bless-button:hover::before {
-      left: 100%;
-    }
+    .bless-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent); transition: all 0.7s ease; z-index: -1; }
+    .bless-button:hover { background: linear-gradient(135deg, #c080ff, #e0b0ff); box-shadow: 0 6px 22px rgba(140, 107, 187, 0.5), 0 0 20px rgba(210, 160, 255, 0.4); transform: translateY(-2px); text-shadow: 0 0 16px rgba(177, 146, 223, 0.8); }
+    .bless-button:hover::before { left: 100%; }
 
     /* ==== Go Back fairy button ==== */
     .go-back-btn {
@@ -523,683 +346,108 @@
       z-index: 1;
       backdrop-filter: blur(4px);
     }
-
-    .go-back-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-      transition: all 0.6s ease;
-      z-index: -1;
-    }
-
-    .go-back-btn:hover {
-      background: linear-gradient(135deg, rgba(224,176,255,0.9), rgba(192,128,255,0.8));
-      box-shadow: 0 5px 16px rgba(140,107,187,0.35), 0 0 14px rgba(210,160,255,0.3);
-      transform: translateY(-2px);
-      border-color: rgba(160,96,255,0.7);
-    }
-
-    .go-back-btn:hover::before {
-      left: 100%;
-    }
-
-    .go-back-btn .fairy-arrow {
-      font-size: 15px;
-      display: inline-block;
-      transition: transform 0.3s ease;
-    }
-
-    .go-back-btn:hover .fairy-arrow {
-      transform: translateX(-3px);
-    }
+    .go-back-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent); transition: all 0.6s ease; z-index: -1; }
+    .go-back-btn:hover { background: linear-gradient(135deg, rgba(224,176,255,0.9), rgba(192,128,255,0.8)); box-shadow: 0 5px 16px rgba(140,107,187,0.35), 0 0 14px rgba(210,160,255,0.3); transform: translateY(-2px); border-color: rgba(160,96,255,0.7); }
+    .go-back-btn:hover::before { left: 100%; }
+    .go-back-btn .fairy-arrow { font-size: 15px; display: inline-block; transition: transform 0.3s ease; }
+    .go-back-btn:hover .fairy-arrow { transform: translateX(-3px); }
 
     /* ==== Writing Samples ==== */
-    .writing-box {
-      background: linear-gradient(90deg, #fbe7ff, #e3c0ff, #d4b7ff);
-      border-radius: 12px;
-      padding: 40px 26px;
-      max-width: 900px;
-      margin: 30px auto 0;
-      text-align: left;
-      color: #2d163f;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    }
-    
-    .story-block {
-      margin-bottom: 28px;
-    }
-    
-    .story-heading {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    
-    .story-star {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      border: 1px solid #5a3a7d;
-      font-size: 14px;
-      color: #5a3a7d;
-      background: #f8efff;
-      position: relative;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    
-    .story-star::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-      animation: twinkle 2s infinite ease-out 1s;
-    }
-    
-    .story-title {
-      font-weight: bold;
-      font-size: 18px;
-      color: #3b2158;
-    }
-    
-    .story-text {
-      font-size: 16px;
-      line-height: 1.8;
-      color: #3a214f;
-    }
-    
-    .story-divider {
-      height: 1px;
-      width: 100%;
-      background: linear-gradient(90deg, transparent, #b192df, transparent);
-      margin: 20px 0 28px;
-    }
+    .writing-box { background: linear-gradient(90deg, #fbe7ff, #e3c0ff, #d4b7ff); border-radius: 12px; padding: 40px 26px; max-width: 900px; margin: 30px auto 0; text-align: left; color: #2d163f; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .story-block { margin-bottom: 28px; }
+    .story-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .story-star { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; border: 1px solid #5a3a7d; font-size: 14px; color: #5a3a7d; background: #f8efff; position: relative; overflow: hidden; flex-shrink: 0; }
+    .story-star::before { content: ''; position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%); transform: translate(-50%, -50%) scale(0); opacity: 0; animation: twinkle 2s infinite ease-out 1s; }
+    .story-title { font-weight: bold; font-size: 18px; color: #3b2158; }
+    .story-text { font-size: 16px; line-height: 1.8; color: #3a214f; }
+    .story-divider { height: 1px; width: 100%; background: linear-gradient(90deg, transparent, #b192df, transparent); margin: 20px 0 28px; }
 
     /* ==== Journey Cards ==== */
-    .journey-text {
-      font-size: clamp(18px, 3vw, 22px);
-      max-width: 900px;
-      margin: 0 auto 40px;
-      color: #fdf6ff;
-    }
-    
-    .journey-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-      gap: 24px;
-    }
-    
-    .journey-card {
-      background: rgba(255,255,255,0.95);
-      border-radius: 8px;
-      padding: 24px 18px 20px;
-      color: #3a2255;
-      transition: transform 0.3s;
-    }
-    
-    .journey-card:hover {
-      transform: translateY(-5px);
-    }
-    
-    .journey-label {
-      display: inline-block;
-      margin-bottom: 10px;
-      font-size: 12px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #4a2a6f;
-      transition: all 0.4s ease;
-      position: relative;
-      text-shadow: 0 0 15px rgba(122, 75, 181, 0.3), 0 0 30px rgba(122, 75, 181, 0.15);
-    }
-
-    .journey-label::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 120%;
-      height: 150%;
-      background: radial-gradient(ellipse, rgba(177, 146, 223, 0.2) 0%, transparent 70%);
-      z-index: -1;
-      opacity: 0.6;
-      animation: mysticalPulse 3s infinite ease-in-out;
-    }
-
-    @keyframes mysticalPulse {
-      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
-      50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.7; }
-    }
-
-    .journey-label::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #b192df, transparent);
-      box-shadow: 0 0 8px rgba(177, 146, 223, 0.5);
-      opacity: 0.7;
-    }
-
-    .journey-label:hover {
-      color: #7a4bb5;
-      text-shadow: 0 0 20px rgba(122, 75, 181, 0.6), 0 0 40px rgba(122, 75, 181, 0.3), 0 2px 8px rgba(122, 75, 181, 0.3);
-      transform: translateY(-1px);
-    }
-
-    .journey-label:hover::before {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.3);
-    }
-
-    .journey-label:hover::after {
-      box-shadow: 0 0 12px rgba(177, 146, 223, 0.8);
-      opacity: 1;
-    }
-    
-    .journey-title {
-      font-weight: bold;
-      margin-bottom: 10px;
-      font-size: 15px;
-      color: #3f245e;
-    }
-    
-    .journey-text-small {
-      font-size: 14px;
-      color: #452565;
-    }
-    
-    .journey-image {
-      width: 100%;
-      max-width: 260px;
-      border-radius: 4px;
-      display: block;
-      margin: 14px auto 0;
-    }
+    .journey-text { font-size: clamp(18px, 3vw, 22px); max-width: 900px; margin: 0 auto 40px; color: #fdf6ff; }
+    .journey-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 24px; }
+    .journey-card { background: rgba(255,255,255,0.95); border-radius: 8px; padding: 24px 18px 20px; color: #3a2255; transition: transform 0.3s; }
+    .journey-card:hover { transform: translateY(-5px); }
+    .journey-label { display: inline-block; margin-bottom: 10px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #4a2a6f; transition: all 0.4s ease; position: relative; text-shadow: 0 0 15px rgba(122, 75, 181, 0.3), 0 0 30px rgba(122, 75, 181, 0.15); }
+    .journey-label::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120%; height: 150%; background: radial-gradient(ellipse, rgba(177, 146, 223, 0.2) 0%, transparent 70%); z-index: -1; opacity: 0.6; animation: mysticalPulse 3s infinite ease-in-out; }
+    @keyframes mysticalPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; } 50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.7; } }
+    .journey-label::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #b192df, transparent); box-shadow: 0 0 8px rgba(177, 146, 223, 0.5); opacity: 0.7; }
+    .journey-label:hover { color: #7a4bb5; text-shadow: 0 0 20px rgba(122, 75, 181, 0.6), 0 0 40px rgba(122, 75, 181, 0.3), 0 2px 8px rgba(122, 75, 181, 0.3); transform: translateY(-1px); }
+    .journey-label:hover::before { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+    .journey-label:hover::after { box-shadow: 0 0 12px rgba(177, 146, 223, 0.8); opacity: 1; }
+    .journey-title { font-weight: bold; margin-bottom: 10px; font-size: 15px; color: #3f245e; }
+    .journey-text-small { font-size: 14px; color: #452565; }
+    .journey-image { width: 100%; max-width: 260px; border-radius: 4px; display: block; margin: 14px auto 0; }
 
     /* ==== Footer ==== */
-    footer p {
-      margin-bottom: 20px;
-      font-size: clamp(16px, 2.5vw, 18px);
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      color: #2e1844;
-    }
-    
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 18px;
-      max-width: 720px;
-      margin: 40px auto 0;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #37204f;
-    }
-    
-    .footer-item-title {
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    /* ==== Footer Logo ==== */
-    .footer-logo-wrap {
-      margin-top: 48px;
-      margin-bottom: 12px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .footer-logo {
-      width: 64px;
-      height: 64px;
-      object-fit: contain;
-      border-radius: 50%;
-      box-shadow: 0 0 16px rgba(177, 146, 223, 0.5), 0 0 32px rgba(210, 160, 255, 0.25);
-      opacity: 0.9;
-      transition: all 0.4s ease;
-      animation: logoPulse 4s ease-in-out infinite;
-    }
-
-    @keyframes logoPulse {
-      0%, 100% { box-shadow: 0 0 16px rgba(177, 146, 223, 0.5), 0 0 32px rgba(210, 160, 255, 0.25); }
-      50% { box-shadow: 0 0 22px rgba(177, 146, 223, 0.75), 0 0 44px rgba(210, 160, 255, 0.4); }
-    }
-
-    .footer-logo:hover {
-      opacity: 1;
-      transform: scale(1.08) rotate(5deg);
-      box-shadow: 0 0 28px rgba(177, 146, 223, 0.8), 0 0 55px rgba(210, 160, 255, 0.5);
-    }
+    footer p { margin-bottom: 20px; font-size: clamp(16px, 2.5vw, 18px); max-width: 800px; margin-left: auto; margin-right: auto; color: #2e1844; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; max-width: 720px; margin: 40px auto 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.16em; color: #37204f; }
+    .footer-item-title { font-weight: bold; margin-bottom: 8px; }
+    .footer-logo-wrap { margin-top: 48px; margin-bottom: 12px; display: flex; justify-content: center; align-items: center; }
+    .footer-logo { width: 64px; height: 64px; object-fit: contain; border-radius: 50%; box-shadow: 0 0 16px rgba(177, 146, 223, 0.5), 0 0 32px rgba(210, 160, 255, 0.25); opacity: 0.9; transition: all 0.4s ease; animation: logoPulse 4s ease-in-out infinite; }
+    @keyframes logoPulse { 0%, 100% { box-shadow: 0 0 16px rgba(177, 146, 223, 0.5), 0 0 32px rgba(210, 160, 255, 0.25); } 50% { box-shadow: 0 0 22px rgba(177, 146, 223, 0.75), 0 0 44px rgba(210, 160, 255, 0.4); } }
+    .footer-logo:hover { opacity: 1; transform: scale(1.08) rotate(5deg); box-shadow: 0 0 28px rgba(177, 146, 223, 0.8), 0 0 55px rgba(210, 160, 255, 0.5); }
 
     /* ==== Language Switcher ==== */
-    .language-switcher {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      display: flex;
-      gap: 10px;
-      z-index: 101;
-    }
-
-    .language-btn {
-      padding: 8px 16px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,230,255,0.9));
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(140, 107, 187, 0.4);
-      border-radius: 20px;
-      color: #3b2158;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
-      box-shadow: 0 4px 12px rgba(140, 107, 187, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .language-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(140, 107, 187, 0.3);
-      border-color: rgba(140, 107, 187, 0.6);
-    }
-
-    .language-btn.active {
-      background: linear-gradient(135deg, #e0b0ff, #c080ff);
-      border-color: #a060ff;
-      color: #2b123d;
-      box-shadow: 0 4px 12px rgba(140, 107, 187, 0.4);
-    }
-
-    @media (max-width: 768px) {
-      .language-switcher {
-        top: 10px;
-        right: 10px;
-        gap: 6px;
-      }
-
-      .language-btn {
-        padding: 6px 12px;
-        font-size: 10px;
-      }
-    }
+    .language-switcher { position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 101; }
+    .language-btn { padding: 8px 16px; background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,230,255,0.9)); backdrop-filter: blur(10px); border: 2px solid rgba(140, 107, 187, 0.4); border-radius: 20px; color: #3b2158; font-size: 12px; font-weight: bold; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 12px rgba(140, 107, 187, 0.2); transition: all 0.3s ease; }
+    .language-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(140, 107, 187, 0.3); border-color: rgba(140, 107, 187, 0.6); }
+    .language-btn.active { background: linear-gradient(135deg, #e0b0ff, #c080ff); border-color: #a060ff; color: #2b123d; box-shadow: 0 4px 12px rgba(140, 107, 187, 0.4); }
 
     /* ==== Easter Egg ==== */
-    .easter-egg-trigger {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(210,160,255,0.7));
-      border-radius: 50%;
-      border: 2px solid rgba(140, 107, 187, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
-      z-index: 100;
-      box-shadow: 0 4px 15px rgba(140, 107, 187, 0.3);
-      transition: all 0.3s ease;
-      animation: pulse 2s infinite;
-    }
+    .easter-egg-trigger { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background: radial-gradient(circle, rgba(255,255,255,0.9), rgba(210,160,255,0.7)); border-radius: 50%; border: 2px solid rgba(140, 107, 187, 0.5); display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; z-index: 100; box-shadow: 0 4px 15px rgba(140, 107, 187, 0.3); transition: all 0.3s ease; animation: pulse 2s infinite; }
+    .easter-egg-trigger:hover { transform: scale(1.1) rotate(15deg); box-shadow: 0 6px 25px rgba(140, 107, 187, 0.5); }
+    .easter-egg-trigger-2 { position: fixed; bottom: 20px; left: 20px; width: 50px; height: 50px; background: radial-gradient(circle, rgba(255,235,153,0.9), rgba(255,204,102,0.7)); border-radius: 50%; border: 2px solid rgba(255, 187, 51, 0.5); display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; z-index: 100; box-shadow: 0 4px 15px rgba(255, 187, 51, 0.3); transition: all 0.3s ease; animation: pulse2 2.5s infinite; }
+    .easter-egg-trigger-2:hover { transform: scale(1.1) rotate(-15deg); box-shadow: 0 6px 25px rgba(255, 187, 51, 0.5); }
+    @keyframes pulse2 { 0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 187, 51, 0.3); } 50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 187, 51, 0.5); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(140, 107, 187, 0.3); } 50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(140, 107, 187, 0.5); } }
 
-    .easter-egg-trigger:hover {
-      transform: scale(1.1) rotate(15deg);
-      box-shadow: 0 6px 25px rgba(140, 107, 187, 0.5);
-    }
-
-    .easter-egg-trigger-2 {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      width: 50px;
-      height: 50px;
-      background: radial-gradient(circle, rgba(255,235,153,0.9), rgba(255,204,102,0.7));
-      border-radius: 50%;
-      border: 2px solid rgba(255, 187, 51, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
-      z-index: 100;
-      box-shadow: 0 4px 15px rgba(255, 187, 51, 0.3);
-      transition: all 0.3s ease;
-      animation: pulse2 2.5s infinite;
-    }
-
-    .easter-egg-trigger-2:hover {
-      transform: scale(1.1) rotate(-15deg);
-      box-shadow: 0 6px 25px rgba(255, 187, 51, 0.5);
-    }
-
-    @keyframes pulse2 {
-      0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 187, 51, 0.3); }
-      50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 187, 51, 0.5); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(140, 107, 187, 0.3); }
-      50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(140, 107, 187, 0.5); }
-    }
-
-    .easter-egg-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(59, 33, 88, 0.92);
-      z-index: 999;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      backdrop-filter: blur(10px);
-      overflow-y: auto;
-    }
-
-    .easter-egg-modal.active {
-      display: flex;
-      animation: fadeIn 0.5s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .easter-egg-content {
-      background: linear-gradient(135deg, #fef5ff, #e3c0ff);
-      padding: 30px 26px 26px;
-      border-radius: 20px;
-      max-width: 440px;
-      width: 100%;
-      text-align: center;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      animation: slideIn 0.5s ease;
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .easter-egg-content h3 {
-      font-size: 22px;
-      margin-bottom: 14px;
-      color: #3b2158;
-      margin-top: 4px;
-    }
-
-    .easter-egg-content > p {
-      font-size: 15px;
-      line-height: 1.7;
-      color: #4a2a6f;
-      margin-bottom: 12px;
-    }
-
-    .secret-message {
-      background: rgba(255,255,255,0.6);
-      padding: 16px;
-      border-radius: 10px;
-      margin-top: 14px;
-      font-style: italic;
-      color: #5a3a7d;
-      border: 1px solid rgba(140, 107, 187, 0.3);
-    }
-
-    .secret-message p {
-      font-size: 14px;
-      line-height: 1.7;
-      margin-bottom: 10px;
-    }
-
-    .secret-message p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* ==== Small X close button (3x smaller than before) ==== */
-    .easter-egg-close {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: linear-gradient(135deg, #e0b0ff, #c080ff);
-      border: 1.5px solid #8c6bbb;
-      font-size: 13px;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
-      color: #2b123d;
-      font-weight: bold;
-      width: 22px;
-      height: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      z-index: 10;
-      box-shadow: 0 2px 6px rgba(59, 33, 88, 0.35);
-      line-height: 1;
-    }
-
-    .easter-egg-close:hover {
-      background: linear-gradient(135deg, #c080ff, #a060ff);
-      transform: rotate(90deg) scale(1.15);
-      border-color: #6a3a9f;
-      box-shadow: 0 3px 10px rgba(59, 33, 88, 0.5);
-    }
-
-    .easter-egg-close:active {
-      transform: rotate(90deg) scale(0.95);
-    }
+    .easter-egg-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(59, 33, 88, 0.92); z-index: 999; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(10px); overflow-y: auto; }
+    .easter-egg-modal.active { display: flex; animation: fadeIn 0.5s ease; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .easter-egg-content { background: linear-gradient(135deg, #fef5ff, #e3c0ff); padding: 30px 26px 26px; border-radius: 20px; max-width: 440px; width: 100%; text-align: center; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); animation: slideIn 0.5s ease; max-height: 80vh; overflow-y: auto; }
+    @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .easter-egg-content h3 { font-size: 22px; margin-bottom: 14px; color: #3b2158; margin-top: 4px; }
+    .easter-egg-content > p { font-size: 15px; line-height: 1.7; color: #4a2a6f; margin-bottom: 12px; }
+    .secret-message { background: rgba(255,255,255,0.6); padding: 16px; border-radius: 10px; margin-top: 14px; font-style: italic; color: #5a3a7d; border: 1px solid rgba(140, 107, 187, 0.3); }
+    .secret-message p { font-size: 14px; line-height: 1.7; margin-bottom: 10px; }
+    .secret-message p:last-child { margin-bottom: 0; }
 
     /* ==== Fairy Info Popup ==== */
-    .fairy-info {
-      position: fixed;
-      background: linear-gradient(135deg, rgba(254, 245, 255, 0.98), rgba(227, 192, 255, 0.95));
-      border: 2px solid rgba(177, 146, 223, 0.6);
-      border-radius: 16px;
-      padding: 20px 28px;
-      box-shadow: 0 10px 40px rgba(140, 107, 187, 0.4);
-      z-index: 9998;
-      pointer-events: none;
-      opacity: 0;
-      transform: scale(0.8) translateY(10px);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      max-width: 280px;
-      text-align: center;
-    }
+    .fairy-info { position: fixed; background: linear-gradient(135deg, rgba(254, 245, 255, 0.98), rgba(227, 192, 255, 0.95)); border: 2px solid rgba(177, 146, 223, 0.6); border-radius: 16px; padding: 20px 28px; box-shadow: 0 10px 40px rgba(140, 107, 187, 0.4); z-index: 9998; pointer-events: none; opacity: 0; transform: scale(0.8) translateY(10px); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); max-width: 280px; text-align: center; }
+    .fairy-info.active { opacity: 1; transform: scale(1) translateY(0); pointer-events: auto; }
+    .fairy-info-name { font-size: 22px; font-weight: bold; color: #3b2158; margin-bottom: 8px; text-shadow: 0 0 10px rgba(177, 146, 223, 0.5); }
+    .fairy-info-power { font-size: 14px; color: #4a2a6f; line-height: 1.6; font-style: italic; }
+    .fairy-info-close { position: absolute; top: 8px; right: 12px; background: none; border: none; font-size: 20px; cursor: pointer; color: #8c6bbb; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease; }
+    .fairy-info-close:hover { background: rgba(140, 107, 187, 0.2); transform: rotate(90deg); }
+    .fairy-wrapper { cursor: pointer; }
+    .fairy-wrapper:hover .fairy-svg { filter: drop-shadow(0 0 10px rgba(255,255,255,1)) drop-shadow(0 0 20px rgba(210,160,255,0.8)); transform: scale(1.1); }
+    .fairy-svg { transition: all 0.3s ease; }
+    .fairy-wrapper.showing-info { animation-play-state: paused !important; }
+    .fairy-wrapper.showing-info .fairy-bobbing { animation-play-state: running !important; }
 
-    .fairy-info.active {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-      pointer-events: auto;
-    }
-
-    .fairy-info-name {
-      font-size: 22px;
-      font-weight: bold;
-      color: #3b2158;
-      margin-bottom: 8px;
-      text-shadow: 0 0 10px rgba(177, 146, 223, 0.5);
-    }
-
-    .fairy-info-power {
-      font-size: 14px;
-      color: #4a2a6f;
-      line-height: 1.6;
-      font-style: italic;
-    }
-
-    .fairy-info-close {
-      position: absolute;
-      top: 8px;
-      right: 12px;
-      background: none;
-      border: none;
-      font-size: 20px;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
-      color: #8c6bbb;
-      width: 28px;
-      height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-    }
-
-    .fairy-info-close:hover {
-      background: rgba(140, 107, 187, 0.2);
-      transform: rotate(90deg);
-    }
-
-    .fairy-wrapper {
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 32 32"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23ffd4ff"/><stop offset="100%25" stop-color="%23b192df"/></linearGradient><filter id="g"><feGaussianBlur stdDeviation="0.5"/></filter></defs><g transform="translate(4,2)"><path d="M2,26 L12,16" stroke="url(%23wg)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(%23g)"/><path d="M2,26 L12,16" stroke="%23d4a5ff" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="14" cy="14" r="5" fill="%23fff0ff" opacity="0.9" filter="url(%23g)"/><circle cx="14" cy="14" r="4" fill="url(%23wg)"/><path d="M14,10 L14,18 M10,14 L18,14" stroke="white" stroke-width="1.2" opacity="0.7"/><circle cx="14" cy="14" r="1.5" fill="white" opacity="0.9"/><circle cx="8" cy="8" r="1.5" fill="%23ffc6ff" opacity="0.8"/><circle cx="20" cy="10" r="1.2" fill="%23e0b0ff" opacity="0.7"/><circle cx="10" cy="20" r="1" fill="%23ffdbff" opacity="0.6"/></g></svg>') 4 2, pointer;
-    }
-
-    .fairy-wrapper:hover .fairy-svg {
-      filter: drop-shadow(0 0 10px rgba(255,255,255,1)) drop-shadow(0 0 20px rgba(210,160,255,0.8));
-      transform: scale(1.1);
-    }
-
-    .fairy-svg {
-      transition: all 0.3s ease;
-    }
-
-    .fairy-wrapper.showing-info {
-      animation-play-state: paused !important;
-    }
-
-    .fairy-wrapper.showing-info .fairy-bobbing {
-      animation-play-state: running !important;
-    }
-
-    /* Mobile responsiveness */
+    /* Mobile */
     @media (max-width: 768px) {
-      .fairy-svg {
-        width: 44px;
-      }
-      
-      section {
-        padding: 60px 15px;
-      }
-      
-      .writing-box {
-        padding: 28px 18px;
-      }
-      
-      .story-title {
-        font-size: 16px;
-      }
-      
-      .story-text {
-        font-size: 14px;
-      }
-
-      .easter-egg-trigger {
-        bottom: 15px;
-        right: 15px;
-        width: 45px;
-        height: 45px;
-      }
-
-      .easter-egg-trigger-2 {
-        bottom: 15px;
-        left: 15px;
-        width: 45px;
-        height: 45px;
-      }
-
-      .easter-egg-content {
-        padding: 26px 16px 18px;
-        margin: 10px;
-        max-width: 92vw;
-        max-height: 75vh;
-        border-radius: 16px;
-      }
-
-      .easter-egg-content h3 {
-        font-size: 17px;
-        margin-bottom: 10px;
-        line-height: 1.3;
-      }
-
-      .easter-egg-content > p {
-        font-size: 13px;
-        line-height: 1.55;
-        margin-bottom: 10px;
-      }
-
-      .secret-message {
-        padding: 12px;
-        margin-top: 10px;
-      }
-
-      .secret-message p {
-        font-size: 12px;
-        line-height: 1.55;
-        margin-bottom: 8px;
-      }
-
-      .easter-egg-close {
-        width: 20px;
-        height: 20px;
-        font-size: 12px;
-        top: 7px;
-        right: 7px;
-      }
-
-      .footer-logo {
-        width: 52px;
-        height: 52px;
-      }
-
-      .bless-button {
-        font-size: 11px;
-        padding: 10px 20px;
-      }
+      .fairy-svg { width: 44px; }
+      section { padding: 60px 15px; }
+      .writing-box { padding: 28px 18px; }
+      .story-title { font-size: 16px; }
+      .story-text { font-size: 14px; }
+      .easter-egg-trigger { bottom: 15px; right: 15px; width: 45px; height: 45px; }
+      .easter-egg-trigger-2 { bottom: 15px; left: 15px; width: 45px; height: 45px; }
+      .easter-egg-content { padding: 26px 16px 18px; margin: 10px; max-width: 92vw; max-height: 75vh; border-radius: 16px; }
+      .easter-egg-content h3 { font-size: 17px; margin-bottom: 10px; line-height: 1.3; }
+      .easter-egg-content > p { font-size: 13px; line-height: 1.55; margin-bottom: 10px; }
+      .secret-message { padding: 12px; margin-top: 10px; }
+      .secret-message p { font-size: 12px; line-height: 1.55; margin-bottom: 8px; }
+      .footer-logo { width: 52px; height: 52px; }
+      .bless-button { font-size: 11px; padding: 10px 20px; }
+      .language-switcher { top: 10px; right: 10px; gap: 6px; }
+      .language-btn { padding: 6px 12px; font-size: 10px; }
     }
 
-    /* Reduced motion support */
     @media (prefers-reduced-motion: reduce) {
-      .fairy-wrapper,
-      .wing-left,
-      .wing-right,
-      .orb,
-      .fairy-bobbing,
-      .bubble-title::after,
-      .easter-egg-trigger {
-        animation: none !important;
-      }
-      
-      * {
-        transition: none !important;
-      }
+      .fairy-wrapper, .wing-left, .wing-right, .orb, .fairy-bobbing, .bubble-title::after, .easter-egg-trigger { animation: none !important; }
+      * { transition: none !important; }
     }
   </style>
 </head>
@@ -1212,7 +460,7 @@
     <button class="language-btn" data-lang="pt">Português</button>
   </div>
 
-  <!-- Floating Orbs Container -->
+  <!-- Floating Orbs -->
   <div class="orb-container"></div>
 
   <!-- FOUR FLYING FAIRIES -->
@@ -1222,36 +470,13 @@
       <div class="fairy-bobbing">
         <svg class="fairy-svg" viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
-            <linearGradient id="wingGrad1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#b9a7ff" stop-opacity="0.85"/>
-              <stop offset="35%" stop-color="#d8b3ff" stop-opacity="0.65"/>
-              <stop offset="70%" stop-color="#ffc6ff" stop-opacity="0.55"/>
-              <stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/>
-            </linearGradient>
-            <linearGradient id="dressGrad1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#ffb8ff" stop-opacity="0.95"/>
-              <stop offset="55%" stop-color="#d8a0ff" stop-opacity="0.85"/>
-              <stop offset="100%" stop-color="#bda0ff" stop-opacity="0.85"/>
-            </linearGradient>
-            <linearGradient id="hairGrad1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#ff87d7"/>
-              <stop offset="55%" stop-color="#a96bff"/>
-              <stop offset="100%" stop-color="#6a4cff"/>
-            </linearGradient>
-            <filter id="softGlow1" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="2.2" result="b"/>
-              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.65 0" result="g"/>
-              <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
+            <linearGradient id="wingGrad1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#b9a7ff" stop-opacity="0.85"/><stop offset="35%" stop-color="#d8b3ff" stop-opacity="0.65"/><stop offset="70%" stop-color="#ffc6ff" stop-opacity="0.55"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/></linearGradient>
+            <linearGradient id="dressGrad1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffb8ff" stop-opacity="0.95"/><stop offset="55%" stop-color="#d8a0ff" stop-opacity="0.85"/><stop offset="100%" stop-color="#bda0ff" stop-opacity="0.85"/></linearGradient>
+            <linearGradient id="hairGrad1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ff87d7"/><stop offset="55%" stop-color="#a96bff"/><stop offset="100%" stop-color="#6a4cff"/></linearGradient>
+            <filter id="softGlow1" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2" result="b"/><feColorMatrix in="b" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.65 0" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
           </defs>
-          <g class="wing wing-left" filter="url(#softGlow1)">
-            <path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z" fill="url(#wingGrad1)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
-            <path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z" fill="url(#wingGrad1)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
-          </g>
-          <g class="wing wing-right" filter="url(#softGlow1)">
-            <path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z" fill="url(#wingGrad1)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
-            <path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z" fill="url(#wingGrad1)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
-          </g>
+          <g class="wing wing-left" filter="url(#softGlow1)"><path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z" fill="url(#wingGrad1)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/><path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z" fill="url(#wingGrad1)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/></g>
+          <g class="wing wing-right" filter="url(#softGlow1)"><path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z" fill="url(#wingGrad1)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/><path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z" fill="url(#wingGrad1)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/></g>
           <g class="fairy-core" filter="url(#softGlow1)">
             <path d="M82 88 C 86 58, 102 48, 110 48 C 118 48, 134 58, 138 88 C 140 104, 132 122, 128 136 C 124 150, 132 162, 138 170 C 126 172, 114 160, 110 150 C 106 160, 94 172, 82 170 C 88 162, 96 150, 92 136 C 88 122, 80 104, 82 88 Z" fill="url(#hairGrad1)" opacity="0.95"/>
             <circle cx="110" cy="70" r="16" fill="#ffe6f4" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
@@ -1274,36 +499,13 @@
       <div class="fairy-bobbing">
         <svg class="fairy-svg" viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
-            <linearGradient id="wingGrad2" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#68f3ff" stop-opacity="0.85"/>
-              <stop offset="35%" stop-color="#7bffb8" stop-opacity="0.65"/>
-              <stop offset="70%" stop-color="#a0ffea" stop-opacity="0.55"/>
-              <stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/>
-            </linearGradient>
-            <linearGradient id="dressGrad2" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#7bffb8" stop-opacity="0.95"/>
-              <stop offset="55%" stop-color="#68f3ff" stop-opacity="0.85"/>
-              <stop offset="100%" stop-color="#4dd5e8" stop-opacity="0.85"/>
-            </linearGradient>
-            <linearGradient id="hairGrad2" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#4dd5e8"/>
-              <stop offset="55%" stop-color="#68f3ff"/>
-              <stop offset="100%" stop-color="#7bffb8"/>
-            </linearGradient>
-            <filter id="softGlow2" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="2.2" result="b"/>
-              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.65 0" result="g"/>
-              <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
+            <linearGradient id="wingGrad2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#68f3ff" stop-opacity="0.85"/><stop offset="35%" stop-color="#7bffb8" stop-opacity="0.65"/><stop offset="70%" stop-color="#a0ffea" stop-opacity="0.55"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/></linearGradient>
+            <linearGradient id="dressGrad2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7bffb8" stop-opacity="0.95"/><stop offset="55%" stop-color="#68f3ff" stop-opacity="0.85"/><stop offset="100%" stop-color="#4dd5e8" stop-opacity="0.85"/></linearGradient>
+            <linearGradient id="hairGrad2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4dd5e8"/><stop offset="55%" stop-color="#68f3ff"/><stop offset="100%" stop-color="#7bffb8"/></linearGradient>
+            <filter id="softGlow2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2" result="b"/><feColorMatrix in="b" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.65 0" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
           </defs>
-          <g class="wing wing-left" filter="url(#softGlow2)">
-            <path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z" fill="url(#wingGrad2)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
-            <path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z" fill="url(#wingGrad2)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
-          </g>
-          <g class="wing wing-right" filter="url(#softGlow2)">
-            <path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z" fill="url(#wingGrad2)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
-            <path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z" fill="url(#wingGrad2)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
-          </g>
+          <g class="wing wing-left" filter="url(#softGlow2)"><path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z" fill="url(#wingGrad2)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/><path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z" fill="url(#wingGrad2)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/></g>
+          <g class="wing wing-right" filter="url(#softGlow2)"><path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z" fill="url(#wingGrad2)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/><path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z" fill="url(#wingGrad2)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/></g>
           <g class="fairy-core" filter="url(#softGlow2)">
             <path d="M82 88 C 86 58, 102 48, 110 48 C 118 48, 134 58, 138 88 C 140 104, 132 122, 128 136 C 124 150, 132 162, 138 170 C 126 172, 114 160, 110 150 C 106 160, 94 172, 82 170 C 88 162, 96 150, 92 136 C 88 122, 80 104, 82 88 Z" fill="url(#hairGrad2)" opacity="0.95"/>
             <circle cx="110" cy="70" r="16" fill="#e6fffa" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
@@ -1326,36 +528,13 @@
       <div class="fairy-bobbing">
         <svg class="fairy-svg" viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
-            <linearGradient id="wingGrad3" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#ffeb99" stop-opacity="0.85"/>
-              <stop offset="35%" stop-color="#ffd966" stop-opacity="0.65"/>
-              <stop offset="70%" stop-color="#fff4cc" stop-opacity="0.55"/>
-              <stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/>
-            </linearGradient>
-            <linearGradient id="dressGrad3" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#ffeb99" stop-opacity="0.95"/>
-              <stop offset="55%" stop-color="#ffd966" stop-opacity="0.85"/>
-              <stop offset="100%" stop-color="#ffcc33" stop-opacity="0.85"/>
-            </linearGradient>
-            <linearGradient id="hairGrad3" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#ffaa00"/>
-              <stop offset="55%" stop-color="#ffd966"/>
-              <stop offset="100%" stop-color="#ffeb99"/>
-            </linearGradient>
-            <filter id="softGlow3" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="2.2" result="b"/>
-              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.65 0" result="g"/>
-              <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
+            <linearGradient id="wingGrad3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffeb99" stop-opacity="0.85"/><stop offset="35%" stop-color="#ffd966" stop-opacity="0.65"/><stop offset="70%" stop-color="#fff4cc" stop-opacity="0.55"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/></linearGradient>
+            <linearGradient id="dressGrad3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffeb99" stop-opacity="0.95"/><stop offset="55%" stop-color="#ffd966" stop-opacity="0.85"/><stop offset="100%" stop-color="#ffcc33" stop-opacity="0.85"/></linearGradient>
+            <linearGradient id="hairGrad3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffaa00"/><stop offset="55%" stop-color="#ffd966"/><stop offset="100%" stop-color="#ffeb99"/></linearGradient>
+            <filter id="softGlow3" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2" result="b"/><feColorMatrix in="b" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.65 0" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
           </defs>
-          <g class="wing wing-left" filter="url(#softGlow3)">
-            <path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z" fill="url(#wingGrad3)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
-            <path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z" fill="url(#wingGrad3)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
-          </g>
-          <g class="wing wing-right" filter="url(#softGlow3)">
-            <path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z" fill="url(#wingGrad3)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
-            <path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z" fill="url(#wingGrad3)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
-          </g>
+          <g class="wing wing-left" filter="url(#softGlow3)"><path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z" fill="url(#wingGrad3)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/><path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z" fill="url(#wingGrad3)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/></g>
+          <g class="wing wing-right" filter="url(#softGlow3)"><path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z" fill="url(#wingGrad3)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/><path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z" fill="url(#wingGrad3)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/></g>
           <g class="fairy-core" filter="url(#softGlow3)">
             <path d="M82 88 C 86 58, 102 48, 110 48 C 118 48, 134 58, 138 88 C 140 104, 132 122, 128 136 C 124 150, 132 162, 138 170 C 126 172, 114 160, 110 150 C 106 160, 94 172, 82 170 C 88 162, 96 150, 92 136 C 88 122, 80 104, 82 88 Z" fill="url(#hairGrad3)" opacity="0.95"/>
             <circle cx="110" cy="70" r="16" fill="#fffaeb" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
@@ -1378,36 +557,13 @@
       <div class="fairy-bobbing">
         <svg class="fairy-svg" viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
-            <linearGradient id="wingGrad4" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#99ffcc" stop-opacity="0.85"/>
-              <stop offset="35%" stop-color="#66ffaa" stop-opacity="0.65"/>
-              <stop offset="70%" stop-color="#ccffee" stop-opacity="0.55"/>
-              <stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/>
-            </linearGradient>
-            <linearGradient id="dressGrad4" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#99ffcc" stop-opacity="0.95"/>
-              <stop offset="55%" stop-color="#66ffaa" stop-opacity="0.85"/>
-              <stop offset="100%" stop-color="#33ff88" stop-opacity="0.85"/>
-            </linearGradient>
-            <linearGradient id="hairGrad4" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#00dd77"/>
-              <stop offset="55%" stop-color="#66ffaa"/>
-              <stop offset="100%" stop-color="#99ffcc"/>
-            </linearGradient>
-            <filter id="softGlow4" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="2.2" result="b"/>
-              <feColorMatrix in="b" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.65 0" result="g"/>
-              <feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
+            <linearGradient id="wingGrad4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#99ffcc" stop-opacity="0.85"/><stop offset="35%" stop-color="#66ffaa" stop-opacity="0.65"/><stop offset="70%" stop-color="#ccffee" stop-opacity="0.55"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0.30"/></linearGradient>
+            <linearGradient id="dressGrad4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#99ffcc" stop-opacity="0.95"/><stop offset="55%" stop-color="#66ffaa" stop-opacity="0.85"/><stop offset="100%" stop-color="#33ff88" stop-opacity="0.85"/></linearGradient>
+            <linearGradient id="hairGrad4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00dd77"/><stop offset="55%" stop-color="#66ffaa"/><stop offset="100%" stop-color="#99ffcc"/></linearGradient>
+            <filter id="softGlow4" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2" result="b"/><feColorMatrix in="b" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.65 0" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
           </defs>
-          <g class="wing wing-left" filter="url(#softGlow4)">
-            <path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z" fill="url(#wingGrad4)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
-            <path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z" fill="url(#wingGrad4)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
-          </g>
-          <g class="wing wing-right" filter="url(#softGlow4)">
-            <path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z" fill="url(#wingGrad4)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/>
-            <path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z" fill="url(#wingGrad4)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/>
-          </g>
+          <g class="wing wing-left" filter="url(#softGlow4)"><path d="M108 92 C 78 52, 35 58, 30 94 C 26 125, 55 142, 82 136 C 95 133, 104 121, 108 110 Z" fill="url(#wingGrad4)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/><path d="M110 118 C 78 120, 48 142, 55 170 C 63 203, 100 196, 114 170 C 120 158, 119 132, 112 124 Z" fill="url(#wingGrad4)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/></g>
+          <g class="wing wing-right" filter="url(#softGlow4)"><path d="M112 92 C 142 52, 185 58, 190 94 C 194 125, 165 142, 138 136 C 125 133, 116 121, 112 110 Z" fill="url(#wingGrad4)" stroke="rgba(255,255,255,0.65)" stroke-width="1.2"/><path d="M110 118 C 142 120, 172 142, 165 170 C 157 203, 120 196, 106 170 C 100 158, 101 132, 108 124 Z" fill="url(#wingGrad4)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1"/></g>
           <g class="fairy-core" filter="url(#softGlow4)">
             <path d="M82 88 C 86 58, 102 48, 110 48 C 118 48, 134 58, 138 88 C 140 104, 132 122, 128 136 C 124 150, 132 162, 138 170 C 126 172, 114 160, 110 150 C 106 160, 94 172, 82 170 C 88 162, 96 150, 92 136 C 88 122, 80 104, 82 88 Z" fill="url(#hairGrad4)" opacity="0.95"/>
             <circle cx="110" cy="70" r="16" fill="#f0fff7" stroke="rgba(255,255,255,0.5)" stroke-width="0.8"/>
@@ -1426,17 +582,12 @@
     </div>
   </div>
 
-  <!-- Mobile Wand Element -->
+  <!-- Mobile Wand -->
   <div class="mobile-wand">
     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 32 32">
       <defs>
-        <linearGradient id="mwg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#ffd4ff"/>
-          <stop offset="100%" stop-color="#b192df"/>
-        </linearGradient>
-        <filter id="mg">
-          <feGaussianBlur stdDeviation="0.8"/>
-        </filter>
+        <linearGradient id="mwg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffd4ff"/><stop offset="100%" stop-color="#b192df"/></linearGradient>
+        <filter id="mg"><feGaussianBlur stdDeviation="0.8"/></filter>
       </defs>
       <g transform="translate(4,2)">
         <path d="M2,26 L12,16" stroke="url(#mwg)" stroke-width="3" stroke-linecap="round" fill="none" filter="url(#mg)"/>
@@ -1463,10 +614,9 @@
   <div class="easter-egg-trigger" id="easterEggBtn" title="Click for a surprise! ✨">🌙</div>
   <div class="easter-egg-trigger-2" id="easterEggBtn2" title="Another secret awaits! ✨">⭐</div>
 
-  <!-- Easter Egg Modal 1 -->
+  <!-- Easter Egg Modal 1 — NO X button, only "Back to the Magic" -->
   <div class="easter-egg-modal" id="easterEggModal">
     <div class="easter-egg-content">
-      <button class="easter-egg-close" id="closeModal">×</button>
       <h3>✨ You Found the Secret! ✨</h3>
       <p>Congratulations, curious soul! You've discovered the hidden treasure of this enchanted garden.</p>
       <div class="secret-message">
@@ -1480,10 +630,9 @@
     </div>
   </div>
 
-  <!-- Easter Egg Modal 2 -->
+  <!-- Easter Egg Modal 2 — NO X button, only "Back to the Magic" -->
   <div class="easter-egg-modal" id="easterEggModal2">
     <div class="easter-egg-content">
-      <button class="easter-egg-close" id="closeModal2">×</button>
       <h3>⭐ A Hidden Treasure! ⭐</h3>
       <p>You truly are an explorer of hidden wonders! Here's a magical message just for you.</p>
       <div class="secret-message">
@@ -1586,7 +735,7 @@
     </div>
   </section>
 
-  <!-- Art journey -->
+  <!-- Art Journey -->
   <section class="bg-purple">
     <div class="container">
       <p class="journey-text">
@@ -1639,17 +788,24 @@
         </p>
 
         <div class="footer-grid">
-          <!-- Cash App: title removed, bless button kept with Cash App link -->
+          <!-- Cash App -->
           <div>
             <div class="footer-item-value">
               <a href="https://cash.app/$moonshadowflower" target="_blank" class="bless-button" id="blessBtn">✦ Bless This Moment ✦</a>
             </div>
-          <divdiv class="footer-item-value">
-            <a href="https://rss.com/podcasts/moonshadowsunflower/" target="_blank" class="POD-button" id="PODBtn">✦PODCAST✦</a>
-          <!-- Email: title removed, button kept -->
+          </div>
+          <!-- Podcast -->
           <div>
             <div class="footer-item-value">
-              <a href="mailto:Moonshadowthesunflower@gmail.com" class="whimsical-button" id="emailBtn">✦Email Me✦</a>
+              <a href="https://rss.com/podcasts/moonshadowsunflower/" target="_blank" class="podcast-button" id="podcastBtn">
+                <span class="podcast-icon">🎙️</span> My Podcast
+              </a>
+            </div>
+          </div>
+          <!-- Email -->
+          <div>
+            <div class="footer-item-value">
+              <a href="mailto:Moonshadowthesunflower@gmail.com" class="whimsical-button" id="emailBtn">Email Me</a>
             </div>
           </div>
         </div>
@@ -1667,7 +823,6 @@
     // ========================================
     // LANGUAGE TRANSLATION SYSTEM
     // ========================================
-    
     const translations = {
       en: {
         heroSubtitle: "FIND WHAT SPARKS YOUR CURIOSITY",
@@ -1700,19 +855,20 @@
         journeyText3: "Your curiosity, kindness, and presence turn this little corner of the internet into a shared sanctuary.",
         footerText: "Thank you for exploring my creative world—your curiosity and support mean everything to me.",
         blessBtn: "✦ Bless This Moment ✦",
+        podcastBtn: "🎙️ My Podcast",
         emailBtn: "Email Me",
         easterEgg1Title: "✨ You Found the Secret! ✨",
         easterEgg1Text: "Congratulations, curious soul! You've discovered the hidden treasure of this enchanted garden.",
         easterEgg1MessageTitle: "MoonShadow's Secret Message:",
         easterEgg1Message: "\"In the quiet moments between dreams and reality, magic lives. You are more creative, more powerful, and more loved than you know. Keep dancing with the fairies, and never stop believing in the impossible.\"",
         easterEgg1Signature: "– With starlight and wonder, MoonShadow 🌙✨",
-        easterEgg1Back: "🧚 Back to the Magic",
+        easterEgg1Back: "Back to the Magic",
         easterEgg2Title: "⭐ A Hidden Treasure! ⭐",
         easterEgg2Text: "You truly are an explorer of hidden wonders! Here's a magical message just for you.",
         easterEgg2MessageTitle: "A Whisper from the Stars:",
         easterEgg2Message: "\"Every ending is a new beginning in disguise. The darkest nights birth the brightest stars. When you feel lost, remember: even the moon goes through phases, yet it always returns in full glory. Your light will shine again.\"",
         easterEgg2Signature: "– Keep shining, beautiful soul ⭐💫",
-        easterEgg2Back: "🧚 Back to the Magic",
+        easterEgg2Back: "Back to the Magic",
         fairy1Name: "Luna Starwhisper",
         fairy1Power: "Weaves dreams from moonlight and brings peaceful sleep to weary souls",
         fairy2Name: "Aqua Crystalwing",
@@ -1753,19 +909,20 @@
         journeyText3: "Tu curiosidad, bondad y presencia convierten este pequeño rincón de internet en un santuario compartido.",
         footerText: "Gracias por explorar mi mundo creativo—tu curiosidad y apoyo significan todo para mí.",
         blessBtn: "✦ Bendice Este Momento ✦",
+        podcastBtn: "🎙️ Mi Podcast",
         emailBtn: "Envíame un Email",
         easterEgg1Title: "✨ ¡Encontraste el Secreto! ✨",
         easterEgg1Text: "¡Felicitaciones, alma curiosa! Has descubierto el tesoro escondido de este jardín encantado.",
         easterEgg1MessageTitle: "Mensaje Secreto de MoonShadow:",
         easterEgg1Message: "\"En los momentos tranquilos entre los sueños y la realidad, vive la magia. Eres más creativo, más poderoso y más amado de lo que sabes. Sigue bailando con las hadas y nunca dejes de creer en lo imposible.\"",
         easterEgg1Signature: "– Con luz de estrellas y asombro, MoonShadow 🌙✨",
-        easterEgg1Back: "🧚 Volver a la Magia",
+        easterEgg1Back: "Volver a la Magia",
         easterEgg2Title: "⭐ ¡Un Tesoro Escondido! ⭐",
         easterEgg2Text: "¡Realmente eres un explorador de maravillas ocultas! Aquí hay un mensaje mágico solo para ti.",
         easterEgg2MessageTitle: "Un Susurro de las Estrellas:",
         easterEgg2Message: "\"Cada final es un nuevo comienzo disfrazado. Las noches más oscuras dan luz a las estrellas más brillantes. Cuando te sientas perdido, recuerda: incluso la luna pasa por fases, pero siempre regresa en gloria completa. Tu luz brillará de nuevo.\"",
         easterEgg2Signature: "– Sigue brillando, alma hermosa ⭐💫",
-        easterEgg2Back: "🧚 Volver a la Magia",
+        easterEgg2Back: "Volver a la Magia",
         fairy1Name: "Luna Susurro Estelar",
         fairy1Power: "Teje sueños de luz de luna y trae sueño pacífico a las almas cansadas",
         fairy2Name: "Aqua Ala de Cristal",
@@ -1806,19 +963,20 @@
         journeyText3: "Sua curiosidade, bondade e presença transformam este pequeno cantinho da internet em um santuário compartilhado.",
         footerText: "Obrigado por explorar meu mundo criativo—sua curiosidade e apoio significam tudo para mim.",
         blessBtn: "✦ Abençoa Este Momento ✦",
+        podcastBtn: "🎙️ Meu Podcast",
         emailBtn: "Me Envie um Email",
         easterEgg1Title: "✨ Você Encontrou o Segredo! ✨",
         easterEgg1Text: "Parabéns, alma curiosa! Você descobriu o tesouro escondido deste jardim encantado.",
         easterEgg1MessageTitle: "Mensagem Secreta de MoonShadow:",
         easterEgg1Message: "\"Nos momentos tranquilos entre sonhos e realidade, a magia vive. Você é mais criativo, mais poderoso e mais amado do que imagina. Continue dançando com as fadas e nunca pare de acreditar no impossível.\"",
         easterEgg1Signature: "– Com luz das estrelas e maravilha, MoonShadow 🌙✨",
-        easterEgg1Back: "🧚 Voltar à Magia",
+        easterEgg1Back: "Voltar à Magia",
         easterEgg2Title: "⭐ Um Tesouro Escondido! ⭐",
         easterEgg2Text: "Você realmente é um explorador de maravilhas ocultas! Aqui está uma mensagem mágica só para você.",
         easterEgg2MessageTitle: "Um Sussurro das Estrelas:",
         easterEgg2Message: "\"Todo fim é um novo começo disfarçado. As noites mais escuras dão origem às estrelas mais brilhantes. Quando você se sentir perdido, lembre-se: até a lua passa por fases, mas sempre retorna em glória completa. Sua luz brilhará novamente.\"",
         easterEgg2Signature: "– Continue brilhando, alma linda ⭐💫",
-        easterEgg2Back: "🧚 Voltar à Magia",
+        easterEgg2Back: "Voltar à Magia",
         fairy1Name: "Luna Sussurro Estelar",
         fairy1Power: "Tece sonhos de luz lunar e traz sono pacífico para almas cansadas",
         fairy2Name: "Aqua Asa de Cristal",
@@ -1835,14 +993,12 @@
     function translatePage(lang) {
       currentLang = lang;
       const t = translations[lang];
-      
       document.querySelector('.hero-subtitle').textContent = t.heroSubtitle;
       document.querySelector('.bubble-title').textContent = t.greeting;
       document.querySelector('.welcome-title').textContent = t.welcomeTitle;
       document.querySelector('.welcome-text').textContent = t.welcomeText;
       document.querySelector('.section-heading').textContent = t.sectionHeading;
       document.querySelector('.section-subheading').textContent = t.sectionSubheading;
-      
       const cards = document.querySelectorAll('.card');
       cards[0].querySelector('.card-title').textContent = t.cardTitle1;
       cards[0].querySelector('.card-text').innerHTML = t.cardText1 + '<br><br><a href="https://linktr.ee/MoonShadowTheSun" target="_blank" class="whimsical-button">' + t.cardButton1 + '</a>';
@@ -1850,17 +1006,13 @@
       cards[1].querySelector('.card-text').textContent = t.cardText2;
       cards[2].querySelector('.card-title').textContent = t.cardTitle3;
       cards[2].querySelector('.card-text').textContent = t.cardText3;
-      
       document.querySelectorAll('.section-heading')[1].textContent = t.writingHeading;
-      
       const stories = document.querySelectorAll('.story-block');
       stories[0].querySelector('.story-title').textContent = t.storyTitle1;
       stories[0].querySelector('.story-text').textContent = t.storyText1;
       stories[1].querySelector('.story-title').textContent = t.storyTitle2;
       stories[1].querySelector('.story-text').textContent = t.storyText2;
-      
       document.querySelector('.journey-text').textContent = t.journeyText;
-      
       const journeyCards = document.querySelectorAll('.journey-card');
       journeyCards[0].querySelector('.journey-label').textContent = t.journeyLabel1;
       journeyCards[0].querySelector('.journey-title').textContent = t.journeyTitle1;
@@ -1871,16 +1023,13 @@
       journeyCards[2].querySelector('.journey-label').textContent = t.journeyLabel3;
       journeyCards[2].querySelector('.journey-title').textContent = t.journeyTitle3;
       journeyCards[2].querySelector('.journey-text-small').textContent = t.journeyText3;
-      
       document.querySelector('footer p').textContent = t.footerText;
-
-      // Bless button & email button
       const blessBtn = document.getElementById('blessBtn');
       if (blessBtn) blessBtn.textContent = t.blessBtn;
+      const podcastBtn = document.getElementById('podcastBtn');
+      if (podcastBtn) podcastBtn.innerHTML = t.podcastBtn;
       const emailBtn = document.getElementById('emailBtn');
       if (emailBtn) emailBtn.textContent = t.emailBtn;
-      
-      // Easter Egg 1
       document.querySelector('#easterEggModal h3').textContent = t.easterEgg1Title;
       document.querySelector('#easterEggModal > .easter-egg-content > p').textContent = t.easterEgg1Text;
       const ee1Paras = document.querySelectorAll('#easterEggModal .secret-message p');
@@ -1888,9 +1037,7 @@
       if (ee1Paras[1]) ee1Paras[1].textContent = t.easterEgg1Message;
       if (ee1Paras[2]) ee1Paras[2].textContent = t.easterEgg1Signature;
       const back1 = document.getElementById('goBackModal1');
-      if (back1) back1.innerHTML = '<span class="fairy-arrow">🧚</span> ' + t.easterEgg1Back.replace('🧚 ', '');
-
-      // Easter Egg 2
+      if (back1) back1.innerHTML = '<span class="fairy-arrow">🧚</span> ' + t.easterEgg1Back;
       document.querySelector('#easterEggModal2 h3').textContent = t.easterEgg2Title;
       document.querySelector('#easterEggModal2 > .easter-egg-content > p').textContent = t.easterEgg2Text;
       const ee2Paras = document.querySelectorAll('#easterEggModal2 .secret-message p');
@@ -1898,125 +1045,64 @@
       if (ee2Paras[1]) ee2Paras[1].textContent = t.easterEgg2Message;
       if (ee2Paras[2]) ee2Paras[2].textContent = t.easterEgg2Signature;
       const back2 = document.getElementById('goBackModal2');
-      if (back2) back2.innerHTML = '<span class="fairy-arrow">🧚</span> ' + t.easterEgg2Back.replace('🧚 ', '');
-      
-      // Update fairy data
-      fairyData['1'].name = t.fairy1Name;
-      fairyData['1'].power = t.fairy1Power;
-      fairyData['2'].name = t.fairy2Name;
-      fairyData['2'].power = t.fairy2Power;
-      fairyData['3'].name = t.fairy3Name;
-      fairyData['3'].power = t.fairy3Power;
-      fairyData['4'].name = t.fairy4Name;
-      fairyData['4'].power = t.fairy4Power;
-      
-      // Update active button
+      if (back2) back2.innerHTML = '<span class="fairy-arrow">🧚</span> ' + t.easterEgg2Back;
+      fairyData['1'].name = t.fairy1Name; fairyData['1'].power = t.fairy1Power;
+      fairyData['2'].name = t.fairy2Name; fairyData['2'].power = t.fairy2Power;
+      fairyData['3'].name = t.fairy3Name; fairyData['3'].power = t.fairy3Power;
+      fairyData['4'].name = t.fairy4Name; fairyData['4'].power = t.fairy4Power;
       document.querySelectorAll('.language-btn').forEach(btn => {
         btn.classList.remove('active');
-        if (btn.getAttribute('data-lang') === lang) {
-          btn.classList.add('active');
-        }
+        if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
       });
     }
 
     document.querySelectorAll('.language-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const lang = btn.getAttribute('data-lang');
-        translatePage(lang);
-      });
+      btn.addEventListener('click', () => translatePage(btn.getAttribute('data-lang')));
     });
 
     // ========================================
-    // OPTIMIZED FAIRY INTERACTION SYSTEM
+    // FAIRY INTERACTION
     // ========================================
-    
     const fairies = document.querySelectorAll('.fairy-wrapper');
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let rafId = null;
+    let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2, rafId = null;
 
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-
-    document.addEventListener('touchmove', (e) => {
-      const touch = e.touches[0];
-      mouseX = touch.clientX;
-      mouseY = touch.clientY;
-    }, { passive: true });
+    document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+    document.addEventListener('touchmove', (e) => { mouseX = e.touches[0].clientX; mouseY = e.touches[0].clientY; }, { passive: true });
 
     function updateFairyInteraction() {
       fairies.forEach(fairy => {
         const rect = fairy.getBoundingClientRect();
-        const fairyCenterX = rect.left + rect.width / 2;
-        const fairyCenterY = rect.top + rect.height / 2;
-        
-        const deltaX = mouseX - fairyCenterX;
-        const deltaY = mouseY - fairyCenterY;
+        const deltaX = mouseX - (rect.left + rect.width / 2);
+        const deltaY = mouseY - (rect.top + rect.height / 2);
         const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-        
-        const interactionRadius = 250;
-        
-        if (distance < interactionRadius) {
-          const strength = Math.max(0, 1 - distance / interactionRadius);
-          const offsetX = -deltaX * strength * 0.2;
-          const offsetY = -deltaY * strength * 0.2;
-          fairy.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        if (distance < 250) {
+          const strength = Math.max(0, 1 - distance / 250);
+          fairy.style.transform = `translate(${-deltaX * strength * 0.2}px, ${-deltaY * strength * 0.2}px)`;
           const svg = fairy.querySelector('.fairy-svg');
-          if (svg && distance < 150) {
-            svg.style.filter = 'drop-shadow(0 0 10px rgba(255,255,255,1)) drop-shadow(0 0 20px rgba(210,160,255,0.9))';
-          } else if (svg) {
-            svg.style.filter = 'drop-shadow(0 0 6px rgba(255,255,255,0.95)) drop-shadow(0 0 14px rgba(210,160,255,0.55))';
-          }
+          if (svg) svg.style.filter = distance < 150
+            ? 'drop-shadow(0 0 10px rgba(255,255,255,1)) drop-shadow(0 0 20px rgba(210,160,255,0.9))'
+            : 'drop-shadow(0 0 6px rgba(255,255,255,0.95)) drop-shadow(0 0 14px rgba(210,160,255,0.55))';
         } else {
           fairy.style.transform = 'translate(0, 0)';
           const svg = fairy.querySelector('.fairy-svg');
-          if (svg) {
-            svg.style.filter = 'drop-shadow(0 0 6px rgba(255,255,255,0.95)) drop-shadow(0 0 14px rgba(210,160,255,0.55))';
-          }
+          if (svg) svg.style.filter = 'drop-shadow(0 0 6px rgba(255,255,255,0.95)) drop-shadow(0 0 14px rgba(210,160,255,0.55))';
         }
       });
-      
       rafId = requestAnimationFrame(updateFairyInteraction);
     }
-    
     updateFairyInteraction();
 
     // ========================================
     // FAIRY DUST TRAIL
     // ========================================
-    
-    const dustColors = {
-      '1': '#ffb8ff',
-      '2': '#68f3ff',
-      '3': '#ffd966',
-      '4': '#66ffaa'
-    };
+    const dustColors = { '1': '#ffb8ff', '2': '#68f3ff', '3': '#ffd966', '4': '#66ffaa' };
 
     function createFairyDust(x, y, color) {
       const dust = document.createElement('div');
       const size = Math.random() * 6 + 2;
-      Object.assign(dust.style, {
-        width: size + 'px',
-        height: size + 'px',
-        left: x + 'px',
-        top: y + 'px',
-        background: color,
-        boxShadow: `0 0 6px ${color}, 0 0 12px rgba(210,160,255,0.45)`,
-        borderRadius: '50%',
-        position: 'fixed',
-        pointerEvents: 'none',
-        zIndex: '45',
-        opacity: '0.85',
-        transition: 'all 1.5s linear',
-        willChange: 'transform, opacity'
-      });
+      Object.assign(dust.style, { width: size+'px', height: size+'px', left: x+'px', top: y+'px', background: color, boxShadow: `0 0 6px ${color}, 0 0 12px rgba(210,160,255,0.45)`, borderRadius: '50%', position: 'fixed', pointerEvents: 'none', zIndex: '45', opacity: '0.85', transition: 'all 1.5s linear', willChange: 'transform, opacity' });
       document.body.appendChild(dust);
-      requestAnimationFrame(() => {
-        dust.style.opacity = '0';
-        dust.style.transform = `translateY(30px) translateX(${Math.random() * 16 - 8}px)`;
-      });
+      requestAnimationFrame(() => { dust.style.opacity = '0'; dust.style.transform = `translateY(30px) translateX(${Math.random()*16-8}px)`; });
       setTimeout(() => dust.remove(), 1550);
     }
 
@@ -2026,110 +1112,66 @@
         const svg = fairy.querySelector('.fairy-svg');
         if (!svg) return;
         const rect = svg.getBoundingClientRect();
-        createFairyDust(
-          rect.left + rect.width / 2 + (Math.random() * 14 - 7),
-          rect.top + rect.height / 2 + (Math.random() * 14 - 7),
-          dustColors[fairyNum]
-        );
+        createFairyDust(rect.left + rect.width/2 + (Math.random()*14-7), rect.top + rect.height/2 + (Math.random()*14-7), dustColors[fairyNum]);
       });
     }, 180);
 
     // ========================================
-    // SPARKLE & WAND
+    // SPARKLE
     // ========================================
-    
     let lastSparkleTime = 0;
     const mobileWand = document.querySelector('.mobile-wand');
     const sparklePool = [];
-    const SPARKLE_POOL_SIZE = 20;
-
-    for (let i = 0; i < SPARKLE_POOL_SIZE; i++) {
-      const sparkle = document.createElement('div');
-      Object.assign(sparkle.style, {
-        borderRadius: '50%',
-        position: 'fixed',
-        pointerEvents: 'none',
-        zIndex: '9999',
-        display: 'none',
-        willChange: 'transform, opacity'
-      });
-      document.body.appendChild(sparkle);
-      sparklePool.push(sparkle);
+    for (let i = 0; i < 20; i++) {
+      const s = document.createElement('div');
+      Object.assign(s.style, { borderRadius:'50%', position:'fixed', pointerEvents:'none', zIndex:'9999', display:'none', willChange:'transform,opacity' });
+      document.body.appendChild(s);
+      sparklePool.push(s);
     }
-
     let sparkleIndex = 0;
 
     function createSparkle(x, y) {
       const now = Date.now();
       if (now - lastSparkleTime < 50) return;
       lastSparkleTime = now;
-      const sparkle = sparklePool[sparkleIndex];
-      sparkleIndex = (sparkleIndex + 1) % SPARKLE_POOL_SIZE;
+      const s = sparklePool[sparkleIndex];
+      sparkleIndex = (sparkleIndex + 1) % 20;
       const size = Math.random() * 10 + 5;
-      Object.assign(sparkle.style, {
-        width: size + 'px',
-        height: size + 'px',
-        left: x + 'px',
-        top: y + 'px',
-        background: 'radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%)',
-        opacity: '1',
-        transform: `scale(${Math.random() * 0.5 + 0.5})`,
-        display: 'block',
-        transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
-      });
-      requestAnimationFrame(() => {
-        sparkle.style.opacity = '0';
-        sparkle.style.transform = `scale(0) translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px)`;
-      });
-      setTimeout(() => { sparkle.style.display = 'none'; }, 800);
+      Object.assign(s.style, { width: size+'px', height: size+'px', left: x+'px', top: y+'px', background: 'radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%)', opacity: '1', transform: `scale(${Math.random()*0.5+0.5})`, display: 'block', transition: 'opacity 0.8s ease-out, transform 0.8s ease-out' });
+      requestAnimationFrame(() => { s.style.opacity = '0'; s.style.transform = `scale(0) translate(${Math.random()*50-25}px,${Math.random()*50-25}px)`; });
+      setTimeout(() => { s.style.display = 'none'; }, 800);
     }
 
-    document.addEventListener('mousemove', (e) => {
-      createSparkle(e.clientX, e.clientY);
-    }, { passive: true });
-
+    document.addEventListener('mousemove', (e) => createSparkle(e.clientX, e.clientY), { passive: true });
     let touchActive = false;
-
     document.addEventListener('touchmove', (e) => {
       if (!touchActive) return;
-      const touch = e.touches[0];
+      const t = e.touches[0];
       mobileWand.style.display = 'block';
-      mobileWand.style.left = touch.clientX + 'px';
-      mobileWand.style.top = touch.clientY + 'px';
-      createSparkle(touch.clientX, touch.clientY);
+      mobileWand.style.left = t.clientX+'px';
+      mobileWand.style.top = t.clientY+'px';
+      createSparkle(t.clientX, t.clientY);
     }, { passive: true });
-
     document.addEventListener('touchstart', () => { touchActive = true; }, { passive: true });
-    document.addEventListener('touchend', () => {
-      touchActive = false;
-      mobileWand.style.display = 'none';
-    }, { passive: true });
+    document.addEventListener('touchend', () => { touchActive = false; mobileWand.style.display = 'none'; }, { passive: true });
 
     // ========================================
     // ORBS
     // ========================================
-    
     const orbContainer = document.querySelector('.orb-container');
     for (let i = 0; i < 8; i++) {
       const orb = document.createElement('div');
       orb.className = 'orb';
       const size = Math.random() * 100 + 50;
-      Object.assign(orb.style, {
-        width: size + 'px',
-        height: size + 'px',
-        left: Math.random() * 100 + 'vw',
-        top: Math.random() * 100 + 'vh',
-        animationDelay: Math.random() * 10 + 's'
-      });
-      orb.style.setProperty('--x', `${Math.random() * 200 - 100}px`);
-      orb.style.setProperty('--y', `${Math.random() * 200 - 100}px`);
+      Object.assign(orb.style, { width: size+'px', height: size+'px', left: Math.random()*100+'vw', top: Math.random()*100+'vh', animationDelay: Math.random()*10+'s' });
+      orb.style.setProperty('--x', `${Math.random()*200-100}px`);
+      orb.style.setProperty('--y', `${Math.random()*200-100}px`);
       orbContainer.appendChild(orb);
     }
 
     // ========================================
-    // FAIRY CLICK INTERACTION
+    // FAIRY CLICK
     // ========================================
-    
     const fairyInfo = document.getElementById('fairyInfo');
     const fairyNameEl = document.getElementById('fairyName');
     const fairyPowerEl = document.getElementById('fairyPower');
@@ -2153,103 +1195,52 @@
         fairy.classList.add('showing-info');
         activeFairy = fairy;
         const rect = fairy.getBoundingClientRect();
-        const popupX = Math.min(Math.max(10, rect.left), window.innerWidth - 300);
-        const popupY = Math.min(rect.top + rect.height + 20, window.innerHeight - 200);
-        fairyInfo.style.left = popupX + 'px';
-        fairyInfo.style.top = popupY + 'px';
+        fairyInfo.style.left = Math.min(Math.max(10, rect.left), window.innerWidth - 300) + 'px';
+        fairyInfo.style.top = Math.min(rect.top + rect.height + 20, window.innerHeight - 200) + 'px';
         fairyInfo.classList.add('active');
-        for (let i = 0; i < 15; i++) {
-          setTimeout(() => {
-            createSparkle(
-              rect.left + rect.width / 2 + (Math.random() - 0.5) * 100,
-              rect.top + rect.height / 2 + (Math.random() - 0.5) * 100
-            );
-          }, i * 30);
-        }
+        for (let i = 0; i < 15; i++) setTimeout(() => createSparkle(rect.left + rect.width/2 + (Math.random()-0.5)*100, rect.top + rect.height/2 + (Math.random()-0.5)*100), i * 30);
       });
     });
 
     function closeFairyInfoPopup() {
       fairyInfo.classList.remove('active');
-      if (activeFairy) {
-        activeFairy.classList.remove('showing-info');
-        activeFairy = null;
-      }
+      if (activeFairy) { activeFairy.classList.remove('showing-info'); activeFairy = null; }
     }
-
     closeFairyInfo.addEventListener('click', closeFairyInfoPopup);
-
     document.addEventListener('click', (e) => {
-      if (fairyInfo.classList.contains('active') &&
-          !fairyInfo.contains(e.target) &&
-          !e.target.closest('.fairy-wrapper')) {
-        closeFairyInfoPopup();
-      }
+      if (fairyInfo.classList.contains('active') && !fairyInfo.contains(e.target) && !e.target.closest('.fairy-wrapper')) closeFairyInfoPopup();
     });
 
     // ========================================
-    // EASTER EGG FUNCTIONALITY
+    // EASTER EGGS
     // ========================================
-    
     const easterEggBtn = document.getElementById('easterEggBtn');
     const easterEggModal = document.getElementById('easterEggModal');
-    const closeModal = document.getElementById('closeModal');
-
     const easterEggBtn2 = document.getElementById('easterEggBtn2');
     const easterEggModal2 = document.getElementById('easterEggModal2');
-    const closeModal2 = document.getElementById('closeModal2');
 
     easterEggBtn.addEventListener('click', () => {
       easterEggModal.classList.add('active');
-      for (let i = 0; i < 20; i++) {
-        setTimeout(() => {
-          createSparkle(
-            window.innerWidth / 2 + (Math.random() - 0.5) * 300,
-            window.innerHeight / 2 + (Math.random() - 0.5) * 300
-          );
-        }, i * 50);
-      }
+      for (let i = 0; i < 20; i++) setTimeout(() => createSparkle(window.innerWidth/2 + (Math.random()-0.5)*300, window.innerHeight/2 + (Math.random()-0.5)*300), i * 50);
     });
-
-    closeModal.addEventListener('click', () => { easterEggModal.classList.remove('active'); });
-    easterEggModal.addEventListener('click', (e) => {
-      if (e.target === easterEggModal) easterEggModal.classList.remove('active');
-    });
+    easterEggModal.addEventListener('click', (e) => { if (e.target === easterEggModal) easterEggModal.classList.remove('active'); });
 
     easterEggBtn2.addEventListener('click', () => {
       easterEggModal2.classList.add('active');
-      for (let i = 0; i < 20; i++) {
-        setTimeout(() => {
-          createSparkle(
-            window.innerWidth / 2 + (Math.random() - 0.5) * 300,
-            window.innerHeight / 2 + (Math.random() - 0.5) * 300
-          );
-        }, i * 50);
-      }
+      for (let i = 0; i < 20; i++) setTimeout(() => createSparkle(window.innerWidth/2 + (Math.random()-0.5)*300, window.innerHeight/2 + (Math.random()-0.5)*300), i * 50);
     });
-
-    closeModal2.addEventListener('click', () => { easterEggModal2.classList.remove('active'); });
-    easterEggModal2.addEventListener('click', (e) => {
-      if (e.target === easterEggModal2) easterEggModal2.classList.remove('active');
-    });
+    easterEggModal2.addEventListener('click', (e) => { if (e.target === easterEggModal2) easterEggModal2.classList.remove('active'); });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        easterEggModal.classList.remove('active');
-        easterEggModal2.classList.remove('active');
-      }
+      if (e.key === 'Escape') { easterEggModal.classList.remove('active'); easterEggModal2.classList.remove('active'); }
     });
 
     // ========================================
-    // PERFORMANCE OPTIMIZATION
+    // PERFORMANCE
     // ========================================
-    
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-      } else {
-        if (!rafId) updateFairyInteraction();
-      }
+      if (document.hidden) { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } }
+      else { if (!rafId) updateFairyInteraction(); }
     });
   </script>
 </body>
